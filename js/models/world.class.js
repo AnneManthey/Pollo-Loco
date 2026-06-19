@@ -1,6 +1,6 @@
 class World {
 
-    character = new Charakter();
+    character = new Character();
     enemies = [
         new Chicken(),
         new Chicken(),
@@ -19,12 +19,18 @@ class World {
     ];
     canvas;
     ctx;
-    constructor(canvas) {
+    keyboard;
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
+        this.setWorld();
     }
 
+        setWorld(){
+            this.character.world = this;
+        }
     // Draw wird immer wieder aufgerufen (soviele FPS, wie die Grafikkarte hergibt)
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
