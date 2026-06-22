@@ -8,3 +8,5 @@ Required:
 
 Optional:
 - Chicken in neutrale Bezeichnung umbenennen
+- Character austauschen, zb: Känguru? Cowboy? Sith?
+- Gegner austauschen, zb.:
