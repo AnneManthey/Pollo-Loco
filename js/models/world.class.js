@@ -21,13 +21,14 @@ class World {
         this.character.world = this;
     }
 
-    checkCollisions(){
+    checkCollisions(){ ///// Problem mit isColliding?
         setInterval(() => {
             this.level.enemies.forEach((enemy) =>{
                 if(this.character.isColliding(enemy)){
-                    this.character.energy -= 5;
+                    this.character.hit();
+                    console.log('Collision, energy ', this.character.energy);
                 }
-            })
+            });
 
         },200);
     }
