@@ -1,7 +1,8 @@
 Required: 
 
-- Coins/Sammelobjekte einfügen
+- Coins/Flaschen/Sammelobjekte einfügen
 - mehrere Gegner einfügen
+- 3 Statusbars (einzelne objects)
 
 
 
