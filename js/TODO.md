@@ -55,8 +55,6 @@ Required:
 - [raussuchen] Grafiken/IMG
     - Landing Page Hintergrund
     - Favicon
-    - Sound an/aus Icons
-    - Play Icon
 
 
 - Landing Page:
