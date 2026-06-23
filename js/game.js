@@ -25,10 +25,14 @@ window.addEventListener("keydown", (e) => {
      if (e.keyCode == 32){
         keyboard.SPACE = true;
     };
+      if (e.keyCode == 68){          
+        keyboard.D = true;
+    };
 
 })
 
 window.addEventListener("keyup", (e) => {
+    //console.log(e.keyCode); // Gibt Keycode der jeweils gedrückten Taste in der Console aus
     if (e.keyCode == 39){
         keyboard.RIGHT = false;
     };
@@ -43,6 +47,9 @@ window.addEventListener("keyup", (e) => {
     };
      if (e.keyCode == 32){
         keyboard.SPACE = false;
+    };
+    if (e.keyCode == 68){          
+        keyboard.D = false;
     };
 
 })
