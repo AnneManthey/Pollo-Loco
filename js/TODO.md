@@ -1,16 +1,17 @@
 Required: 
 
 Reihenfolge
-- 'Pufferzone' Am start einfügen
-- Gegner laufen vor/zurück in entsprechendem Bereich
+
+- LP für Gegner
+- Angriff funktion
+- Besiegt Animation
+
 - Gegner drehen sich um, wenn Char in Reichweite?
 
 - weiteren Gegnertyp einfügen
 - mehrere Gegner verteilen
 - Coins einfügen und verteilen
-- LP für Gegner
-- Angriff funktion
-- Besiegt Animation
+
 
 
 
@@ -23,7 +24,6 @@ Reihenfolge
     - Leiste füllt sich
     - max: cap (zb. 10?)
 - Flaschen nur werfen, wenn vorhanden
-- Gegner spawnen/laufen nicht bis zum Start (kein 'überrennen')
 - zweiten Gegnertyp einfügen
 - Coins einfügen/verteilen
 

@@ -27,16 +27,8 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkTrowObjects();
-            this.clearDeadEnemies();
 
         }, 200);
-    }
-
-    clearDeadEnemies(){
-        if (this.level && this.level.enemies) {
-        this.level.enemies = this.level.enemies.filter(enemy => !enemy.isRemoved);
-    }
-
     }
 
     checkTrowObjects(){
@@ -49,13 +41,10 @@ class World {
     checkCollisions(){
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                // Wenn der Charakter gerade fällt und das Huhn von oben trifft,
-                // wird das Huhn besiegt statt der Charakter verletzt.
                 if (enemy instanceof Chicken && this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height / 2) {
                     enemy.chickenDead = true;
                     return;
                 }
-
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
