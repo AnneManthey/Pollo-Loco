@@ -2,14 +2,16 @@ Required:
 
 Desk
 
-- Wurfangriff / Schaden nehmen implementieren
+
 - Coins einfügen und verteilen
 - Munition einfügen und verteilen
+- Statusleisten für coins und munition
+- werfen nur möglich, wenn Munition verfügbar
+- Idle/Sleep animation
+- Bosskampf
 
 
-
-
-
+1. Funktionalität
 - Coins 
     - Erhöhen den Score (+1)
     - Leiste füllt sich
@@ -19,7 +21,6 @@ Desk
     - Leiste füllt sich
     - max: cap (zb. 10?)
 - Flaschen nur werfen, wenn vorhanden
-- zweiten Gegnertyp einfügen
 - Coins einfügen/verteilen
 
 - Charakter:
@@ -95,13 +96,12 @@ Desk
     - mobile buttons für steuerung
     - Screen 'pls turn your device to play'
 
-
+2. Anpassen & Gestalten
 
 
 
 
 Optional:
 - Gegner drehen sich um, wenn Char in Reichweite?
-- Chicken in neutrale Bezeichnung umbenennen
-- Character austauschen, zb: Känguru? Cowboy? Sith?
+- Character austauschen, zb: Känguru? Cowboy? Sith? Sprites mit KI generieren?
 - Gegner austauschen, zb.: Stachelschwein/Igel (nicht draufspringen!)
