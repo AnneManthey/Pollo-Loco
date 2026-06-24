@@ -18,6 +18,7 @@ class ChickenSmall extends MovableObject {
     movingLeft = true;
     isJumpable = true;
     chickenDead = false;
+    isHit = false;
     isRemoved = false;
 
     constructor() {

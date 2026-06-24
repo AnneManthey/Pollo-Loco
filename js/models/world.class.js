@@ -47,31 +47,39 @@ class World {
     }
 
     checkCollisions() {
-    this.level.enemies.forEach((enemy) => {
-        if (this.character.isColliding(enemy)) {
-            
-            // Sprungangriff / collidiert von oben
-            if (enemy.isJumpable && this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height) {
-                enemy.hp -= 1;
-                this.character.jump(); // Hochfedern nach Sprungangriff
-                this.character.speedY = 15;
-                if (enemy.hp <= 0){
-                enemy.chickenDead = true;
-                }
-                return;
-            }
-            // Kein Schaden, wenn das Chicken bereits tot ist oder der Character gerade nach oben springt 
-            if (enemy.chickenDead || this.character.speedY > 0) {
-                return;
-            }
-            this.character.hit();
-            this.statusBar.setPercentage(this.character.energy);
-        } 
-    });
-}
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
 
-            
-        
+                // Sprungangriff / collidiert von oben
+                if (enemy.isJumpable && this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height) {
+                    if (enemy.isHit || enemy.chickenDead) return; // kein weiteres hochfedern, wenn Gegner bereits getroffen wurde
+                    enemy.isHit = true;
+                    enemy.hp -= 1;
+                    this.character.jump(); // Hochfedern nach Sprungangriff
+                    this.character.speedY = 15;
+
+                    if (enemy.hp <= 0) {
+                        enemy.chickenDead = true;
+                    } else {
+                        setTimeout(() => {
+                            enemy.isHit = false;
+                        }, 200);
+                    }
+
+                    return;
+                }
+                // Kein Schaden, wenn das Chicken bereits tot ist oder der Character gerade nach oben springt 
+                if (enemy.chickenDead || this.character.speedY > 0) {
+                    return;
+                }
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+
+
 
 
     // Draw wird immer wieder aufgerufen (soviele FPS, wie die Grafikkarte hergibt)
