@@ -1,26 +1,26 @@
-class Chicken extends MovableObject {
+class ChickenSmall extends MovableObject {
 
-    y = 340;
-    height = 110;
-    width = 80;
+    y = 360;
+    height = 80;
+    width = 50;
     IMAGES_WALKING = [
-        'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
-        'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
-        'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
+        'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
+        'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
+        'img/3_enemies_chicken/chicken_small/1_walk/3_w.png'
     ];
     IMAGES_DEAD = [
-        'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
+        'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
-    minX = 800;
-    maxX = 1800;
+    minX = 300;
+    maxX = 1000;
     movingLeft = true;
     isJumpable = true;
     chickenDead = false;
     isRemoved = false;
 
     constructor() {
-        super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.x = this.minX + Math.random() * (this.maxX - this.minX); // Startposition zufällig zwischen minX und maxX
