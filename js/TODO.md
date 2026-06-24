@@ -3,8 +3,7 @@ Required:
 Reihenfolge
 
 - LP für Gegner
-- Angriff funktion
-- Besiegt Animation
+
 
 - Gegner drehen sich um, wenn Char in Reichweite?
 

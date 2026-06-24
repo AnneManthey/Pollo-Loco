@@ -47,21 +47,25 @@ class World {
     }
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {            // kill chicken with jump
-                if (enemy instanceof Chicken && this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height / 2) {
-                    enemy.chickenDead = true;
-                    return;
-                }
-                // Kein Schaden, wenn Chicken tot ist oder Character fällt
-                if (enemy.chickenDead || this.character.speedY < 0) {
-                    return;
-                }
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
-            } 
-        });
-    }
+    this.level.enemies.forEach((enemy) => {
+        if (this.character.isColliding(enemy)) {
+            
+            // Sprungangriff / collidiert von oben
+            if (enemy instanceof Chicken && this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height) {
+                enemy.chickenDead = true;
+                this.character.jump(); // Hochfedern nach Sprungangriff
+                this.character.speedY = 15;
+                return;
+            }
+            // Kein Schaden, wenn das Chicken bereits tot ist oder der Character gerade nach oben springt 
+            if (enemy.chickenDead || this.character.speedY > 0) {
+                return;
+            }
+            this.character.hit();
+            this.statusBar.setPercentage(this.character.energy);
+        } 
+    });
+}
 
             
         
