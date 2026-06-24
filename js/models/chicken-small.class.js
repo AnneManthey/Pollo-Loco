@@ -3,6 +3,7 @@ class ChickenSmall extends MovableObject {
     y = 360;
     height = 80;
     width = 50;
+    hp = 1;
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
@@ -13,7 +14,7 @@ class ChickenSmall extends MovableObject {
     ];
 
     minX = 300;
-    maxX = 1000;
+    maxX = 2000;
     movingLeft = true;
     isJumpable = true;
     chickenDead = false;

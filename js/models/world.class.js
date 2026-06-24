@@ -52,9 +52,12 @@ class World {
             
             // Sprungangriff / collidiert von oben
             if (enemy.isJumpable && this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height) {
-                enemy.chickenDead = true;
+                enemy.hp -= 1;
                 this.character.jump(); // Hochfedern nach Sprungangriff
                 this.character.speedY = 15;
+                if (enemy.hp <= 0){
+                enemy.chickenDead = true;
+                }
                 return;
             }
             // Kein Schaden, wenn das Chicken bereits tot ist oder der Character gerade nach oben springt 

@@ -1,14 +1,12 @@
 Required: 
 
-Reihenfolge
+Desk
 
 - LP für Gegner
-
-
 - Gegner drehen sich um, wenn Char in Reichweite?
 
-- weiteren Gegnertyp einfügen
-- mehrere Gegner verteilen
+
+
 - Coins einfügen und verteilen
 
 
