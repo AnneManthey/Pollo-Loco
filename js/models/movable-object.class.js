@@ -8,6 +8,12 @@ class MovableObject extends DrawableObject {
 
     applyGravity() {
         setInterval(() => {
+            // Wenn das Objekt eine getroffene Flasche ist und Gravitation gestoppt wurde,
+            // dann nicht weiter die Gravitation anwenden.
+            if (this instanceof ThrowableObject && this.stoppedGravity) {
+                return;
+            }
+
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;

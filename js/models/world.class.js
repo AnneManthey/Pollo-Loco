@@ -65,7 +65,13 @@ class World {
                     let textY = enemy.y - 10;
                     this.floatingTexts.push(new FloatingText('-1', textX, textY));
 
-                    bottle.isHit = true; 
+                    // Markiere Flasche als getroffen, starte Splash-Timer und stoppe Bewegung/Gravitation
+                    bottle.isHit = true;
+                    bottle.splashStart = new Date().getTime();
+                    bottle.splashDuration = 200; // ms, kurz sichtbar
+                    bottle.speedY = 0;
+                    bottle.stoppedGravity = true;
+                    bottle.acceleration = 0;
 
                     if (enemy.hp <= 0) {
                         enemy.chickenDead = true;
@@ -76,8 +82,17 @@ class World {
     }
 
     clearThrowableObjects() {
-        // Bereinigt Flaschen, die getroffen haben oder unter den Boden gefallen sind (z.B. y > 360)
-        this.throwableObjects = this.throwableObjects.filter(bottle => !bottle.isHit && bottle.y < 360);
+        // Bereinigt Flaschen:
+        // - Ungetroffene Flaschen werden entfernt, wenn sie unter die Karte fallen (y >= 360)
+        // - Getroffene Flaschen (isHit) bleiben kurz für die Splash-Animation sichtbar
+        const now = new Date().getTime();
+        this.throwableObjects = this.throwableObjects.filter(bottle => {
+            if (bottle.isHit) {
+                const elapsed = now - (bottle.splashStart || 0);
+                return elapsed < (bottle.splashDuration || 200);
+            }
+            return bottle.y < 300;
+        });
     }
 
     checkCollisions() {

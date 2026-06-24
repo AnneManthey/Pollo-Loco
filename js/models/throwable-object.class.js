@@ -1,6 +1,7 @@
 class ThrowableObject extends MovableObject {
 
     isHit = false;
+
     IMAGES_THROWING = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -30,8 +31,13 @@ class ThrowableObject extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.throw) {
+            // Verwende das Flag `isHit` statt der Methode `throw`.
+            // Solange `isHit` false ist, rotiert die Flasche.
+            // Nach einem Treffer (`isHit === true`) wird die Splash-Animation gespielt.
+            if (!this.isHit) {
                 this.playAnimation(this.IMAGES_THROWING);
+            } else {
+                this.playAnimation(this.IMAGES_SPLASH);
             }
         }, 1000 / 60);
 
@@ -41,7 +47,9 @@ class ThrowableObject extends MovableObject {
         this.speedY = 30;
         this.applyGravity();
         setInterval(() => {
-            this.x += 10;
+            if (!this.isHit) {
+                this.x += 10;
+            }
         }, 25);
     }
 
