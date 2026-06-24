@@ -2,12 +2,10 @@ Required:
 
 Desk
 
-- LP für Gegner
-- Gegner drehen sich um, wenn Char in Reichweite?
-
-
-
+- Wurfangriff / Schaden nehmen implementieren
 - Coins einfügen und verteilen
+- Munition einfügen und verteilen
+
 
 
 
@@ -103,6 +101,7 @@ Desk
 
 
 Optional:
+- Gegner drehen sich um, wenn Char in Reichweite?
 - Chicken in neutrale Bezeichnung umbenennen
 - Character austauschen, zb: Känguru? Cowboy? Sith?
 - Gegner austauschen, zb.: Stachelschwein/Igel (nicht draufspringen!)

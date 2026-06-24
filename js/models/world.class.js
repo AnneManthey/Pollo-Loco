@@ -15,7 +15,6 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        //this.floatingTexts = [];
         this.draw();
         this.setWorld();
         this.run();
@@ -29,8 +28,10 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkTrowObjects();
+            this.checkBottleCollisions();
             this.clearDeadEnemies();
             this.clearFloatingTexts();
+            this.clearThrowableObjects();
 
         }, 200);
     }
@@ -50,6 +51,33 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
         }
+    }
+
+    checkBottleCollisions() {
+        this.throwableObjects.forEach((bottle) => {
+            this.level.enemies.forEach((enemy) => {
+                // Prüfen, ob die Flasche den Gegner berührt UND der Gegner noch lebt
+                if (bottle.isColliding(enemy) && !enemy.chickenDead) {
+                    enemy.hp -= 1;
+                    
+                    // Floating Text
+                    let textX = enemy.x + (enemy.width / 2);
+                    let textY = enemy.y - 10;
+                    this.floatingTexts.push(new FloatingText('-1', textX, textY));
+
+                    bottle.isHit = true; 
+
+                    if (enemy.hp <= 0) {
+                        enemy.chickenDead = true;
+                    }
+                }
+            });
+        });
+    }
+
+    clearThrowableObjects() {
+        // Bereinigt Flaschen, die getroffen haben oder unter den Boden gefallen sind (z.B. y > 360)
+        this.throwableObjects = this.throwableObjects.filter(bottle => !bottle.isHit && bottle.y < 360);
     }
 
     checkCollisions() {
