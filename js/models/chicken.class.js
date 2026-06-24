@@ -50,9 +50,9 @@ class Chicken extends MovableObject {
 
         setInterval(() => {
             if (this.chickenDead){
-                this.playAnimation(this.IMAGES_DEAD); // Bild nach x seks entfernen?
+                this.playAnimation(this.IMAGES_DEAD); 
                 setTimeout(() => {
-                    this.isRemoved = true; // Nach 2 Sekunden bereit zum Löschen
+                    this.isRemoved = true; // Totes chicken wird nach 2 Sekunden entfernt
                 }, 2000);
             } else {
             this.playAnimation(this.IMAGES_WALKING);

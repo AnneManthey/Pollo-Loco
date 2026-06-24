@@ -23,7 +23,7 @@ class World {
         this.character.world = this;
     }
 
-    run() {         
+    run() {
         setInterval(() => {
             this.checkCollisions();
             this.checkTrowObjects();
@@ -32,35 +32,39 @@ class World {
         }, 200);
     }
 
-    clearDeadEnemies(){
+    clearDeadEnemies() {
         if (this.level && this.level.enemies) {
-        this.level.enemies = this.level.enemies.filter(enemy => !enemy.isRemoved);
-    }
+            this.level.enemies = this.level.enemies.filter(enemy => !enemy.isRemoved);
+        }
 
     }
 
-    checkTrowObjects(){
-        if (this.keyboard.D){
+    checkTrowObjects() {
+        if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
         }
     }
 
-    checkCollisions(){
+    checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                // Wenn der Charakter gerade fällt und das Huhn von oben trifft,
-                // wird das Huhn besiegt statt der Charakter verletzt.
+            if (this.character.isColliding(enemy)) {            // kill chicken with jump
                 if (enemy instanceof Chicken && this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height / 2) {
                     enemy.chickenDead = true;
                     return;
                 }
-
+                // Kein Schaden, wenn Chicken tot ist oder Character fällt
+                if (enemy.chickenDead || this.character.speedY < 0) {
+                    return;
+                }
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
-            }
+            } 
         });
     }
+
+            
+        
 
 
     // Draw wird immer wieder aufgerufen (soviele FPS, wie die Grafikkarte hergibt)
@@ -75,7 +79,7 @@ class World {
         this.addToMap(this.statusBar);
         this.ctx.translate(this.camera_x, 0);
 
-        
+
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
