@@ -51,16 +51,21 @@ class ChickenSmall extends MovableObject {
             
         }, 1000 / 60);
 
-        setInterval(() => {
-            if (this.chickenDead){
-                this.playAnimation(this.IMAGES_DEAD); 
+        let deathAnimationTriggered = false;
+    setInterval(() => {
+        if (this.chickenDead) {
+            this.playAnimation(this.IMAGES_DEAD); 
+            
+            if (!deathAnimationTriggered) {
+                deathAnimationTriggered = true;
                 setTimeout(() => {
-                    this.isRemoved = true; // Totes chicken wird nach 2 Sekunden entfernt
+                    this.isRemoved = true; // Totes chicken wird markiert zum Löschen
                 }, 2000);
-            } else {
-            this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 200)
+        } else {
+            this.playAnimation(this.IMAGES_WALKING);
+        }
+    }, 200);
     }
 
 }

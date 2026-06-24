@@ -8,12 +8,14 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     throwableObjects = [];
+    floatingTexts = [];
 
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        //this.floatingTexts = [];
         this.draw();
         this.setWorld();
         this.run();
@@ -28,6 +30,7 @@ class World {
             this.checkCollisions();
             this.checkTrowObjects();
             this.clearDeadEnemies();
+            this.clearFloatingTexts();
 
         }, 200);
     }
@@ -36,7 +39,10 @@ class World {
         if (this.level && this.level.enemies) {
             this.level.enemies = this.level.enemies.filter(enemy => !enemy.isRemoved);
         }
+    }
 
+    clearFloatingTexts(){
+        this.floatingTexts = this.floatingTexts.filter(text => !text.isRemoved);
     }
 
     checkTrowObjects() {
@@ -55,6 +61,11 @@ class World {
                     if (enemy.isHit || enemy.chickenDead) return; // kein weiteres hochfedern, wenn Gegner bereits getroffen wurde
                     enemy.isHit = true;
                     enemy.hp -= 1;
+
+                    let textX = enemy.x + (enemy.width / 2);
+                    let textY = enemy.y - 10;
+                    this.floatingTexts.push(new FloatingText('-1', textX, textY));
+
                     this.character.jump(); // Hochfedern nach Sprungangriff
                     this.character.speedY = 15;
 
@@ -99,6 +110,11 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+
+        this.floatingTexts.forEach((text) => {
+            text.draw(this.ctx);
+        });
+
         this.addObjectsToMap(this.throwableObjects);
 
 
