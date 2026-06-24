@@ -1,5 +1,19 @@
 Required: 
 
+Reihenfolge
+- 'Pufferzone' Am start einfügen
+- Gegner laufen vor/zurück in entsprechendem Bereich
+- Gegner drehen sich um, wenn Char in Reichweite?
+
+- weiteren Gegnertyp einfügen
+- mehrere Gegner verteilen
+- Coins einfügen und verteilen
+- LP für Gegner
+- Angriff funktion
+- Besiegt Animation
+
+
+
 - Coins 
     - Erhöhen den Score (+1)
     - Leiste füllt sich
@@ -26,7 +40,7 @@ Required:
 - Gegner:
     - Besiegen erhöht den Score
         - klein: 1 Flaschenwurf / draufspringen (+1)
-        - mittel: 2 Flaschen / ? (+2)
+        - mittel: 2 Flaschen / 2x Draufspringen (+2) / Aggro
         - Entgegner: 5 Flaschen (+10)
     - Animationen
         - Angriff
@@ -55,6 +69,7 @@ Required:
 - [raussuchen] Grafiken/IMG
     - Landing Page Hintergrund
     - Favicon
+    - Musik an/aus (zu sound)
 
 
 - Landing Page:
@@ -64,12 +79,12 @@ Required:
     - Story-Erklärung
     - Start Button
     - Button für Fullscreen [optional] (make canvas/div fullscreen, request fullscreen)
-    - Sounds an/ausschalten (Speichern im Local Storage)
+    - Sounds & Musik an/ausschalten (Speichern im Local Storage)
     - Impressum (Anbieter, rechtliche Hinweise etc.)
 
 - UI:
     - Einblendung Steuerung [optional]
-    - Sounds an/ausschalten
+    - Sounds & Musik an/ausschalten
 
 - Endscreen
     - Win/Lose Bild
