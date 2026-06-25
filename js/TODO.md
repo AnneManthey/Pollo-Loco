@@ -1,13 +1,17 @@
-Required: 
 
 Desk
 
+- Statusbar Coins
+- Statusbar Munition
+- Statusbar Boss HP
 
 - Coins einfügen und verteilen
 - Munition einfügen und verteilen
-- Statusleisten für coins und munition
 - werfen nur möglich, wenn Munition verfügbar
-- Bosskampf
+
+- Bosskampf Bewegungen und range optimieren
+- Boss tod/ende?
+- Lebensleiste
 
 
 1. Funktionalität
@@ -28,8 +32,6 @@ Desk
         - Munition
         - Score
     - Animationen
-        - Idle  (5 Sek)
-        - Long Idle (nach 10-12Sek)
         - Dead
 
 - Gegner:
@@ -44,6 +46,12 @@ Desk
 - Endgegner
     - Moves / Angriffe: Fernkampf Spucken/Sprungangriff o.ä.?
     - Lebensleiste
+
+- UI:
+    - Einblendung Steuerung [optional]
+    - Sounds & Musik an/ausschalten
+    - Fullscreen Button
+    - Pause/Weiter/Beenden Button
     
 
 - [raussuchen] Hintergrundmusik & Soundelemente:
@@ -60,12 +68,20 @@ Desk
     - Entgegner: gackern bei Schaden erleiden o.ä.
     - Besiegt/Game Over
 
-
 - [raussuchen] Grafiken/IMG
     - Landing Page Hintergrund
     - Favicon
     - Musik an/aus (zu sound)
 
+
+
+2. Anpassen & Gestalten
+
+- passende Schriftart raussuchen/einbinden
+- Favicon, Buttons cursor:pointer
+- responsive / Mobile(Querformat)
+    - mobile buttons für steuerung
+    - Screen 'pls turn your device to play'
 
 - Landing Page:
     - Hintergrundbild
@@ -77,10 +93,7 @@ Desk
     - Sounds & Musik an/ausschalten (Speichern im Local Storage)
     - Impressum (Anbieter, rechtliche Hinweise etc.)
 
-- UI:
-    - Einblendung Steuerung [optional]
-    - Sounds & Musik an/ausschalten
-
+- Loading Spinner, während Spiel läd
 - Endscreen
     - Win/Lose Bild
     - Highscore[optional]
@@ -88,19 +101,26 @@ Desk
     - Verlassen / Zurück zur Landing Page
 
 
+Anforderungen Projekt:
+- Start Screen
+- Coins einsammeln
+- Flaschen einsammeln
+- Endgegner besiegen
+- Game-Over Screen / Endscreen mit Play again & verlassen option
+- Fullscreen
+- Erklärung der Steuerung (zb. dialog auf landing page)
+- Sound/Musik
+- Responsive
+- Mobile Version / Mobile touch Buttons
+- Impressum
 
-- passende Schriftart raussuchen/einbinden
-- Favicon, Buttons cursor:pointer
-- responsive / Mobile(Querformat)
-    - mobile buttons für steuerung
-    - Screen 'pls turn your device to play'
 
-2. Anpassen & Gestalten
-
-
-
-
-Optional:
+3. Optional:
 - Gegner drehen sich um, wenn Char in Reichweite?
 - Character austauschen, zb: Känguru? Cowboy? Sith? Sprites mit KI generieren?
 - Gegner austauschen, zb.: Stachelschwein/Igel (nicht draufspringen!)
+- Eigenes Gamedesign - angelehnt an Stormlight/Roshar oder Star Wars?
+    - from zero to radiant / Sith Lord
+    - mehrere level, jeweils am ende aufleveln
+    - Moves freischalten, char entwickelt sich optisch weiter
+    - kleine Story - cutszenes mit Antwortmöglichkeiten?
