@@ -4,6 +4,10 @@ class Endboss extends MovableObject {
     width = 250;
     y = 60;
     hp = 5;
+    attackSpeed = 15;
+    retreatSpeed = 5;
+    attackProgress = 0;
+    attackDirection = 'forward';
 
     
     IMAGES_ALERT = [
@@ -54,11 +58,23 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2500;
+        this.x = 2300;
+        this.speed = 0.25;
         this.animate();
     }
 
     animate(){
+
+        setInterval(() => {
+            if (this.isAttacking) {
+                this.attackMovement();
+            } else {
+                // Platzhalter, walking/stehen/abwarten
+                this.attackProgress = 0; // Reset, wenn er nicht mehr angreift
+                this.attackDirection = 'forward';
+            }
+        }, 1000 / 60);
+
         setInterval(() => {
             if (this.isDead) {
                 this.playAnimation(this.IMAGES_DEAD);
@@ -76,13 +92,35 @@ class Endboss extends MovableObject {
                 // Berechnet den Abstand auf der X-Achse zwischen Boss und Charakter
                 let distance = Math.abs(this.x - this.world.character.x);
 
-                if (distance < 600) {
+                if (distance < 200) {
                     this.isAttacking = true;
                 } else {
                     this.isAttacking = false;
                 }
             }
         }, 100);
+    }
+
+    attackMovement() {
+        if (this.attackDirection === 'forward') {
+            // Angriff nach vorn
+            this.x -= this.attackSpeed;
+            this.attackProgress += this.attackSpeed;
+
+            // Zurück nach 250px
+            if (this.attackProgress >= 250) {
+                this.attackDirection = 'backward';
+            }
+        } else if (this.attackDirection === 'backward') {
+            // Langsam zurück
+            this.x += this.retreatSpeed;
+            this.attackProgress -= this.retreatSpeed;
+
+            // Wieder vor, wenn er am Ausgangspunkt ankommt
+            if (this.attackProgress <= 0) {
+                this.attackDirection = 'forward';
+            }
+        }
     }
 
     hit() {
