@@ -7,7 +7,6 @@ Desk
 - Munition einfügen und verteilen
 - Statusleisten für coins und munition
 - werfen nur möglich, wenn Munition verfügbar
-- Idle/Sleep animation
 - Bosskampf
 
 

@@ -42,7 +42,7 @@ class World {
         }
     }
 
-    clearFloatingTexts(){
+    clearFloatingTexts() {
         this.floatingTexts = this.floatingTexts.filter(text => !text.isRemoved);
     }
 
@@ -56,10 +56,18 @@ class World {
     checkBottleCollisions() {
         this.throwableObjects.forEach((bottle) => {
             this.level.enemies.forEach((enemy) => {
+                if (bottle.isColliding(enemy)) {
+
+                    if (enemy instanceof Endboss) {
+                        enemy.hit(); // Ruft die neue hit()-Methode des Bosses auf
+                        // Flasche zerstören / aus dem Array entfernen
+                        this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
+                    }
+                }
                 // Prüfen, ob die Flasche den Gegner berührt UND der Gegner noch lebt
-                if (bottle.isColliding(enemy) && !enemy.chickenDead) {
+                else if (bottle.isColliding(enemy) && !enemy.chickenDead) {
                     enemy.hp -= 1;
-                    
+
                     // Floating Text
                     let textX = enemy.x + (enemy.width / 2);
                     let textY = enemy.y - 10;
@@ -98,9 +106,15 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
+                if (enemy instanceof Endboss) {
+                    if (enemy.isAttacking && !enemy.isDead) {
+                        this.character.hit(); // Charakter verliert Energie
+                        this.statusBar.setPercentage(this.character.energy);
+                    }
+                }
 
                 // Sprungangriff / collidiert von oben
-                if (enemy.isJumpable && this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height) {
+                else if (enemy.isJumpable && this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height) {
                     if (enemy.isHit || enemy.chickenDead) return; // kein weiteres hochfedern, wenn Gegner bereits getroffen wurde
                     enemy.isHit = true;
                     enemy.hp -= 1;
