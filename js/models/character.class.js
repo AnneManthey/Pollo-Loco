@@ -75,19 +75,24 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SLEEP);
         this.applyGravity();
+        this.lastAction = Date.now();
         this.animate();
     }
 
     animate() {
 
         setInterval(() => {
+            // prüft ob eine Bewegung stattfindet und setzt ggf den timer zurück
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE) {
+                this.lastAction = Date.now();
+            }
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
                 // this.walking_sound.play(); noch nicht implementiert?
             }
 
-            if (this.world.keyboard.LEFT && this.x >0) {
+            if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
                 // this.walking_sound.play(); noch nicht implementiert?
@@ -112,14 +117,22 @@ class Character extends MovableObject {
             else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             }
-            else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT){
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
-            else 
-                {this.playAnimation(this.IMAGES_IDLE);
+            else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_WALKING);
             }
-            
-        }, 50)
+
+        }, 80);
+
+        setInterval(() => {
+            if (!this.isDead() && !this.isHurt() && !this.isAboveGround() && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
+                let timePassed = (Date.now() - this.lastAction) / 1000;     //berechnet sekunden nach letzter aktion
+                if (timePassed > 10) {
+                    this.playAnimation(this.IMAGES_SLEEP);
+                } else {
+                    this.playAnimation(this.IMAGES_IDLE);
+                }
+            }
+        }, 350);
     }
 
     jump() {
