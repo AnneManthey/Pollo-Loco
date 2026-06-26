@@ -6,7 +6,9 @@ Desk
 
 - werfen nur möglich, wenn Munition verfügbar
 - Bosskampf Bewegungen und range optimieren
-- Boss tod/ende?
+    - läuft erst rein, bevor er angreift?
+    
+
 
 - Landing Page
 - Steuerung WASD hinzufügen. Unbedingt. Schnell. 
@@ -44,6 +46,7 @@ Desk
 - Endgegner
     - Moves / Angriffe: Fernkampf Spucken/Sprungangriff o.ä.?
     - Lebensleiste
+    - nach Tod Endscreen anzeigen
 
 - UI:
     - Einblendung Steuerung [optional]

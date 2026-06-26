@@ -9,10 +9,9 @@ class Coin extends Collectables {
     ];
 
     constructor(x,y) {
-        super();
-        let i = Math.floor(Math.random() * this.IMAGES_COIN.length);
-        let selectedImage = this.IMAGES_COIN[i];
-        this.loadImage(selectedImage);
+        super().loadImage('img/8_coin/coin_1.png');
+        this.loadImages(this.IMAGES_COIN);
+        // this.img = this.imageCache[this.IMAGES_COIN[0]];
 
         // Verteilung X-Achse
         let minX = 300;
@@ -24,10 +23,12 @@ class Coin extends Collectables {
         let maxY = 350; 
         this.y = minY + Math.random() * (maxY - minY);
 
-    
+        this.animate();
     }
 
-    collect(character){
-        character.score += 10;
+    animate() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_COIN);
+        }, 400);
     }
 }
