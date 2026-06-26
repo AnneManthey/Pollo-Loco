@@ -37,6 +37,7 @@ class World {
             this.checkCollisions();
             this.checkTrowObjects();
             this.checkBottleCollisions();
+            this.checkCollectableCollisions();
             this.clearDeadEnemies();
             this.clearFloatingTexts();
             this.clearThrowableObjects();
@@ -117,7 +118,7 @@ class World {
                 if (enemy instanceof Endboss) {
                     if (enemy.isAttacking && !enemy.isDead) {
                         this.character.hit(); // Charakter verliert Energie
-                        this.statusBar.setPercentage(this.character.energy);
+                        this.healthBar.setPercentage(this.character.energy);
                     }
                 }
 
@@ -149,26 +150,32 @@ class World {
                     return;
                 }
                 this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+                this.healthBar.setPercentage(this.character.energy);
             }
         });
     }
 
-    //     checkCollectables() {
-    //     this.level.collectables.forEach((collectable, index) => {
-    //         if (this.character.isColliding(collectable)) {
-    //             // Jedes Objekt weiß selbst durch die collect()-Methode, was es tun muss!
-    //             collectable.collect(this.character);
+    checkCollectableCollisions() {
+        this.level.collectables.forEach((item, index) => {
+            if (this.character.isColliding(item)) {
 
-    //             // Objekt aus dem Spiel entfernen
-    //             this.level.collectables.splice(index, 1);
+                if (item instanceof Coin) {
+                    this.character.collectCoin(); // Erhöht z.B. ein internes Attribut im Charakter
+                    this.scoreBar.setPercentage(this.character.coins); // Aktualisiert die Score-Bar
 
-    //             // Optional: StatusBar updaten
-    //             this.statusBarCoins.setPercentage(...);
-    //             this.statusBarBottles.setPercentage(...);
-    //         }
-    //     });
-    // }
+                    this.level.collectables.splice(index, 1);
+                }
+
+                else if (item instanceof Bottle) {
+                    this.character.collectBottle(); // Erhöht z.B. die Munition im Charakter
+                    this.ammoBar.setPercentage(this.character.ammo); // Aktualisiert die Ammo-Bar
+
+                    this.level.collectables.splice(index, 1);
+                }
+            }
+        });
+    }
+
 
 
 
@@ -181,6 +188,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.collectables);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
 
@@ -195,21 +203,14 @@ class World {
         }
 
         // -------- Spaceholder for fixed objects ------------
-        
+
         this.ctx.translate(this.camera_x, 0);
 
-
-
-
         this.addObjectsToMap(this.level.clouds);
-
-
         this.floatingTexts.forEach((text) => {
             text.draw(this.ctx);
         });
-
         this.addObjectsToMap(this.throwableObjects);
-
 
         this.ctx.translate(-this.camera_x, 0);
 

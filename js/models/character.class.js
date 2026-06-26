@@ -4,6 +4,10 @@ class Character extends MovableObject {
     height = 300;
     width = 130;
     speed = 10;
+    coins = 0;
+    ammo = 0;
+    world;
+
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -63,7 +67,7 @@ class Character extends MovableObject {
     ]
 
 
-    world;
+   
 
 
     constructor() {
@@ -137,5 +141,19 @@ class Character extends MovableObject {
 
     jump() {
         this.speedY = 30;
+    }
+
+    collectCoin(){
+        this.coins += 20;
+        if (this.coins > 100){
+            this.coins = 100;
+        }
+    }
+
+    collectBottle(){
+        this.ammo += 20;
+        if (this.ammo > 100){
+            this.ammo = 100;
+        }
     }
 }

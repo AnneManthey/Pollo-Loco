@@ -1,18 +1,5 @@
 const level1 = new Level(
     [
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Coin(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle(),
-        new Bottle(),
         new ChickenSmall(),
         new ChickenSmall(),
         new ChickenSmall(),
@@ -26,6 +13,21 @@ const level1 = new Level(
     ],
     [
         new Cloud()
+    ],
+    [
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle()
     ],
     [
         new BackgroundObject('img/5_background/layers/air.png', -720),
