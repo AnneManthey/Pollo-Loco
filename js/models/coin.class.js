@@ -11,7 +11,6 @@ class Coin extends Collectables {
     constructor(x,y) {
         super().loadImage('img/8_coin/coin_1.png');
         this.loadImages(this.IMAGES_COIN);
-        // this.img = this.imageCache[this.IMAGES_COIN[0]];
 
         // Verteilung X-Achse
         let minX = 300;

@@ -1,9 +1,7 @@
 
 Desk
 
-
-- coin animation
-
+- Munition in 10% schritten füllen (bis 10x max)
 - werfen nur möglich, wenn Munition verfügbar
 - Bosskampf Bewegungen und range optimieren
     - läuft erst rein, bevor er angreift?
@@ -18,11 +16,10 @@ Desk
 - Coins 
     - Erhöhen den Score (+1)
     - Leiste füllt sich
-    - max: open 
+    - [optional] Sowohl besiegte Gegner als auch Coins füllen Score, Leiste durch Score-Zahl ersetzen
 - Flaschen
     - Munition
     - Leiste füllt sich
-    - max: cap (zb. 10?)
 - Flaschen nur werfen, wenn vorhanden
 
 

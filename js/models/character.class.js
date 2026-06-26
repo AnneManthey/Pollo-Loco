@@ -5,7 +5,7 @@ class Character extends MovableObject {
     width = 130;
     speed = 10;
     coins = 0;
-    ammo = 0;
+    ammo = 2;
     world;
 
     IMAGES_WALKING = [
@@ -151,7 +151,7 @@ class Character extends MovableObject {
     }
 
     collectBottle(){
-        this.ammo += 20;
+        this.ammo += 10;
         if (this.ammo > 100){
             this.ammo = 100;
         }

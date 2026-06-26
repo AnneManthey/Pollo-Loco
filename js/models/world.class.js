@@ -56,9 +56,12 @@ class World {
     }
 
     checkTrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.character.ammo > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            this.character.ammo -= 1;
+            let percentage = this.character.ammo * 10;
+            this.ammoBar.setPercentage(percentage);
         }
     }
 
@@ -170,8 +173,11 @@ class World {
 
                 else if (item instanceof Bottle) {
                     this.character.collectBottle(); // Erhöht z.B. die Munition im Charakter
-                    this.ammoBar.setPercentage(this.character.ammo); // Aktualisiert die Ammo-Bar
-
+                    this.ammoBar.setPercentage(this.character.ammo); // Aktualisiert die Ammo-Bar in 10er Schritten (2/20% etc)
+                    if (this.character.ammo < 10) {
+                        this.character.ammo += 1;
+                        this.ammoBar.setPercentage(this.character.ammo * 10);
+                    }
                     this.level.collectables.splice(index, 1);
                 }
             }
