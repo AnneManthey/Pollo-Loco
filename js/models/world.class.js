@@ -6,7 +6,10 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    statusBar = new StatusBar();
+    healthBar = new HealthBar();
+    scoreBar = new ScoreBar();
+    ammoBar = new AmmoBar();
+    //bossBar = new BossBar();
     throwableObjects = [];
     floatingTexts = [];
 
@@ -151,21 +154,21 @@ class World {
         });
     }
 
-//     checkCollectables() {
-//     this.level.collectables.forEach((collectable, index) => {
-//         if (this.character.isColliding(collectable)) {
-//             // Jedes Objekt weiß selbst durch die collect()-Methode, was es tun muss!
-//             collectable.collect(this.character);
-            
-//             // Objekt aus dem Spiel entfernen
-//             this.level.collectables.splice(index, 1);
-            
-//             // Optional: StatusBar updaten
-//             this.statusBarCoins.setPercentage(...);
-//             this.statusBarBottles.setPercentage(...);
-//         }
-//     });
-// }
+    //     checkCollectables() {
+    //     this.level.collectables.forEach((collectable, index) => {
+    //         if (this.character.isColliding(collectable)) {
+    //             // Jedes Objekt weiß selbst durch die collect()-Methode, was es tun muss!
+    //             collectable.collect(this.character);
+
+    //             // Objekt aus dem Spiel entfernen
+    //             this.level.collectables.splice(index, 1);
+
+    //             // Optional: StatusBar updaten
+    //             this.statusBarCoins.setPercentage(...);
+    //             this.statusBarBottles.setPercentage(...);
+    //         }
+    //     });
+    // }
 
 
 
@@ -173,21 +176,33 @@ class World {
 
     // Draw wird immer wieder aufgerufen (soviele FPS, wie die Grafikkarte hergibt)
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
-
+        this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
+
+        this.addToMap(this.healthBar);
+        this.addToMap(this.scoreBar);
+        this.addToMap(this.ammoBar);
+
+        // Boss Healthbar
+        let boss = this.level.enemies.find(e => e instanceof Endboss);
+        if (boss && boss.isAttacking) {
+            this.addToMap(this.bossBar);
+        }
+
         // -------- Spaceholder for fixed objects ------------
-        this.addToMap(this.statusBar);
+        
         this.ctx.translate(this.camera_x, 0);
 
 
 
-        this.addToMap(this.character);
+
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
+
 
         this.floatingTexts.forEach((text) => {
             text.draw(this.ctx);

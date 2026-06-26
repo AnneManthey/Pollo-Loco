@@ -7,8 +7,7 @@ Desk
 - Statusbar Munition
 - Statusbar Boss HP
 
-- Coins einfügen und verteilen
-- Munition einfügen und verteilen
+
 - werfen nur möglich, wenn Munition verfügbar
 
 - Bosskampf Bewegungen und range optimieren
