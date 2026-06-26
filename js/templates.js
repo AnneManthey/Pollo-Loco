@@ -3,7 +3,8 @@ function getDialogWonTemplate() {
     return /*html*/ `
         <section >
             <div>
-                <h2>Your Score</h2>
+                <h2 id="dialogMessage"></h2>
+                <h3>Your Score</h2>
                 <p></p>
             </div>
             <div>
@@ -18,7 +19,8 @@ function getDialogLostTemplate() {
     return /*html*/ `
         <section>
             <div>
-                <h2>Your Score</h2>
+                <h2 id="dialogMessage"></h2>
+                <h3>Your Score</h2>
                 <p></p>
             </div>
             <div>

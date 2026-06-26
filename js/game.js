@@ -4,10 +4,29 @@ let keyboard = new Keyboard();
 
 function init(){
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+    world = new World(canvas, keyboard, openGameOverDialog);
     
    //console.log('My character is', world.character);
 }  
+
+function openGameOverDialog(winOrLose) {
+    let dialog = document.getElementById('dialog');
+    
+    if (winOrLose === 'win') {
+        dialog.innerHTML = getDialogWonTemplate();
+    } else {
+        dialog.innerHTML = getDialogLostTemplate();
+    }
+    dialog.showModal(); 
+}
+
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) {
+        window.clearInterval(i);
+    }
+}
+
+
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39){

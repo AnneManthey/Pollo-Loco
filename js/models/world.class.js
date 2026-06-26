@@ -6,6 +6,8 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    gameEnded = false;
+    gameOverCallback;
     healthBar = new HealthBar();
     scoreBar = new ScoreBar();
     ammoBar = new AmmoBar();
@@ -14,10 +16,11 @@ class World {
     floatingTexts = [];
 
 
-    constructor(canvas, keyboard) {
+    constructor(canvas, keyboard, gameOverCallback) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.gameOverCallback = gameOverCallback;
         this.draw();
         this.setWorld();
         this.run();
@@ -35,6 +38,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
+            this.checkGameOver();
             this.checkTrowObjects();
             this.checkBottleCollisions();
             this.checkCollectableCollisions();
@@ -43,6 +47,32 @@ class World {
             this.clearThrowableObjects();
 
         }, 200);
+    }
+
+    checkGameOver() {
+        if (this.gameEnded) return; // Wenn das Spiel schon vorbei ist, nichts tun
+
+        // Character ist tot/verloren:
+        if (this.character.energy <= 0) {
+            this.endGame('lose');
+        }
+        // Boss ist tot / gewonnen:
+        let boss = this.level.enemies.find(e => e instanceof Endboss);
+        if (boss && boss.hp <= 0) {
+            this.endGame('win');
+        }
+    }
+
+    endGame(result) {
+        this.gameEnded = true;
+        
+        // Alle Intervalle unterbrechen, damit nichts im Hintergrund weiter läuft
+        clearAllIntervals(); 
+
+        // Functionsaufruf aus game.js:
+        if (this.gameOverCallback) {
+            this.gameOverCallback(result);
+        }
     }
 
     clearDeadEnemies() {
@@ -234,7 +264,6 @@ class World {
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
-
         })
     }
 
