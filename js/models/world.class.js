@@ -151,6 +151,22 @@ class World {
         });
     }
 
+//     checkCollectables() {
+//     this.level.collectables.forEach((collectable, index) => {
+//         if (this.character.isColliding(collectable)) {
+//             // Jedes Objekt weiß selbst durch die collect()-Methode, was es tun muss!
+//             collectable.collect(this.character);
+            
+//             // Objekt aus dem Spiel entfernen
+//             this.level.collectables.splice(index, 1);
+            
+//             // Optional: StatusBar updaten
+//             this.statusBarCoins.setPercentage(...);
+//             this.statusBarBottles.setPercentage(...);
+//         }
+//     });
+// }
+
 
 
 
