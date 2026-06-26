@@ -3,16 +3,11 @@ Desk
 
 - Landing Page
 
-- Statusbar Coins
-- Statusbar Munition
-- Statusbar Boss HP
-
 
 - werfen nur möglich, wenn Munition verfügbar
 
 - Bosskampf Bewegungen und range optimieren
 - Boss tod/ende?
-- Lebensleiste
 
 - Steuerung WASD hinzufügen. Unbedingt. Schnell. 
 
@@ -27,7 +22,7 @@ Desk
     - Leiste füllt sich
     - max: cap (zb. 10?)
 - Flaschen nur werfen, wenn vorhanden
-- Coins einfügen/verteilen
+
 
 - Charakter:
     - 3 x Char Statusbar:
