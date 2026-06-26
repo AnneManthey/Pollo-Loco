@@ -1,6 +1,8 @@
 
 Desk
 
+- Landing Page
+
 - Statusbar Coins
 - Statusbar Munition
 - Statusbar Boss HP
@@ -12,6 +14,8 @@ Desk
 - Bosskampf Bewegungen und range optimieren
 - Boss tod/ende?
 - Lebensleiste
+
+- Steuerung WASD hinzufügen. Unbedingt. Schnell. 
 
 
 1. Funktionalität
