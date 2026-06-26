@@ -17,7 +17,30 @@ h1 {
 }
 
 canvas {
+    display: block;
     background-color: black;
     border-radius: 4px;
     box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.78);
+}
+
+
+/* Smartphones */
+@media only screen and (max-width: 720px) {
+    canvas{
+        width: 100%;
+    }
+
+    h1{
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas{
+        height: 100vh;
+    }
+
+     h1{
+        display: none;
+    }
 }

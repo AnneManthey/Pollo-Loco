@@ -1,14 +1,14 @@
 
 Desk
 
-- Landing Page
 
+- coin animation
 
 - werfen nur möglich, wenn Munition verfügbar
-
 - Bosskampf Bewegungen und range optimieren
 - Boss tod/ende?
 
+- Landing Page
 - Steuerung WASD hinzufügen. Unbedingt. Schnell. 
 
 
