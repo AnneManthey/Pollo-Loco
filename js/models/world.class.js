@@ -9,7 +9,7 @@ class World {
     healthBar = new HealthBar();
     scoreBar = new ScoreBar();
     ammoBar = new AmmoBar();
-    //bossBar = new BossBar();
+    bossBar = new BossBar();
     throwableObjects = [];
     floatingTexts = [];
 
@@ -69,6 +69,8 @@ class World {
 
                     if (enemy instanceof Endboss) {
                         enemy.hit(); // Ruft die neue hit()-Methode des Bosses auf
+                        let percentage = (enemy.hp / 5) * 100;
+                        this.bossBar.setPercentage(percentage);
                         // Flasche zerstören / aus dem Array entfernen
                         this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
                     }
@@ -198,7 +200,7 @@ class World {
 
         // Boss Healthbar
         let boss = this.level.enemies.find(e => e instanceof Endboss);
-        if (boss && boss.isAttacking) {
+        if (boss && boss.bossActive && boss.hp > 0) {
             this.addToMap(this.bossBar);
         }
 

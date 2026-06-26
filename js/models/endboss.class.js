@@ -94,6 +94,7 @@ class Endboss extends MovableObject {
 
                 if (distance < 200) {
                     this.isAttacking = true;
+                    this.bossActive = true;
                 } else {
                     this.isAttacking = false;
                 }
