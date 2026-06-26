@@ -1,7 +1,7 @@
 class Bottle extends Collectables {
 
-    height = 60;
-    width = 50;
+    height = 80;
+    width = 60;
     
 
     IMAGES_BOTTLES = [
