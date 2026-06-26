@@ -1,6 +1,7 @@
 
 Desk
 
+(script.js wieder entfernen?)
 
 - Bars (HP, Ammo, Score) fixen/optimieren
     - dyn. Zahl einfügen
@@ -13,6 +14,7 @@ Desk
     - Verknüpfung zu game.html
     - Erklärung Steuerung
 - Loading Spinner (game.html)
+    - Storyerklärung, während es läd?
 
 - Steuerung WASD hinzufügen
 
@@ -66,6 +68,8 @@ Desk
     - Coins einsammeln
     - Flaschen einsammeln
     - Flaschen Treffer
+    - Flaschen werfen
+    - Keine Ammo
     - Draufspringen/treffer
     - Char: Schnarchen, get Hit, 
     - Gegner: Angriff/Fauchen o.ä.

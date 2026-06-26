@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="styles/fonts.css">
     <title>El Pollo Loco Game</title>
     <link rel="icon" type="image/x-icon" href="img/6_salsa_bottle/1_salsa_bottle_on_ground.png">
-    
+
     <script src="js/models/drawable-object.class.js"></script>
     <script src="js/models/movable-object.class.js"></script>
     <script src="js/models/character.class.js"></script>
@@ -31,13 +32,20 @@
     <script src="js/models/level.class.js"></script>
     <script src="js/levels/level1.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/script.js"></script>
 </head>
+
 <body onload="init()">
 
-<h1>El Pollo Loco</h1>    
+    <h1>El Pollo Loco</h1>
 
-<canvas id="canvas" width="720" height="480"></canvas>
+    <canvas id="canvas" width="720" height="480"></canvas>
 
-    
+    <dialog id="dialog" class="dialog">
+    </dialog>
+
+
 </body>
+
 </html>
