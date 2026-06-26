@@ -92,7 +92,7 @@ class Endboss extends MovableObject {
                 // Berechnet den Abstand auf der X-Achse zwischen Boss und Charakter
                 let distance = Math.abs(this.x - this.world.character.x);
 
-                if (distance < 200) {
+                if (distance < 300) {
                     this.isAttacking = true;
                     this.bossActive = true;
                 } else {

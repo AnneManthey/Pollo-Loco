@@ -1,15 +1,20 @@
 
 Desk
 
-- Munition in 10% schritten füllen (bis 10x max)
-- werfen nur möglich, wenn Munition verfügbar
+
+- Bars (HP, Ammo, Score) fixen/optimieren
+    - dyn. Zahl einfügen
 - Bosskampf Bewegungen und range optimieren
     - läuft erst rein, bevor er angreift?
     
 
 
 - Landing Page
-- Steuerung WASD hinzufügen. Unbedingt. Schnell. 
+    - Verknüpfung zu game.html
+    - Erklärung Steuerung
+- Loading Spinner (game.html)
+
+- Steuerung WASD hinzufügen
 
 
 1. Funktionalität
@@ -21,6 +26,7 @@ Desk
     - Munition
     - Leiste füllt sich
 - Flaschen nur werfen, wenn vorhanden
+    - Sound/Meldung wenn leer?
 
 
 - Charakter:

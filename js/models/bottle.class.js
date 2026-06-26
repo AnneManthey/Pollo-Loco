@@ -15,7 +15,7 @@ class Bottle extends Collectables {
         let randomIndex = Math.floor(Math.random() * this.IMAGES_BOTTLES.length);
         this.loadImage(this.IMAGES_BOTTLES[randomIndex]);
         this.x = 300 + Math.random() * 1900;
-        this.y = 340;
+        this.y = 370;
     }
 
     collect(character) {
