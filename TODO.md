@@ -4,6 +4,7 @@ Desk
 # Wochenplan erstellen: 
 - Sounds raussuchen
 - Zusatz/Grafikelemente raussuchen etc.
+- Landing Page anfangen
 
 (script.js wieder entfernen?)
 
