@@ -1,6 +1,10 @@
 
 Desk
 
+# Wochenplan erstellen: 
+- Sounds raussuchen
+- Zusatz/Grafikelemente raussuchen etc.
+
 (script.js wieder entfernen?)
 
 - Bars (HP, Ammo, Score) fixen/optimieren
@@ -9,17 +13,21 @@ Desk
     - läuft erst rein, bevor er angreift?
     
 
-
+- Dialog hübsch machen
+    - Hintergrund & Score rendern
 - Landing Page
+    - Header/Footer transparent mit Logo, Imprint, Copyright
     - Verknüpfung zu game.html
-    - Erklärung Steuerung
+    - Erklärung Steuerung (als Dialog?)
 - Loading Spinner (game.html)
     - Storyerklärung, während es läd?
 
 - Steuerung WASD hinzufügen
+- Fullscreen
 
 
 1. Funktionalität
+- Timer einbauen?
 - Coins 
     - Erhöhen den Score (+1)
     - Leiste füllt sich
@@ -80,6 +88,7 @@ Desk
     - Landing Page Hintergrund
     - Favicon
     - Musik an/aus (zu sound)
+    - Fullscreen
 
 
 
@@ -109,6 +118,16 @@ Desk
     - Verlassen / Zurück zur Landing Page
 
 
+3. Optimierung Gameplay
+
+ - Gegner treffen (Sprungangriff)
+ - Endgegner verfolgt Char?
+ - Schaden/HP ballancen
+
+
+
+
+
 Anforderungen Projekt:
 - Start Screen
 - Coins einsammeln
@@ -123,8 +142,16 @@ Anforderungen Projekt:
 - Impressum
 
 
+
 3. Optional:
+
+- Nahkampf-Option?
+- Hindernisse einfügen (Gräben, Steine, etwas draufspringen?)
 - Gegner drehen sich um, wenn Char in Reichweite?
+
+
+4. Individualisieren
+
 - Character austauschen, zb: Känguru? Cowboy? Sith? Sprites mit KI generieren?
 - Gegner austauschen, zb.: Stachelschwein/Igel (nicht draufspringen!)
 - Eigenes Gamedesign - angelehnt an Stormlight/Roshar oder Star Wars?
