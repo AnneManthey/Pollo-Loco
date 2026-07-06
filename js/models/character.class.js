@@ -8,6 +8,11 @@ class Character extends MovableObject {
     ammo = 2;
     world;
 
+    walking_sound = new Audio('assets/sounds/character/characterRun.mp3');
+    walking_sound_is_playing = false;
+    jump_sound = new Audio('assets/sounds/character/characterJump.wav');
+    hurt_sound = new Audio('assets/sounds/character/characterDamage.mp3');
+
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -67,7 +72,7 @@ class Character extends MovableObject {
     ]
 
 
-   
+
 
 
     constructor() {
@@ -80,12 +85,15 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_SLEEP);
         this.applyGravity();
         this.lastAction = Date.now();
+        this.walking_sound.loop = true;
         this.animate();
     }
 
     animate() {
 
         setInterval(() => {
+            let isMoving = false;
+
             // prüft ob eine Bewegung stattfindet und setzt ggf den timer zurück
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE) {
                 this.lastAction = Date.now();
@@ -93,17 +101,29 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                // this.walking_sound.play(); noch nicht implementiert?
+                isMoving = true;
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
-                // this.walking_sound.play(); noch nicht implementiert?
+                isMoving = true;
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+            }
+
+            if (isMoving && !isMuted && !this.isDead() && !this.isHurt() && !this.isAboveGround()) {
+                if (!this.walking_sound_is_playing) {
+                    this.walking_sound.currentTime = 0;
+                    this.walking_sound.play();
+                    this.walking_sound_is_playing = true;
+                }
+            } else {
+                this.walking_sound.pause();
+                this.walking_sound.currentTime = 0;
+                this.walking_sound_is_playing = false;
             }
 
             this.world.camera_x = -this.x + 100;
@@ -143,16 +163,16 @@ class Character extends MovableObject {
         this.speedY = 30;
     }
 
-    collectCoin(){
+    collectCoin() {
         this.coins += 20;
-        if (this.coins > 100){
+        if (this.coins > 100) {
             this.coins = 100;
         }
     }
 
-    collectBottle(){
+    collectBottle() {
         this.ammo += 10;
-        if (this.ammo > 100){
+        if (this.ammo > 100) {
             this.ammo = 100;
         }
     }

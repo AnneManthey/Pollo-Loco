@@ -1,15 +1,18 @@
 
 Desk
 
-
 (script.js wieder entfernen?)
 # toggleMute() übergrüfen in game.js! 
 
 
-- Sounds raussuchen
-- Zusatz/Grafikelemente raussuchen etc.
+- Sounds einbinden
+- Mute-function
+- Musik raussuchen 
+- Musik einbinden
+- Music off function
 
-- sounds einbinden
+
+
     
 
 - Dialog hübsch machen
