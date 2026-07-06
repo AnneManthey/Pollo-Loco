@@ -145,6 +145,8 @@ Anforderungen Projekt:
 - Mobile Version / Mobile touch Buttons
 - Impressum
 
+- Code/Functions kommentieren (js docs)
+
 
 
 3. Optional:
