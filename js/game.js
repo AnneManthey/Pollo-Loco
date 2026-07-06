@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let isMuted = false;
 
 function init(){
     canvas = document.getElementById('canvas');
@@ -23,6 +24,17 @@ function openGameOverDialog(winOrLose) {
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) {
         window.clearInterval(i);
+    }
+}
+
+function toggleMute(){
+    isMuted = !isMuted;
+
+    let button = document.getElementById('button_mute');
+    if (isMuted) {
+        button.scr = "./assets/icons/sound off.png"; // überprüfen, ob es das img vom button anspricht!!
+    } else {
+        button.src = "./assets/icons/sound on.png";
     }
 }
 

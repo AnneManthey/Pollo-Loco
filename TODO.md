@@ -1,32 +1,33 @@
 
 Desk
 
-- Landing Page
-
 
 (script.js wieder entfernen?)
+# toggleMute() übergrüfen in game.js! 
 
-- Bars (HP, Ammo, Score) fixen/optimieren
-    - dyn. Zahl einfügen
-- Bosskampf Bewegungen und range optimieren
-    - läuft erst rein, bevor er angreift?
 
 - Sounds raussuchen
 - Zusatz/Grafikelemente raussuchen etc.
 
+- sounds einbinden
     
 
 - Dialog hübsch machen
     - Hintergrund & Score rendern
 - Landing Page
-    - Header/Footer transparent mit Logo, Imprint, Copyright
-    - Verknüpfung zu game.html
-    - Erklärung Steuerung (als Dialog?)
+    - Buttons hübsch machen
+    - Steuerung & Story (Dialog einbinden)
+
 - Loading Spinner (game.html)
     - Storyerklärung, während es läd?
 
 - Steuerung WASD hinzufügen
 - Fullscreen
+
+- Bars (HP, Ammo, Score) fixen/optimieren
+    - dyn. Zahl einfügen
+- Bosskampf Bewegungen und range optimieren
+    - läuft erst rein, bevor er angreift?
 
 
 1. Funktionalität
