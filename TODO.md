@@ -1,10 +1,8 @@
 
 Desk
 
-# Wochenplan erstellen: 
-- Sounds raussuchen
-- Zusatz/Grafikelemente raussuchen etc.
-- Landing Page anfangen
+- Landing Page
+
 
 (script.js wieder entfernen?)
 
@@ -12,6 +10,10 @@ Desk
     - dyn. Zahl einfügen
 - Bosskampf Bewegungen und range optimieren
     - läuft erst rein, bevor er angreift?
+
+- Sounds raussuchen
+- Zusatz/Grafikelemente raussuchen etc.
+
     
 
 - Dialog hübsch machen
