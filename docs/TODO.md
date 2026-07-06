@@ -5,27 +5,43 @@ Desk
 # toggleMute() übergrüfen in game.js! 
 
 
-- Sounds einbinden
-- Mute-function
+- Sounds:
+    - Character: Jumping, Hurt, Dead
+    - Chickens: Dead
+    - Endboss: attack
+    - Coin collect
+    - Bottle collect
+    - Bottle Smash
+    - [raussuchen]No Bottles! (kann nicht werfen)
+    - Game Over
+    - Game Won
+
+- Mute-function, Speichern im Local Storage
 - Musik raussuchen 
 - Musik einbinden
-- Music off function
+- Music off function, Speichern im Local storage
 
 
 
     
 
-- Dialog hübsch machen
+- Dialog Endscreen hübsch machen
     - Hintergrund & Score rendern
+
 - Landing Page
     - Buttons hübsch machen
-    - Steuerung & Story (Dialog einbinden)
+    - Steuerung & Story
+        - Dialog Steuerung
+        - Dialog Story
 
 - Loading Spinner (game.html)
-    - Storyerklärung, während es läd?
+    - Storyerklärung/schlauer Satz, während es läd?
 
 - Steuerung WASD hinzufügen
 - Fullscreen
+
+
+
 
 - Bars (HP, Ammo, Score) fixen/optimieren
     - dyn. Zahl einfügen
@@ -34,39 +50,13 @@ Desk
 
 
 1. Funktionalität
-- Timer einbauen?
+
 - Coins 
     - Erhöhen den Score (+1)
     - Leiste füllt sich
     - [optional] Sowohl besiegte Gegner als auch Coins füllen Score, Leiste durch Score-Zahl ersetzen
-- Flaschen
-    - Munition
-    - Leiste füllt sich
-- Flaschen nur werfen, wenn vorhanden
-    - Sound/Meldung wenn leer?
 
 
-- Charakter:
-    - 3 x Char Statusbar:
-        - Leben
-        - Munition
-        - Score
-    - Animationen
-        - Dead
-
-- Gegner:
-    - Besiegen erhöht den Score
-        - klein: 1 Flaschenwurf / draufspringen (+1)
-        - mittel: 2 Flaschen / 2x Draufspringen (+2) / Aggro
-        - Entgegner: 5 Flaschen (+10)
-    - Animationen
-        - Angriff
-        - Verletzt
-        - Besiegt
-- Endgegner
-    - Moves / Angriffe: Fernkampf Spucken/Sprungangriff o.ä.?
-    - Lebensleiste
-    - nach Tod Endscreen anzeigen
 
 - UI:
     - Einblendung Steuerung [optional]
@@ -108,21 +98,13 @@ Desk
     - Screen 'pls turn your device to play'
 
 - Landing Page:
-    - Hintergrundbild
-    - Schriftart passend
     - Steuerung/Tastenbelegung
     - Story-Erklärung
-    - Start Button
     - Button für Fullscreen [optional] (make canvas/div fullscreen, request fullscreen)
     - Sounds & Musik an/ausschalten (Speichern im Local Storage)
-    - Impressum (Anbieter, rechtliche Hinweise etc.)
 
 - Loading Spinner, während Spiel läd
-- Endscreen
-    - Win/Lose Bild
-    - Highscore[optional]
-    - Button Try Again
-    - Verlassen / Zurück zur Landing Page
+
 
 
 3. Optimierung Gameplay
@@ -135,7 +117,7 @@ Desk
 
 
 
-Anforderungen Projekt:
+# Anforderungen Projekt:
 - Start Screen
 - Coins einsammeln
 - Flaschen einsammeln
@@ -146,25 +128,10 @@ Anforderungen Projekt:
 - Sound/Musik
 - Responsive
 - Mobile Version / Mobile touch Buttons
+
 - Impressum
 
 - Code/Functions kommentieren (js docs)
 
 
 
-3. Optional:
-
-- Nahkampf-Option?
-- Hindernisse einfügen (Gräben, Steine, etwas draufspringen?)
-- Gegner drehen sich um, wenn Char in Reichweite?
-
-
-4. Individualisieren
-
-- Character austauschen, zb: Känguru? Cowboy? Sith? Sprites mit KI generieren?
-- Gegner austauschen, zb.: Stachelschwein/Igel (nicht draufspringen!)
-- Eigenes Gamedesign - angelehnt an Stormlight/Roshar oder Star Wars?
-    - from zero to radiant / Sith Lord
-    - mehrere level, jeweils am ende aufleveln
-    - Moves freischalten, char entwickelt sich optisch weiter
-    - kleine Story - cutszenes mit Antwortmöglichkeiten?
