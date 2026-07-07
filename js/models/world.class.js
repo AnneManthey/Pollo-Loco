@@ -101,6 +101,8 @@ class World {
 
     checkBottleCollisions() {
         this.throwableObjects.forEach((bottle) => {
+            if (bottle.isHit) return;
+
             this.level.enemies.forEach((enemy) => {
                 if (bottle.isColliding(enemy)) {
                     if (enemy instanceof Endboss) {
