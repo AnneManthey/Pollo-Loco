@@ -2,6 +2,8 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let isMuted = false;
+let game_over_sound = new Audio('assets/sounds/game/gameOver.mp3');
+let game_won_sound = new Audio('assets/sounds/game/gameWon.mp3');
 
 function init(){
     canvas = document.getElementById('canvas');
@@ -14,8 +16,16 @@ function openGameOverDialog(winOrLose) {
     let dialog = document.getElementById('dialog');
     
     if (winOrLose === 'win') {
+        if (!isMuted) {
+            game_won_sound.currentTime = 0;
+            game_won_sound.play();
+        }
         dialog.innerHTML = getDialogWonTemplate();
     } else {
+        if (!isMuted) {
+            game_over_sound.currentTime = 0;
+            game_over_sound.play();
+        }
         dialog.innerHTML = getDialogLostTemplate();
     }
     dialog.showModal(); 

@@ -13,6 +13,7 @@
 
 # Optionale Functions:
 
+- Foating Text bei no bottle?
 - Nahkampf-Option?
 - Werfen-Animation?
 - Hindernisse einfügen (Gräben, Steine, etwas draufspringen?)

@@ -14,6 +14,7 @@ class World {
     bossBar = new BossBar();
     throwableObjects = [];
     floatingTexts = [];
+    wrong_bottle_sound = new Audio('assets/sounds/bottles/wrong.mp3');
 
 
     constructor(canvas, keyboard, gameOverCallback) {
@@ -92,6 +93,9 @@ class World {
             this.character.ammo -= 1;
             let percentage = this.character.ammo * 10;
             this.ammoBar.setPercentage(percentage);
+        } else if (this.keyboard.D && this.character.ammo <= 0 && !isMuted) {
+            this.wrong_bottle_sound.currentTime = 0;
+            this.wrong_bottle_sound.play();
         }
     }
 
@@ -103,7 +107,13 @@ class World {
                         enemy.hit();
                         let percentage = (enemy.hp / 5) * 100;
                         this.bossBar.setPercentage(percentage);
-                        this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
+
+                        bottle.isHit = true;
+                        bottle.splashStart = new Date().getTime();
+                        bottle.splashDuration = 200;
+                        bottle.speedY = 0;
+                        bottle.stoppedGravity = true;
+                        bottle.acceleration = 0;
                     } else if (!enemy.chickenDead) {
                         enemy.hp -= 1;
 

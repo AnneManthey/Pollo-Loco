@@ -6,11 +6,8 @@ Desk
 
 
 - Sounds:
-    - Endboss: attack
-    - Bottle Smash
-    - [raussuchen]No Bottles! (kann nicht werfen)
-    - Game Over
-    - Game Won
+    - Endboss: approach
+    - [raussuchen]Musik
 
 - Mute-function, Speichern im Local Storage
 - Musik raussuchen 
