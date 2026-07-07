@@ -28,10 +28,6 @@ Desk
 
 
 
-
-
-
-
 1. Funktionalität
 
 - Coins 
@@ -48,43 +44,19 @@ Desk
     - Pause/Weiter/Beenden Button
     
 
-- [raussuchen] Hintergrundmusik & Soundelemente:
-    - Start
-    - Hintergrundmusik
-    - Laufen
-    - Springen
-    - Coins einsammeln
-    - Flaschen einsammeln
-    - Flaschen Treffer
-    - Flaschen werfen
-    - Keine Ammo
-    - Draufspringen/treffer
-    - Char: Schnarchen, get Hit, 
-    - Gegner: Angriff/Fauchen o.ä.
-    - Entgegner: gackern bei Schaden erleiden o.ä.
-    - Besiegt/Game Over
 
 - [raussuchen] Grafiken/IMG
-    - Landing Page Hintergrund
     - Favicon
-    - Musik an/aus (zu sound)
-    - Fullscreen
 
 
 
 2. Anpassen & Gestalten
 
-- passende Schriftart raussuchen/einbinden
 - Favicon, Buttons cursor:pointer
 - responsive / Mobile(Querformat)
     - mobile buttons für steuerung
     - Screen 'pls turn your device to play'
 
-- Landing Page:
-    - Steuerung/Tastenbelegung
-    - Story-Erklärung
-    - Button für Fullscreen [optional] (make canvas/div fullscreen, request fullscreen)
-    - Sounds & Musik an/ausschalten (Speichern im Local Storage)
 
 - Loading Spinner, während Spiel läd
 
@@ -95,6 +67,7 @@ Desk
  - Gegner treffen (Sprungangriff)
  - Endgegner verfolgt Char?
  - Schaden/HP ballancen
+ - Score ballancen
 
 
 

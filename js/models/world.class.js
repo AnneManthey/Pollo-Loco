@@ -15,6 +15,8 @@ class World {
     throwableObjects = [];
     floatingTexts = [];
     wrong_bottle_sound = new Audio('assets/sounds/bottles/wrong.ogg');
+    lastThrowTime = 0;
+    throwCooldown = 180;
 
 
     constructor(canvas, keyboard, gameOverCallback) {
@@ -46,8 +48,7 @@ class World {
             this.clearDeadEnemies();
             this.clearFloatingTexts();
             this.clearThrowableObjects();
-
-        }, 200);
+        }, 1000 / 60);
     }
 
     checkGameOver() {
@@ -87,7 +88,14 @@ class World {
     }
 
     checkTrowObjects() {
+        const now = Date.now();
+
         if (this.keyboard.D && this.character.ammo > 0) {
+            if (now - this.lastThrowTime < this.throwCooldown) {
+                return;
+            }
+
+            this.lastThrowTime = now;
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.character.ammo -= 1;
@@ -104,7 +112,7 @@ class World {
             if (bottle.isHit) return;
 
             this.level.enemies.forEach((enemy) => {
-                if (bottle.isColliding(enemy)) {
+                if (bottle.isColliding(enemy, 6)) {
                     if (enemy instanceof Endboss) {
                         enemy.hit();
                         let percentage = (enemy.hp / 5) * 100;
@@ -155,7 +163,7 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy, 6)) {
                 if (enemy instanceof Endboss) {
                     if (enemy.isAttacking && !enemy.isDead) {
                         this.character.hit(); // Charakter verliert Energie
@@ -198,7 +206,7 @@ class World {
 
     checkCollectableCollisions() {
         this.level.collectables.forEach((item, index) => {
-            if (this.character.isColliding(item)) {
+            if (this.character.isColliding(item, 4)) {
 
                 if (item instanceof Coin) {
                     this.character.collectCoin(); // Erhöht z.B. ein internes Attribut im Charakter

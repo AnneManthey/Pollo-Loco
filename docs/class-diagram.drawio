@@ -1,20 +1,14 @@
 <mxfile host="65bd71144e">
     <diagram id="VK4NrmSa4v0aV0y6cMqM" name="Page-1">
-        <mxGraphModel dx="1309" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1108" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
                     <mxGeometry x="30" y="10" width="750" height="330" as="geometry"/>
                 </mxCell>
-                <mxCell id="111" style="edgeStyle=none;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="3" target="2">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
                 <mxCell id="3" value="World" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
                     <mxGeometry x="345" y="30" width="100" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="112" style="edgeStyle=none;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="5" target="2">
-                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="&lt;b&gt;Attributes:&lt;/b&gt;&lt;br&gt;character, level, canvas, ctx, keyboard, camera_x, gameEnded, healthBar, scoreBar, ammoBar, bossBar, throwableObjects, floatingTexts&lt;br&gt;&lt;br&gt;&lt;b&gt;Methods:&lt;/b&gt;&lt;ul&gt;&lt;li&gt;setWorld()&lt;/li&gt;&lt;li&gt;run()&lt;/li&gt;&lt;li&gt;checkGameOver()&lt;/li&gt;&lt;li&gt;endGame()&lt;/li&gt;&lt;li&gt;clearDeadEnemie()&lt;/li&gt;&lt;li&gt;clearFloatingText()&lt;/li&gt;&lt;li&gt;checkThrowObjects()&lt;/li&gt;&lt;li&gt;checkBottleCollosion()&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" parent="1" vertex="1">
                     <mxGeometry x="80" y="60" width="270" height="270" as="geometry"/>
@@ -284,80 +278,80 @@
                         <mxPoint x="719.23" y="1540" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="99" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="2" target="9">
+                <mxCell id="99" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="2" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="99_label" value="uses Character" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" connectable="0" vertex="1" parent="1">
+                <mxCell id="99_label" value="uses Character" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="300" y="600" as="geometry"/>
                 </mxCell>
-                <mxCell id="100" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="2" target="74">
+                <mxCell id="100" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="2" target="74" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="100_label" value="uses Level" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" connectable="0" vertex="1" parent="1">
+                <mxCell id="100_label" value="uses Level" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="800" y="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="101" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="2" target="76">
+                <mxCell id="101" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="2" target="76" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="101_label" value="uses Keyboard" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" connectable="0" vertex="1" parent="1">
+                <mxCell id="101_label" value="uses Keyboard" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="800" y="300" as="geometry"/>
                 </mxCell>
-                <mxCell id="102" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="2" target="26">
+                <mxCell id="102" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="2" target="26" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="102_label" value="creates Enemies" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" connectable="0" vertex="1" parent="1">
+                <mxCell id="102_label" value="creates Enemies" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="790" y="400" as="geometry"/>
                 </mxCell>
-                <mxCell id="103" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="2" target="70">
+                <mxCell id="103" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="2" target="70" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="103_label" value="creates Throwables" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" connectable="0" vertex="1" parent="1">
+                <mxCell id="103_label" value="creates Throwables" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="440" y="860" as="geometry"/>
                 </mxCell>
-                <mxCell id="104" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="2" target="52">
+                <mxCell id="104" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="2" target="52" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="104_label" value="shows Floating Text" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" connectable="0" vertex="1" parent="1">
+                <mxCell id="104_label" value="shows Floating Text" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="900" y="1168" as="geometry"/>
                 </mxCell>
-                <mxCell id="105" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="9" target="78">
+                <mxCell id="105" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="9" target="78" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="105_label" value="spawns Coins" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;rotation=45;" connectable="0" vertex="1" parent="1">
+                <mxCell id="105_label" value="spawns Coins" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;rotation=45;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="610" y="1350" as="geometry">
                         <mxPoint x="22.62741699796952" y="-4.242640687119282" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="106" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="9" target="79">
+                <mxCell id="106" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="9" target="79" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="106_label" value="spawns Bottles" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;rotation=30;" connectable="0" vertex="1" parent="1">
+                <mxCell id="106_label" value="spawns Bottles" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;rotation=30;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="425" y="1450" as="geometry">
                         <mxPoint x="128" y="-81" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="107" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="74" target="21">
+                <mxCell id="107" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="74" target="21" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="107_label" value="contains Character" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" connectable="0" vertex="1" parent="1">
+                <mxCell id="107_label" value="contains Character" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="360" y="360" as="geometry"/>
                 </mxCell>
-                <mxCell id="108" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="74" target="26">
+                <mxCell id="108" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="74" target="26" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="108_label" value="contains Enemies" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" connectable="0" vertex="1" parent="1">
+                <mxCell id="108_label" value="contains Enemies" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="780" y="420" as="geometry"/>
                 </mxCell>
-                <mxCell id="109" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="74" target="78">
+                <mxCell id="109" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="74" target="78" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="109_label" value="contains Coins" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" connectable="0" vertex="1" parent="1">
+                <mxCell id="109_label" value="contains Coins" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="970" y="430" as="geometry"/>
                 </mxCell>
-                <mxCell id="110" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="74" target="79">
+                <mxCell id="110" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="74" target="79" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="110_label" value="contains Bottles" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" connectable="0" vertex="1" parent="1">
+                <mxCell id="110_label" value="contains Bottles" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="1" connectable="0" vertex="1">
                     <mxGeometry x="970" y="450" as="geometry"/>
                 </mxCell>
             </root>

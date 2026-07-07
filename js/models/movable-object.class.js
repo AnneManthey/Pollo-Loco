@@ -29,11 +29,16 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.x < mo.x + mo.width &&
-            this.y + this.height > mo.y &&
-            this.y < mo.y + mo.height;
+    isColliding(mo, padding = 0) {
+        const left = this.x + padding;
+        const right = this.x + this.width - padding;
+        const top = this.y + padding;
+        const bottom = this.y + this.height - padding;
+
+        return right > mo.x + padding &&
+            left < mo.x + mo.width - padding &&
+            bottom > mo.y + padding &&
+            top < mo.y + mo.height - padding;
     }
 
     hit() {
