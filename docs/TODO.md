@@ -3,7 +3,11 @@ Desk
 
 (script.js wieder entfernen?)
 
+- Score Bar / Score
+    - Zahl wird in der Bar abgezeigt
+    - Besiegte Gegner erhöhen ebenfalls den Score
     
+  
 
 - Dialog Endscreen hübsch machen
     - Hintergrund & Score rendern
@@ -23,10 +27,8 @@ Desk
 
 
 
-- Bars (HP, Ammo, Score) fixen/optimieren
-    - dyn. Zahl einfügen
-- Bosskampf Bewegungen und range optimieren
-    - läuft erst rein, bevor er angreift?
+
+
 
 
 1. Funktionalität

@@ -194,9 +194,6 @@ class Character extends MovableObject {
     collectCoin() {
         this.lastAction = Date.now();
         this.coins += 20;
-        if (this.coins > 100) {
-            this.coins = 100;
-        }
         if (!isMuted) {
             this.coin_collect_sound.currentTime = 0;
             this.coin_collect_sound.play();

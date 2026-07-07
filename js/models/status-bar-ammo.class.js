@@ -12,7 +12,7 @@ IMAGES = [
         super();
         this.loadImages(this.IMAGES);
         this.x = 40;
-        this.y = 100; 
+        this.y = 50; 
         this.setPercentage(0);
     }
 }
