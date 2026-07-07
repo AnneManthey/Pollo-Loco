@@ -1,17 +1,19 @@
 
-Desk
+# Desk
 
-(script.js wieder entfernen?)
+
+- Dialog Endscreen hübsch machen
+    - Dialog Won designen
 
 - Score Bar / Score
     - Zahl wird in der Bar abgezeigt
     - Besiegte Gegner erhöhen ebenfalls den Score
-    
-- Volume anpassen (sounds)
 
-- Dialog Endscreen hübsch machen
-    - Hintergrund & Score rendern
-    - Highscore anzeigen?
+- UI anpassen: Innerhalb des Canvas?
+    - Einblendung Steuerung [optional]
+    - Sounds & Musik an/ausschalten
+    - Fullscreen Button
+    - Pause/Weiter/Beenden Button 
 
 - Landing Page
     - Buttons hübsch machen
@@ -19,10 +21,13 @@ Desk
         - Dialog Steuerung
         - Dialog Story
 
+
+
 - Loading Spinner (game.html)
     - Storyerklärung/schlauer Satz, während es läd?
 
 - Steuerung WASD hinzufügen
+- Volume anpassen (sounds)
 - Fullscreen
 
 
@@ -37,11 +42,6 @@ Desk
 
 
 
-- UI:
-    - Einblendung Steuerung [optional]
-    - Sounds & Musik an/ausschalten
-    - Fullscreen Button
-    - Pause/Weiter/Beenden Button
     
 
 
@@ -51,8 +51,18 @@ Desk
 
 
 2. Anpassen & Gestalten
+(script.js wieder entfernen?) 
+- Map vergrößern (+ clouds in Schleife?)
 
-- Favicon, Buttons cursor:pointer
+- Größenverhältnisse anpassen
+    - Character
+    - Endboss
+
+- Bewegungen anpassen
+    - Schnelligkeit walking
+    - Höhe jumping
+    - Wurfweite bottles
+
 - responsive / Mobile(Querformat)
     - mobile buttons für steuerung
     - Screen 'pls turn your device to play'
@@ -68,6 +78,7 @@ Desk
  - Endgegner verfolgt Char?
  - Schaden/HP ballancen
  - Score ballancen
+ 
 
 
 
