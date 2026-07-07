@@ -101,7 +101,7 @@ class Character extends MovableObject {
             let isMoving = false;
 
             // prüft ob eine Bewegung stattfindet und setzt ggf den timer zurück
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE) {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.D) {
                 this.lastAction = Date.now();
             }
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -121,6 +121,7 @@ class Character extends MovableObject {
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround() && !this.jump_sound_is_playing && !this.isDead()) {
+                this.lastAction = Date.now();
                 this.jump();
                 if (!isMuted) {
                     this.jump_sound.currentTime = 0;
@@ -191,6 +192,7 @@ class Character extends MovableObject {
     }
 
     collectCoin() {
+        this.lastAction = Date.now();
         this.coins += 20;
         if (this.coins > 100) {
             this.coins = 100;
@@ -202,6 +204,7 @@ class Character extends MovableObject {
     }
 
     collectBottle() {
+        this.lastAction = Date.now();
         this.ammo += 10;
         if (this.ammo > 100) {
             this.ammo = 100;
