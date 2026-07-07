@@ -1,8 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let isMuted = false;
-let isMusicMuted = false;
+let isMuted = localStorage.getItem('isMuted') === 'true';
+let isMusicMuted = localStorage.getItem('isMusicMuted') === 'true';
 let game_over_sound = new Audio('assets/sounds/game/gameOver.mp3');
 let game_won_sound = new Audio('assets/sounds/game/gameWon.mp3');
 let background_music = new Audio('assets/sounds/game/backgroundMusic.mp3');
@@ -12,6 +12,8 @@ function init(){
     world = new World(canvas, keyboard, openGameOverDialog);
     background_music.loop = true;
     background_music.volume = 0.4;
+    updateMuteButton();
+    updateMusicButton();
     if (!isMuted && !isMusicMuted) {
         background_music.play().catch(() => {});
     }
@@ -45,9 +47,7 @@ function clearAllIntervals() {
     }
 }
 
-function toggleMute(){
-    isMuted = !isMuted;
-
+function updateMuteButton() {
     let button = document.getElementById('button_mute');
     let icon = button.querySelector('img');
 
@@ -60,23 +60,41 @@ function toggleMute(){
     }
 }
 
-function toggleMusic(){
-    isMusicMuted = !isMusicMuted;
-
+function updateMusicButton() {
     let button = document.getElementById('button_music');
     let icon = button.querySelector('img');
 
     if (isMusicMuted) {
-        background_music.pause();
         icon.src = "./assets/icons/music_off.png";
         icon.alt = "Music OFF Icon";
     } else {
-        if (!isMuted) {
-            background_music.play().catch(() => {});
-        }
         icon.src = "./assets/icons/music.png";
         icon.alt = "Music ON Icon";
     }
+}
+
+function saveAudioSettings() {
+    localStorage.setItem('isMuted', isMuted.toString());
+    localStorage.setItem('isMusicMuted', isMusicMuted.toString());
+}
+
+function toggleMute(){
+    isMuted = !isMuted;
+    updateMuteButton();
+    saveAudioSettings();
+}
+
+function toggleMusic(){
+    isMusicMuted = !isMusicMuted;
+
+    if (isMusicMuted) {
+        background_music.pause();
+    } else if (!isMuted) {
+        background_music.play().catch(() => {});
+    }
+
+    updateMusicButton();
+    saveAudioSettings();
 }
 
 
