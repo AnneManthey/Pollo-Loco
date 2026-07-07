@@ -2,18 +2,6 @@
 Desk
 
 (script.js wieder entfernen?)
-# toggleMute() übergrüfen in game.js! 
-
-
-- Sounds:
-    - [raussuchen]Musik
-
-- Mute-function, Speichern im Local Storage
-- Musik raussuchen 
-- Musik einbinden
-- Music off function, Speichern im Local storage
-
-
 
     
 
