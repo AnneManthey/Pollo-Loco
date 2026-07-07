@@ -149,12 +149,15 @@ dialog {
     background-origin: content-box;
     background-clip: content-box;
     background-size: calc(100% - 32px) auto;
-    color: white;
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     background-color: #fff;
+
+    color: brown;
+    text-align: center;
     
 }
 
