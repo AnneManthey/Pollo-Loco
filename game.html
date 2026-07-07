@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="styles/standard.css">
     <title>El Pollo Loco Game</title>
     <link rel="icon" type="image/x-icon" href="img/6_salsa_bottle/1_salsa_bottle_on_ground.png">
 
@@ -39,6 +40,12 @@
 <body onload="init()">
 
     <h1>El Pollo Loco</h1>
+    <section>
+        <button id="button_mute" onclick="toggleMute()" class="button-mute button-img"><img
+                src="./assets/icons/sound.png" alt="Sound ON Icon"></button>
+        <button id="button_music" onclick="toggleMusic()" class="button-mute button-img"><img
+                src="./assets/icons/music.png" alt="Music ON Icon"></button>
+    </section>
 
     <canvas id="canvas" width="720" height="480"></canvas>
 

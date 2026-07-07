@@ -6,7 +6,6 @@ Desk
 
 
 - Sounds:
-    - Endboss: approach
     - [raussuchen]Musik
 
 - Mute-function, Speichern im Local Storage

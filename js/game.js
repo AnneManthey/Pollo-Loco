@@ -41,10 +41,14 @@ function toggleMute(){
     isMuted = !isMuted;
 
     let button = document.getElementById('button_mute');
+    let icon = button.querySelector('img');
+
     if (isMuted) {
-        button.scr = "./assets/icons/sound off.png"; // überprüfen, ob es das img vom button anspricht!!
+        icon.src = "./assets/icons/sound_off.png";
+        icon.alt = "Sound OFF Icon";
     } else {
-        button.src = "./assets/icons/sound on.png";
+        icon.src = "./assets/icons/sound.png";
+        icon.alt = "Sound ON Icon";
     }
 }
 
