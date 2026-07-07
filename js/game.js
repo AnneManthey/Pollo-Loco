@@ -2,18 +2,26 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let isMuted = false;
+let isMusicMuted = false;
 let game_over_sound = new Audio('assets/sounds/game/gameOver.mp3');
 let game_won_sound = new Audio('assets/sounds/game/gameWon.mp3');
+let background_music = new Audio('assets/sounds/game/backgroundMusic.mp3');
 
 function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard, openGameOverDialog);
-    
+    background_music.loop = true;
+    background_music.volume = 0.4;
+    if (!isMuted && !isMusicMuted) {
+        background_music.play().catch(() => {});
+    }
    //console.log('My character is', world.character);
 }  
 
 function openGameOverDialog(winOrLose) {
     let dialog = document.getElementById('dialog');
+    background_music.pause();
+    background_music.currentTime = 0;
     
     if (winOrLose === 'win') {
         if (!isMuted) {
@@ -49,6 +57,25 @@ function toggleMute(){
     } else {
         icon.src = "./assets/icons/sound.png";
         icon.alt = "Sound ON Icon";
+    }
+}
+
+function toggleMusic(){
+    isMusicMuted = !isMusicMuted;
+
+    let button = document.getElementById('button_music');
+    let icon = button.querySelector('img');
+
+    if (isMusicMuted) {
+        background_music.pause();
+        icon.src = "./assets/icons/music_off.png";
+        icon.alt = "Music OFF Icon";
+    } else {
+        if (!isMuted) {
+            background_music.play().catch(() => {});
+        }
+        icon.src = "./assets/icons/music.png";
+        icon.alt = "Music ON Icon";
     }
 }
 
