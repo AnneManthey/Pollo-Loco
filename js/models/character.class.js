@@ -14,6 +14,8 @@ class Character extends MovableObject {
     jump_sound_is_playing = false;
     hurt_sound = new Audio('assets/sounds/character/characterDamage.mp3');
     hurt_sound_is_playing = false;
+    dead_sound = new Audio('assets/sounds/character/characterDead.wav');
+    dead_sound_is_playing = false;
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -143,6 +145,11 @@ class Character extends MovableObject {
         setInterval(() => {
 
             if (this.isDead()) {
+                if (!this.dead_sound_is_playing && !isMuted) {
+                    this.dead_sound.currentTime = 0;
+                    this.dead_sound.play();
+                    this.dead_sound_is_playing = true;
+                }
                 this.playAnimation(this.IMAGES_DEAD);
             }
             else if (this.isHurt()) {

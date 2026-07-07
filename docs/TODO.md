@@ -6,7 +6,6 @@ Desk
 
 
 - Sounds:
-    - Character: Jumping, Hurt, Dead
     - Chickens: Dead
     - Endboss: attack
     - Coin collect

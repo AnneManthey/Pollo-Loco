@@ -1,3 +1,16 @@
+# Sounds zum Austauschen
+- Character: Jump, Hurt, Dead
+- Chickens: Dead
+- Endboss: attack
+- Coin collect
+- Bottle collect
+- Bottle Smash
+- (kann nicht werfen)
+- Game Over
+- Game Won
+
+
+
 # Optionale Functions:
 
 - Nahkampf-Option?

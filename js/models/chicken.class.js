@@ -21,6 +21,9 @@ class Chicken extends MovableObject {
     isHit = false;
     isRemoved = false;
 
+    chicken_dead = new Audio('assets/sounds/chicken/chickenDead.mp3');
+    chicken_dead_sound_is_playing = false;
+
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -53,6 +56,11 @@ class Chicken extends MovableObject {
 
         setInterval(() => {
             if (this.chickenDead){
+                if (!this.chicken_dead_sound_is_playing) {
+                    this.chicken_dead.currentTime = 0;
+                    this.chicken_dead.play();
+                    this.chicken_dead_sound_is_playing = true;
+                }
                 this.playAnimation(this.IMAGES_DEAD); 
                 setTimeout(() => {
                     this.isRemoved = true; // Totes chicken wird nach 2 Sekunden entfernt
