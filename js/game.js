@@ -30,7 +30,8 @@ function openGameOverDialog(winOrLose) {
             game_won_sound.currentTime = 0;
             game_won_sound.play();
         }
-        dialog.innerHTML = getDialogWonTemplate();
+        const score = world?.character?.coins ?? 0;
+        dialog.innerHTML = getDialogWonTemplate(score);
     } else {
         if (!isMuted) {
             game_over_sound.currentTime = 0;
