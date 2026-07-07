@@ -7,10 +7,11 @@ Desk
     - Zahl wird in der Bar abgezeigt
     - Besiegte Gegner erhöhen ebenfalls den Score
     
-  
+- Volume anpassen (sounds)
 
 - Dialog Endscreen hübsch machen
     - Hintergrund & Score rendern
+    - Highscore anzeigen?
 
 - Landing Page
     - Buttons hübsch machen
