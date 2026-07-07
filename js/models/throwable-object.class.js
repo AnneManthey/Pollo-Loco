@@ -1,7 +1,7 @@
 class ThrowableObject extends MovableObject {
 
     isHit = false;
-    bottle_break_sound = new Audio('assets/sounds/bottles/bottleBreak.mp3');
+    bottle_break_sound = new Audio('assets/sounds/bottles/bottleBreak.ogg');
     bottle_break_sound_is_playing = false;
 
     IMAGES_THROWING = [

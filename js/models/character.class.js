@@ -8,16 +8,16 @@ class Character extends MovableObject {
     ammo = 2;
     world;
 
-    walking_sound = new Audio('assets/sounds/character/characterRun.mp3');
+    walking_sound = new Audio('assets/sounds/character/characterRun.ogg');
     walking_sound_is_playing = false;
-    jump_sound = new Audio('assets/sounds/character/characterJump.wav');
+    jump_sound = new Audio('assets/sounds/character/characterJump.ogg');
     jump_sound_is_playing = false;
-    hurt_sound = new Audio('assets/sounds/character/characterDamage.mp3');
+    hurt_sound = new Audio('assets/sounds/character/characterDamage.ogg');
     hurt_sound_is_playing = false;
-    dead_sound = new Audio('assets/sounds/character/characterDead.wav');
+    dead_sound = new Audio('assets/sounds/character/characterDead.ogg');
     dead_sound_is_playing = false;
-    coin_collect_sound = new Audio('assets/sounds/coins/collectSound.wav');
-    bottle_collect_sound = new Audio('assets/sounds/coins/bottleCollectSound.wav');
+    coin_collect_sound = new Audio('assets/sounds/coins/collectSound.ogg');
+    bottle_collect_sound = new Audio('assets/sounds/coins/bottleCollectSound.ogg');
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',

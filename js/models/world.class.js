@@ -14,7 +14,7 @@ class World {
     bossBar = new BossBar();
     throwableObjects = [];
     floatingTexts = [];
-    wrong_bottle_sound = new Audio('assets/sounds/bottles/wrong.mp3');
+    wrong_bottle_sound = new Audio('assets/sounds/bottles/wrong.ogg');
 
 
     constructor(canvas, keyboard, gameOverCallback) {

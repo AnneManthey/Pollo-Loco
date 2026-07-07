@@ -3,9 +3,9 @@ let world;
 let keyboard = new Keyboard();
 let isMuted = localStorage.getItem('isMuted') === 'true';
 let isMusicMuted = localStorage.getItem('isMusicMuted') === 'true';
-let game_over_sound = new Audio('assets/sounds/game/gameOver.mp3');
-let game_won_sound = new Audio('assets/sounds/game/gameWon.mp3');
-let background_music = new Audio('assets/sounds/game/backgroundMusic.mp3');
+let game_over_sound = new Audio('assets/sounds/game/gameOver.ogg');
+let game_won_sound = new Audio('assets/sounds/game/gameWon.ogg');
+let background_music = new Audio('assets/sounds/game/backgroundMusic.ogg');
 
 function init(){
     canvas = document.getElementById('canvas');

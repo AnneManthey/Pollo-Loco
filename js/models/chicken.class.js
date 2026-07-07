@@ -21,7 +21,7 @@ class Chicken extends MovableObject {
     isHit = false;
     isRemoved = false;
 
-    chicken_dead = new Audio('assets/sounds/chicken/chickenDead.mp3');
+    chicken_dead = new Audio('assets/sounds/chicken/chickenDead.ogg');
     chicken_dead_sound_is_playing = false;
 
     constructor() {

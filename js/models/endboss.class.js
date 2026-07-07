@@ -51,7 +51,7 @@ class Endboss extends MovableObject {
     isAttacking = false;
     bossActive = false;
     bossState = 'idle';
-    approach_sound = new Audio('assets/sounds/endboss/endbossApproach.wav');
+    approach_sound = new Audio('assets/sounds/endboss/endbossApproach.ogg');
     approach_sound_is_playing = false;
 
 
