@@ -49,6 +49,10 @@ class Endboss extends MovableObject {
     isHurt = false;
     isDead = false;
     isAttacking = false;
+    bossActive = false;
+    bossState = 'idle';
+    approach_sound = new Audio('assets/sounds/endboss/endbossApproach.wav');
+    approach_sound_is_playing = false;
 
 
     constructor(){
@@ -68,9 +72,10 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if (this.isAttacking) {
                 this.attackMovement();
+            } else if (this.bossState === 'walk') {
+                this.walkTowardsCharacter();
             } else {
-                // Platzhalter, walking/stehen/abwarten
-                this.attackProgress = 0; // Reset, wenn er nicht mehr angreift
+                this.attackProgress = 0;
                 this.attackDirection = 'forward';
             }
         }, 1000 / 60);
@@ -80,44 +85,76 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (this.isAttacking) {
+            } else if (this.bossState === 'attack') {
                 this.playAnimation(this.IMAGES_ATTACK);
+            } else if (this.bossState === 'alert') {
+                this.playAnimation(this.IMAGES_ALERT);
+            } else if (this.bossState === 'walk') {
+                this.playAnimation(this.IMAGES_WALKING);
             } else {
-            this.playAnimation(this.IMAGES_ALERT);
+                this.playAnimation(this.IMAGES_ALERT);
             }
         }, 200);
 
         setInterval(() => {
             if (!this.isDead && this.world && this.world.character) {
-                // Berechnet den Abstand auf der X-Achse zwischen Boss und Charakter
                 let distance = Math.abs(this.x - this.world.character.x);
 
-                if (distance < 300) {
-                    this.isAttacking = true;
+                // Ab 200px: Boss geht in den Angriffsstatus über.
+                if (distance <= 200) {
+                    this.bossState = 'attack';
                     this.bossActive = true;
-                } else {
+                    this.isAttacking = true;
+                // Ab 300px: Boss wechselt in den Alert-Status.
+                } else if (distance <= 300) {
+                    this.bossState = 'alert';
+                    this.bossActive = true;
                     this.isAttacking = false;
+
+                    if (!this.approach_sound_is_playing && !isMuted) {
+                        this.approach_sound.currentTime = 0;
+                        this.approach_sound.play();
+                        this.approach_sound_is_playing = true;
+                    }
+                // Ab 500px: Boss beginnt langsam auf den Character zuzugehen.
+                } else if (distance <= 500) {
+                    this.bossState = 'walk';
+                    this.bossActive = true;
+                    this.isAttacking = false;
+                    this.approach_sound_is_playing = false;
+                } else {
+                    this.bossState = 'idle';
+                    this.bossActive = false;
+                    this.isAttacking = false;
+                    this.approach_sound_is_playing = false;
                 }
             }
         }, 100);
     }
 
+    walkTowardsCharacter() {
+        if (this.world && this.world.character) {
+            const distance = this.world.character.x - this.x;
+            if (distance < 0) {
+                this.x -= this.speed;
+            } else {
+                this.x += this.speed;
+            }
+        }
+    }
+
     attackMovement() {
         if (this.attackDirection === 'forward') {
-            // Angriff nach vorn
             this.x -= this.attackSpeed;
             this.attackProgress += this.attackSpeed;
 
-            // Zurück nach 250px
             if (this.attackProgress >= 250) {
                 this.attackDirection = 'backward';
             }
         } else if (this.attackDirection === 'backward') {
-            // Langsam zurück
             this.x += this.retreatSpeed;
             this.attackProgress -= this.retreatSpeed;
 
-            // Wieder vor, wenn er am Ausgangspunkt ankommt
             if (this.attackProgress <= 0) {
                 this.attackDirection = 'forward';
             }
