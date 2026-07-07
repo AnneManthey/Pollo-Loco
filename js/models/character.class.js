@@ -16,6 +16,8 @@ class Character extends MovableObject {
     hurt_sound_is_playing = false;
     dead_sound = new Audio('assets/sounds/character/characterDead.wav');
     dead_sound_is_playing = false;
+    coin_collect_sound = new Audio('assets/sounds/coins/collectSound.wav');
+    bottle_collect_sound = new Audio('assets/sounds/coins/bottleCollectSound.wav');
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -193,12 +195,20 @@ class Character extends MovableObject {
         if (this.coins > 100) {
             this.coins = 100;
         }
+        if (!isMuted) {
+            this.coin_collect_sound.currentTime = 0;
+            this.coin_collect_sound.play();
+        }
     }
 
     collectBottle() {
         this.ammo += 10;
         if (this.ammo > 100) {
             this.ammo = 100;
+        }
+        if (!isMuted) {
+            this.bottle_collect_sound.currentTime = 0;
+            this.bottle_collect_sound.play();
         }
     }
 }

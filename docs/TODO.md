@@ -6,10 +6,7 @@ Desk
 
 
 - Sounds:
-    - Chickens: Dead
     - Endboss: attack
-    - Coin collect
-    - Bottle collect
     - Bottle Smash
     - [raussuchen]No Bottles! (kann nicht werfen)
     - Game Over
