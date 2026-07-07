@@ -1,6 +1,8 @@
 class ThrowableObject extends MovableObject {
 
     isHit = false;
+    bottle_break_sound = new Audio('assets/sounds/bottles/bottleBreak.mp3');
+    bottle_break_sound_is_playing = false;
 
     IMAGES_THROWING = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -38,6 +40,11 @@ class ThrowableObject extends MovableObject {
             if (!this.isHit) {
                 this.playAnimation(this.IMAGES_THROWING);
             } else {
+                if (!this.bottle_break_sound_is_playing && !isMuted) {
+                    this.bottle_break_sound.currentTime = 0;
+                    this.bottle_break_sound.play();
+                    this.bottle_break_sound_is_playing = true;
+                }
                 this.playAnimation(this.IMAGES_SPLASH);
             }
         }, 1000 / 60);

@@ -99,34 +99,28 @@ class World {
         this.throwableObjects.forEach((bottle) => {
             this.level.enemies.forEach((enemy) => {
                 if (bottle.isColliding(enemy)) {
-
                     if (enemy instanceof Endboss) {
-                        enemy.hit(); // Ruft die neue hit()-Methode des Bosses auf
+                        enemy.hit();
                         let percentage = (enemy.hp / 5) * 100;
                         this.bossBar.setPercentage(percentage);
-                        // Flasche zerstören / aus dem Array entfernen
                         this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1);
-                    }
-                }
-                // Prüfen, ob die Flasche den Gegner berührt UND der Gegner noch lebt
-                else if (bottle.isColliding(enemy) && !enemy.chickenDead) {
-                    enemy.hp -= 1;
+                    } else if (!enemy.chickenDead) {
+                        enemy.hp -= 1;
 
-                    // Floating Text
-                    let textX = enemy.x + (enemy.width / 2);
-                    let textY = enemy.y - 10;
-                    this.floatingTexts.push(new FloatingText('-1', textX, textY));
+                        let textX = enemy.x + (enemy.width / 2);
+                        let textY = enemy.y - 10;
+                        this.floatingTexts.push(new FloatingText('-1', textX, textY));
 
-                    // Markiere Flasche als getroffen, starte Splash-Timer und stoppe Bewegung/Gravitation
-                    bottle.isHit = true;
-                    bottle.splashStart = new Date().getTime();
-                    bottle.splashDuration = 200; // ms, kurz sichtbar
-                    bottle.speedY = 0;
-                    bottle.stoppedGravity = true;
-                    bottle.acceleration = 0;
+                        bottle.isHit = true;
+                        bottle.splashStart = new Date().getTime();
+                        bottle.splashDuration = 200;
+                        bottle.speedY = 0;
+                        bottle.stoppedGravity = true;
+                        bottle.acceleration = 0;
 
-                    if (enemy.hp <= 0) {
-                        enemy.chickenDead = true;
+                        if (enemy.hp <= 0) {
+                            enemy.chickenDead = true;
+                        }
                     }
                 }
             });
