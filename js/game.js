@@ -6,8 +6,20 @@ let isMusicMuted = localStorage.getItem('isMusicMuted') === 'true';
 let game_over_sound = new Audio('assets/sounds/game/gameOver.ogg');
 let game_won_sound = new Audio('assets/sounds/game/gameWon.ogg');
 let background_music = new Audio('assets/sounds/game/backgroundMusic.ogg');
+const storyInfos = [
+    "Story: Pepe ist tief in die Wüste gereist, um die gestohlenen Salsa-Flaschen zurückzuholen...",
+    "Tipp: Drücke 'D', um eine Salsa-Flasche auf die Hühner zu werfen!",
+    "Achtung: Kleine Küken sterben nach 1 Treffer, aber der Boss hält ganze 5 Treffer aus!",
+    "Tipp: Lande präzise von oben auf den Hühnern, um automatisch wieder hochzufedern.",
+    "Story: Die Hühner haben sich zusammengeschlossen, um Pepes Münzsammlung zu plündern..."
+];
+
+window.addEventListener('load', () => {
+    setTimeout(hideLoadingScreen, 1500);
+});
 
 function init(){
+    setRandomLoadingText();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard, openGameOverDialog);
     background_music.loop = true;
@@ -99,7 +111,6 @@ function toggleMusic(){
 }
 
 
-
 function updateKeyboardState(e, isPressed) {
     const code = e.code;
     const key = e.key;
@@ -138,4 +149,23 @@ window.addEventListener("keydown", (e) => {
 window.addEventListener("keyup", (e) => {
     updateKeyboardState(e, false);
 })
+
+
+
+// Zufälligen Text auswählen (Loading Spinner)
+function setRandomLoadingText() {
+    const textElement = document.getElementById('loading_info');
+    if (textElement) {
+        const randomIndex = Math.floor(Math.random() * storyInfos.length);
+        textElement.innerText = storyInfos[randomIndex];
+    }
+}
+
+// Ladebildschirm weich ausblenden
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loading_screen');
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+    }
+}
 

@@ -3,11 +3,12 @@
 
 
 - Fullscreen
-    - Buttons grün
+    
 
 - Buttons index+game miteinander abstimmen (mute/music etc)
 
 - Hühner gackern trotz stumm?
+- Controll page fixen
 
 - Score Bar / Score
     - Zahl bzw Bar hübscher machen
