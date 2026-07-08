@@ -12,7 +12,7 @@ class BossBar extends StatusBar {
         super();
         this.loadImages(this.IMAGES);
         this.x = 500; // Rechts auf dem Bildschirm positioniert
-        this.y = 10;
+        this.y = 50;
         this.setPercentage(100);
     }
 

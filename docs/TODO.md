@@ -7,7 +7,7 @@
 
 - Buttons index+game miteinander abstimmen (mute/music etc)
 
-
+- Hühner gackern trotz stumm?
 
 - Score Bar / Score
     - Zahl bzw Bar hübscher machen
