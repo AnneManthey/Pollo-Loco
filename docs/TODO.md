@@ -1,6 +1,7 @@
 
 # Desk
 
+- Buttons index+game miteinander abstimmen (mute/music etc)
 
 - Dialog Endscreen hübsch machen
     - Dialog Won designen

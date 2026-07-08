@@ -16,7 +16,7 @@ h1 {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-a{
+a {
     text-decoration: none;
     color: black;
 }
@@ -75,37 +75,16 @@ a{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
 }
 
-.button-dia-3 {
-    position: absolute;
-    left: 20%;
-    transform: translate(-50%, 30px);
-}
-
-.button-dia-3 img {
-    width: 50px;
-}
-
-.button-dia-3:hover {
-    border-radius: 20px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
-}
-
-.button-dia-4 {
-    position: absolute;
-    left: 30%;
-    transform: translate(-50%, 30px);
-}
-
-.button-dia-4 img {
-    width: 50px;
-}
-
-.button-dia-4:hover {
-    border-radius: 20px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
-}
 
 /* END Buttons index */
+
+/* Buttons game.html */
+
+.button-mute {
+    position: absolute;
+    left: 95%;
+    transform: translate(-50%, 10px);
+}
 
 .button-mute img {
     width: 50px;
@@ -114,7 +93,77 @@ a{
 
 .button-mute:hover {
     border-radius: 20px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+}
+
+.button-music {
+    position: absolute;
+    left: 85%;
+    transform: translate(-50%, 10px);
+}
+
+.button-music img {
+    width: 50px;
+    height: 50px;
+}
+
+.button-music:hover {
+    border-radius: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+}
+
+.button-left,
+.button-right,
+.button-jump,
+.button-throw {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: orange;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'zabars';
+    position: absolute;
+    transform: translate(-50%, 430px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-left img,
+.button-right img,
+.button-jump img,
+.button-throw img {
+    width: 30px;
+    height: 30px;
+}
+
+.button-left:hover,
+.button-right:hover, .button-jump:hover, .button-throw:hover  {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+}
+
+.button-left {
+    left: 15%;
+}
+
+.button-right {
+    left: 25%;
+}
+
+.button-jump {
+    left: 35%;
+}
+
+.button-throw {
+    left: 45%;
+}
+
+
+
+.game-section {
+    position: relative;
 }
 
 canvas {
@@ -149,7 +198,7 @@ dialog {
     background-origin: content-box;
     background-clip: content-box;
     background-size: calc(100% - 32px) auto;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -158,7 +207,7 @@ dialog {
 
     color: brown;
     text-align: center;
-    
+
 }
 
 .dialog-lost {
@@ -174,7 +223,7 @@ dialog {
     padding: 4px 8px;
     cursor: pointer;
     border-radius: 5px;
-    font-family: 'zabars'; 
+    font-family: 'zabars';
     font-size: 2rem;
     background-color: brown;
 }
