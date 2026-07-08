@@ -82,11 +82,11 @@ a {
 
 .button-mute {
     position: absolute;
-    left: 95%;
+    left: 75%;
     transform: translate(-50%, 10px);
 }
 
-.button-mute img {
+.button-mute img, .button-music img, .button-fullscreen img {
     width: 50px;
     height: 50px;
 }
@@ -102,13 +102,21 @@ a {
     transform: translate(-50%, 10px);
 }
 
-.button-music img {
-    width: 50px;
-    height: 50px;
-}
-
 .button-music:hover {
     border-radius: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+}
+
+.button-fullscreen {
+    position: absolute;
+    border-radius: 10px;
+    left: 95%;
+    transform: translate(-50%, 10px);
+}
+
+
+.button-fullscreen:hover {
+    border-radius: 10px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
 }
 

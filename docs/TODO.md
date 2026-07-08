@@ -10,11 +10,7 @@
     - Zahl wird in der Bar abgezeigt
     - Besiegte Gegner erhöhen ebenfalls den Score
 
-- UI anpassen: Innerhalb des Canvas?
-    - Einblendung Steuerung [optional]
-    - Sounds & Musik an/ausschalten
-    - Fullscreen Button
-    - Pause/Weiter/Beenden Button 
+
 
 - Landing Page
     - Buttons hübsch machen
