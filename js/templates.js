@@ -3,9 +3,7 @@ function getDialogWonTemplate(score) {
     return /*html*/ `
         <section class="dialog-won">
             <div>
-                <h2>Congratulations!</h2>
-                <h3>Your Score</h3>
-                <p>${score}</p>
+                <p>Your Score: <span style="color: red; font-size: 2.2rem;"> ${score}</span></p>
             </div>
             <div class="dialog-button-wrapper">
                 <button onclick="location.reload();">Play Again</button>

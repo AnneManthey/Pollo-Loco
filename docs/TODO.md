@@ -2,29 +2,27 @@
 # Desk
 
 
-
-
-- Jump Arrow Up hinzufügen
+- Fullscreen
+    - Buttons grün
 
 - Buttons index+game miteinander abstimmen (mute/music etc)
 
-- Dialog Endscreen hübsch machen
-    - Dialog Won designen
+
 
 - Score Bar / Score
-    - Zahl wird in der Bar abgezeigt
-    - Besiegte Gegner erhöhen ebenfalls den Score
+    - Zahl bzw Bar hübscher machen
 
 
 
 
 
 - Loading Spinner (game.html)
+    - walking small chicken als loading spinner
     - Storyerklärung/schlauer Satz, während es läd?
 
-- Steuerung WASD hinzufügen
+
 - Volume anpassen (sounds)
-- Fullscreen
+
 
 
 
@@ -75,7 +73,7 @@
  - Schaden/HP ballancen
  - Score ballancen
 
- - Schöne Story ergänzen
+ - Schöne Story ergänzen - Känguru sammelt coins für schnapspralinen...!
  - Control.html aufhübschen
  
 

@@ -230,34 +230,45 @@ dialog {
 
 .dialog-lost,
 .dialog-won {
-    width: 520px;
+    width: 500px;
     max-width: 90vw;
     min-height: 320px;
     padding: 16px;
     box-sizing: border-box;
     background-repeat: no-repeat;
-    background-position: center -3px;
-    background-origin: content-box;
-    background-clip: content-box;
-    background-size: calc(100% - 32px) auto;
+    background-position: center;
+    /* background-origin: content-box; */
+    /* background-clip: content-box; */
+    background-size: 50%;
+    /* background-size: calc(100% - 150px) auto; */
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    background-color: #e7caab;
 
-    color: brown;
+    /* color: brown; */
     text-align: center;
 
 }
 
 .dialog-lost {
-    background-image: url('img/You won, you lost/Game Over.png');
+    background-image: url('img/You won, you lost/Game over A.png');
 }
 
 .dialog-won {
-    background-image: url('img/You won, you lost/You Win A.png');
+    background-image: url('img/You won, you lost/You Won B.png');
+}
+
+.dialog-won h3{
+ font-size: 2rem;
+ 
+}
+
+.dialog-won p{
+font-size: 2rem;
+letter-spacing: 1px;
 }
 
 .dialog-lost button,
