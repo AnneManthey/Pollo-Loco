@@ -40,14 +40,14 @@
 <body onload="init()">
 
     <div id="loading_screen" class="loading-overlay">
-    <div class="spinner-container">
-        <div class="chicken-spinner"></div>
-        
-        <div id="loading_info" class="loading-text">
-            Lade Spieldaten... Did you know? Small Chickens are highly jumpable!
+        <div class="spinner-container">
+            <div class="chicken-spinner"></div>
+
+            <div id="loading_info" class="loading-text">
+                Lade Spieldaten... Did you know? Small Chickens are highly jumpable!
+            </div>
         </div>
     </div>
-</div>
 
     <h1>El Pollo Loco</h1>
     <section id="game_fullscreen" class="game-section">
@@ -55,7 +55,8 @@
                 src="./assets/icons/music.png" alt="Sound ON Icon"></button>
         <button id="button_music" onclick="toggleMusic()" class="button-music button-img"><img
                 src="./assets/icons/sound.png" alt="Music ON Icon"></button>
-        <button id="button_fullscreen" class="button-fullscreen button-img"><img src="./assets/icons/fullscreen.png" alt="Fullscreen Icon"></button>
+        <button id="button_fullscreen" class="button-fullscreen button-img"><img src="./assets/icons/fullscreen.png"
+                alt="Fullscreen Icon"></button>
         <button class="button-right"><img src="./assets/icons/arrow_right.png" alt="Arrow Right"></button>
         <button class="button-left"><img src="./assets/icons/arrow_left.png" alt="Arrow Left"></button>
         <button class="button-throw">D</button>
@@ -63,12 +64,14 @@
         <canvas id="canvas" width="720" height="480"></canvas>
     </section>
 
-    
+
 
     <dialog id="dialog" class="dialog">
     </dialog>
 
-
+    <footer>
+        <button class="button-nav"><a href="index.html">Back</a></button>
+    </footer>
 </body>
 
 </html>
