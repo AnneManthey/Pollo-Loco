@@ -8,7 +8,7 @@
         - Dialog Story
 
 
-
+- Jump Arrow Up hinzufügen
 
 - Buttons index+game miteinander abstimmen (mute/music etc)
 
