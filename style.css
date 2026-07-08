@@ -159,14 +159,16 @@ a {
 .button-jump,
 .button-throw {
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background-color: orange;
-    font-size: 2rem;
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgb(246, 239, 219);
+    background-color: rgb(104, 159, 31);
+    opacity: 60%;
+    font-size: 1.5rem;
     font-weight: bold;
     font-family: 'zabars';
     position: absolute;
-    transform: translate(-50%, 430px);
+    transform: translate(-50%, 440px);
 
     display: flex;
     justify-content: center;
@@ -175,31 +177,35 @@ a {
 
 .button-left img,
 .button-right img,
-.button-jump img,
-.button-throw img {
-    width: 30px;
-    height: 30px;
+.button-jump img {
+    width: 20px;
+    height: 20px;
+}
+
+.button-throw{
+    text-align: center;
 }
 
 .button-left:hover,
 .button-right:hover, .button-jump:hover, .button-throw:hover  {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
+    opacity: 100%;
 }
 
 .button-left {
-    left: 15%;
-}
-
-.button-right {
     left: 25%;
 }
 
-.button-jump {
+.button-right {
     left: 35%;
 }
 
+.button-jump {
+    left: 65%;
+}
+
 .button-throw {
-    left: 45%;
+    left: 75%;
 }
 
 
