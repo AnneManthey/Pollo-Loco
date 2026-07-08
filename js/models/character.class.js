@@ -105,7 +105,7 @@ class Character extends MovableObject {
             let isMoving = false;
 
             // prüft ob eine Bewegung stattfindet und setzt ggf den timer zurück
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.D) {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.UP || this.world.keyboard.D) {
                 this.lastAction = Date.now();
                 this.stopSnoringSound();
             }
@@ -125,7 +125,9 @@ class Character extends MovableObject {
                 this.jump_sound_is_playing = false;
             }
 
-            if (this.world.keyboard.SPACE && !this.isAboveGround() && !this.jump_sound_is_playing && !this.isDead()) {
+            const wantsToJump = this.world.keyboard.SPACE || this.world.keyboard.UP;
+
+            if (wantsToJump && !this.isAboveGround() && !this.jump_sound_is_playing && !this.isDead()) {
                 this.lastAction = Date.now();
                 this.jump();
                 if (!isMuted) {

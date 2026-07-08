@@ -100,48 +100,42 @@ function toggleMusic(){
 
 
 
-window.addEventListener("keydown", (e) => {
-    if (e.keyCode == 39){
-        keyboard.RIGHT = true;
-    };
-     if (e.keyCode == 37){
-        keyboard.LEFT = true;
-    };
-     if (e.keyCode == 38){
-        keyboard.UP = true;
-    };
-     if (e.keyCode == 40){
-        keyboard.DOWN = true;
-    };
-     if (e.keyCode == 32){
-        keyboard.SPACE = true;
-    };
-      if (e.keyCode == 68){          
-        keyboard.D = true;
-    };
+function updateKeyboardState(e, isPressed) {
+    const code = e.code;
+    const key = e.key;
+    const keyCode = e.keyCode;
+    const isGameKey = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Space', 'KeyD'].includes(code)
+        || ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', ' ', 'Spacebar', 'd', 'D'].includes(key)
+        || [39, 37, 38, 40, 32, 68].includes(keyCode);
 
+    if (isGameKey) {
+        e.preventDefault();
+    }
+    if (code === 'ArrowRight' || key === 'ArrowRight' || key === 'Right' || keyCode == 39) {
+        keyboard.RIGHT = isPressed;
+    }
+    if (code === 'ArrowLeft' || key === 'ArrowLeft' || key === 'Left' || keyCode == 37) {
+        keyboard.LEFT = isPressed;
+    }
+    if (code === 'ArrowUp' || key === 'ArrowUp' || key === 'Up' || keyCode == 38) {
+        keyboard.UP = isPressed;
+    }
+    if (code === 'ArrowDown' || key === 'ArrowDown' || key === 'Down' || keyCode == 40) {
+        keyboard.DOWN = isPressed;
+    }
+    if (code === 'Space' || key === ' ' || key === 'Spacebar' || keyCode == 32) {
+        keyboard.SPACE = isPressed;
+    }
+    if (code === 'KeyD' || key === 'd' || key === 'D' || keyCode == 68) {
+        keyboard.D = isPressed;
+    }
+}
+
+window.addEventListener("keydown", (e) => {
+    updateKeyboardState(e, true);
 })
 
 window.addEventListener("keyup", (e) => {
-    //console.log(e.keyCode); // Gibt Keycode der jeweils gedrückten Taste in der Console aus
-    if (e.keyCode == 39){
-        keyboard.RIGHT = false;
-    };
-     if (e.keyCode == 37){
-        keyboard.LEFT = false;
-    };
-     if (e.keyCode == 38){
-        keyboard.UP = false;
-    };
-     if (e.keyCode == 40){
-        keyboard.DOWN = false;
-    };
-     if (e.keyCode == 32){
-        keyboard.SPACE = false;
-    };
-    if (e.keyCode == 68){          
-        keyboard.D = false;
-    };
-
+    updateKeyboardState(e, false);
 })
 

@@ -1,11 +1,7 @@
 
 # Desk
 
-- Landing Page
-    - Menüleiste basteln/ausrichten
-    - Steuerung & Story
-        - Dialog Steuerung
-        - Dialog Story
+
 
 
 - Jump Arrow Up hinzufügen
@@ -72,12 +68,15 @@
 
 
 
-3. Optimierung Gameplay
+3. Optimierung / Feinschliff
 
  - Gegner treffen (Sprungangriff)
  - Endgegner verfolgt Char?
  - Schaden/HP ballancen
  - Score ballancen
+
+ - Schöne Story ergänzen
+ - Control.html aufhübschen
  
 
 
