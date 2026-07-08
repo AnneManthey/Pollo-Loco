@@ -93,8 +93,23 @@ function saveAudioSettings() {
 
 function toggleMute(){
     isMuted = !isMuted;
+    if (isMuted) {
+        stopChickenSounds();
+    }
     updateMuteButton();
     saveAudioSettings();
+}
+
+function stopChickenSounds() {
+    if (!world?.level?.enemies) {
+        return;
+    }
+
+    world.level.enemies.forEach(enemy => {
+        if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
+            enemy.stopChickenSound();
+        }
+    });
 }
 
 function toggleMusic(){

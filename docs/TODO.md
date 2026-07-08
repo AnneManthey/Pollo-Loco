@@ -14,14 +14,6 @@
     - Zahl bzw Bar hübscher machen
 
 
-
-
-
-- Loading Spinner (game.html)
-    - walking small chicken als loading spinner
-    - Storyerklärung/schlauer Satz, während es läd?
-
-
 - Volume anpassen (sounds)
 
 
@@ -34,10 +26,6 @@
     - Erhöhen den Score (+1)
     - Leiste füllt sich
     - [optional] Sowohl besiegte Gegner als auch Coins füllen Score, Leiste durch Score-Zahl ersetzen
-
-
-
-    
 
 
 - [raussuchen] Grafiken/IMG
@@ -74,6 +62,7 @@
  - Schaden/HP ballancen
  - Score ballancen
 
+ - Story-Infos (LoadingSpinner) Übersetzen/anpassen
  - Schöne Story ergänzen - Känguru sammelt coins für schnapspralinen...!
  - Control.html aufhübschen
  
