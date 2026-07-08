@@ -10,7 +10,7 @@
     - Zahl wird in der Bar abgezeigt
     - Besiegte Gegner erhöhen ebenfalls den Score
 
-
+- Character snoring überprüfen/hinzufügen
 
 - Landing Page
     - Buttons hübsch machen

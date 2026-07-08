@@ -8,6 +8,9 @@ class Character extends MovableObject {
     ammo = 2;
     world;
 
+    snoring_sound = new Audio('assets/sounds/character/characterSnoring.ogg');
+    snoring_sound_is_playing = false;
+
     walking_sound = new Audio('assets/sounds/character/characterRun.ogg');
     walking_sound_is_playing = false;
     jump_sound = new Audio('assets/sounds/character/characterJump.ogg');
@@ -92,6 +95,7 @@ class Character extends MovableObject {
         this.applyGravity();
         this.lastAction = Date.now();
         this.walking_sound.loop = true;
+        this.snoring_sound.loop = true;
         this.animate();
     }
 
@@ -103,6 +107,7 @@ class Character extends MovableObject {
             // prüft ob eine Bewegung stattfindet und setzt ggf den timer zurück
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.D) {
                 this.lastAction = Date.now();
+                this.stopSnoringSound();
             }
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
@@ -180,11 +185,33 @@ class Character extends MovableObject {
                 let timePassed = (Date.now() - this.lastAction) / 1000;     //berechnet sekunden nach letzter aktion
                 if (timePassed > 10) {
                     this.playAnimation(this.IMAGES_SLEEP);
+                    this.playSnoringSound();
                 } else {
+                    this.stopSnoringSound();
                     this.playAnimation(this.IMAGES_IDLE);
                 }
+            } else {
+                this.stopSnoringSound();
             }
         }, 350);
+    }
+
+    playSnoringSound() {
+        if (!isMuted && !this.snoring_sound_is_playing) {
+            this.snoring_sound.currentTime = 0;
+            this.snoring_sound.play();
+            this.snoring_sound_is_playing = true;
+        } else if (isMuted) {
+            this.stopSnoringSound();
+        }
+    }
+
+    stopSnoringSound() {
+        if (this.snoring_sound_is_playing) {
+            this.snoring_sound.pause();
+            this.snoring_sound.currentTime = 0;
+            this.snoring_sound_is_playing = false;
+        }
     }
 
     jump() {
