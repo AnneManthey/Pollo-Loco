@@ -3,15 +3,17 @@
 
 
 - Fullscreen
-    
-
-- Controll page fixen
 
 - Score Bar / Score
     - Zahl bzw Bar hübscher machen
 
 
 - Volume anpassen (sounds)
+- Soundhub/eigene Class?
+- Lautstärkeregler?
+
+- Responsive
+- Mobile Version
 
 
 
@@ -21,22 +23,21 @@
 
 - Coins 
     - Erhöhen den Score (+1)
-    - Leiste füllt sich
-    - [optional] Sowohl besiegte Gegner als auch Coins füllen Score, Leiste durch Score-Zahl ersetzen
+    - Leiste füllt sich (Schritte anpassen?)
 
 
-- [raussuchen] Grafiken/IMG
+- [raussuchen]
     - Favicon
+    - Sound 'OUTCH'
+
 
 
 
 2. Anpassen & Gestalten
-(script.js wieder entfernen?) 
-- Map vergrößern (+ clouds in Schleife?)
 
-- Größenverhältnisse anpassen
-    - Character
-    - Endboss
+(script.js wieder entfernen?) 
+- Map vergrößern?
+- Clouds in Schleife?
 
 - Bewegungen anpassen
     - Schnelligkeit walking
@@ -46,9 +47,6 @@
 - responsive / Mobile(Querformat)
     - mobile buttons für steuerung
     - Screen 'pls turn your device to play'
-
-
-- Loading Spinner, während Spiel läd
 
 
 
@@ -61,7 +59,7 @@
 
  - Story-Infos (LoadingSpinner) Übersetzen/anpassen
  - Schöne Story ergänzen - Känguru sammelt coins für schnapspralinen...!
- - Control.html aufhübschen
+ 
  
 
 
@@ -75,7 +73,7 @@
 - Endgegner besiegen
 - Game-Over Screen / Endscreen mit Play again & verlassen option
 - Fullscreen
-- Erklärung der Steuerung (zb. dialog auf landing page)
+- Erklärung der Steuerung
 - Sound/Musik
 - Responsive
 - Mobile Version / Mobile touch Buttons
