@@ -1,6 +1,15 @@
 
 # Desk
 
+- Landing Page
+    - Menüleiste basteln/ausrichten
+    - Steuerung & Story
+        - Dialog Steuerung
+        - Dialog Story
+
+
+
+
 - Buttons index+game miteinander abstimmen (mute/music etc)
 
 - Dialog Endscreen hübsch machen
@@ -10,13 +19,7 @@
     - Zahl wird in der Bar abgezeigt
     - Besiegte Gegner erhöhen ebenfalls den Score
 
-- Character snoring überprüfen/hinzufügen
 
-- Landing Page
-    - Buttons hübsch machen
-    - Steuerung & Story
-        - Dialog Steuerung
-        - Dialog Story
 
 
 

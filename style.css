@@ -21,13 +21,35 @@ a {
     color: black;
 }
 
-.landing-section {
+.landing-section{
+    display: flex;
+    gap: 20px;
+}
+
+.nav-section{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.button-nav{
+    font-family: 'zabars';
+    font-size: 2rem; 
+    background-color: rgb(3, 86, 3, 0.5);
+    border-radius: 5px;
+}
+
+.button-nav:hover{
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.78);
+}
+
+.game-start-section {
     display: flex;
     position: relative;
 
 }
 
-.landing-section>img {
+.game-start-section>img {
     width: 720px;
     height: 480px;
     border-radius: 4px;
@@ -46,37 +68,11 @@ a {
 }
 
 .button-start:hover {
-
+    border-radius: 35px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
 }
 
 
-/* Buttons index */
-
-.button-dia-1 {
-    position: absolute;
-    left: 20%;
-    transform: translate(-50%, 200%);
-}
-
-.button-dia-2 {
-    position: absolute;
-    left: 10%;
-    transform: translate(-50%, 30px);
-}
-
-.button-dia-2 img {
-    width: 50px;
-    height: 50px;
-}
-
-.button-dia-2:hover {
-    border-radius: 20px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
-}
-
-
-/* END Buttons index */
 
 /* Buttons game.html */
 
