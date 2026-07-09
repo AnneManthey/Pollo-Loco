@@ -24,6 +24,8 @@ function init(){
     world = new World(canvas, keyboard, openGameOverDialog);
     background_music.loop = true;
     background_music.volume = 0.4;
+    document.getElementById('button_fullscreen').addEventListener('click', toggleFullscreen);
+    document.addEventListener('fullscreenchange', updateFullscreenButton);
     updateMuteButton();
     updateMusicButton();
     if (!isMuted && !isMusicMuted) {
@@ -123,6 +125,16 @@ function toggleMusic(){
 
     updateMusicButton();
     saveAudioSettings();
+}
+
+function toggleFullscreen() {
+    const fullscreenElement = document.getElementById('game_fullscreen');
+    document.fullscreenElement ? document.exitFullscreen() : fullscreenElement.requestFullscreen();
+}
+
+function updateFullscreenButton() {
+    const icon = document.querySelector('#button_fullscreen img');
+    icon.src = document.fullscreenElement ? './assets/icons/close_fullscreen.png' : './assets/icons/fullscreen.png';
 }
 
 
