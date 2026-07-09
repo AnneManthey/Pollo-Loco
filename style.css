@@ -10,8 +10,7 @@ body {
     background-size: cover;
     width: 100%;
     min-height: 100dvh;
-    overflow: hidden;
-    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    
     flex-grow: 1;
 }
 

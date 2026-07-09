@@ -6,3 +6,8 @@
     cursor: pointer;
     overflow: hidden;
 }
+
+body{
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
