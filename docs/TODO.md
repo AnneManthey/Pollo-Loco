@@ -3,9 +3,6 @@
 
 
 
-
-- Fullscreen wenn width oder height = canvas ist
-
 - Score Bar / Score
     - Bar durch Coin + Zahl ersetzen
 - Scale der Bars verkleinern

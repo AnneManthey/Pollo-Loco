@@ -64,7 +64,10 @@ class MovableObject extends DrawableObject {
     playAnimation(images) {
         let i = this.currentImage % images.length; // modulo (%): i = 0, 1, 2, 3, 4, 5, 6, 0, 1, ...
         let path = images[i];
-        this.img = this.imageCache[path];
+        const nextImage = this.imageCache[path];
+        if (nextImage && nextImage.complete && nextImage.naturalWidth > 0) {
+            this.img = nextImage;
+        }
         this.currentImage++;
     }
 
