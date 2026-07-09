@@ -1,6 +1,13 @@
 let canvas;
 let world;
-let keyboard = new Keyboard();
+let keyboard = {
+    LEFT: false,
+    RIGHT: false,
+    UP: false,
+    DOWN: false,
+    SPACE: false,
+    D: false
+};
 let isMuted = localStorage.getItem('isMuted') === 'true';
 let isMusicMuted = localStorage.getItem('isMusicMuted') === 'true';
 let isGameLoaded = false;
