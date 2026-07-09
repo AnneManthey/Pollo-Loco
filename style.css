@@ -266,7 +266,7 @@ table {
     transform: translateX(-50%);
     z-index: 2;
 
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     touch-action: none;
@@ -293,19 +293,19 @@ table {
 }
 
 .button-left {
-    left: 25%;
+    left: 15%;
 }
 
 .button-right {
-    left: 35%;
+    left: 30%;
 }
 
 .button-jump {
-    left: 65%;
+    left: 70%;
 }
 
 .button-throw {
-    left: 75%;
+    left: 85%;
 }
 
 
@@ -489,6 +489,7 @@ footer {
 }
 
 
+
 /* Smartphones */
 @media only screen and (max-width: 720px) {
     .game-section {
@@ -497,6 +498,12 @@ footer {
 
     h1 {
         display: none;
+    }
+    .button-left,
+    .button-right,
+    .button-jump,
+    .button-throw {
+        display: flex;
     }
 }
 
