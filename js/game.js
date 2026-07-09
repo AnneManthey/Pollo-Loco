@@ -13,15 +13,16 @@ let isMusicMuted = localStorage.getItem('isMusicMuted') === 'true';
 let isGameLoaded = false;
 let autoFullscreenEnabled = true;
 let hasEnteredFullscreen = false;
+const MOBILE_FULLSCREEN_CLASS = 'mobile-fullscreen';
 let game_over_sound = new Audio('assets/sounds/game/gameOver.ogg');
 let game_won_sound = new Audio('assets/sounds/game/gameWon.ogg');
 let background_music = new Audio('assets/sounds/game/backgroundMusic.ogg');
 const storyInfos = [
-    "Story: Pepe has traveled deep into the desert to retrieve the stolen salsa bottles...",
-    "Tip: Press 'D' to throw a salsa bottle at the chickens!",
-    "Warning: Tiny chicks die after 1 hit, but the boss can take a whopping 5 hits!!",
-    "Tip: Land precisely on top of the chickens to automatically bounce back up.",
-    "Story: The chickens have teamed up to plunder Pepe's coin collection..."
+    "Pepe has traveled deep into the desert to retrieve the stolen salsa bottles...",
+    "Press 'D' to throw a salsa bottle at the chickens!",
+    "Tiny chicks die after 1 hit, but the boss can take a whopping 5 hits!!",
+    "Land precisely on top of the chickens to automatically bounce back up.",
+    "The chickens have teamed up to plunder Pepe's coin collection..."
 ];
 
 window.addEventListener('load', () => {
@@ -138,80 +139,127 @@ function toggleMusic(){
 
 function toggleFullscreen() {
     autoFullscreenEnabled = false;
-    if (document.fullscreenElement) {
-        if (document.exitFullscreen) {
-            document.exitFullscreen().catch(() => {});
-        } else {
-            document.webkitExitFullscreen?.();
-        }
+
+    if (isFullscreenActive()) {
+        setPseudoFullscreen(false);
+        exitNativeFullscreen();
+        updateFullscreenButton();
         return;
     }
 
-    requestGameFullscreen();
+    requestGameFullscreen({ allowPseudoFallback: true });
 }
 
 function updateFullscreenButton() {
     const icon = document.querySelector('#button_fullscreen img');
-    const isFullscreen = !!document.fullscreenElement;
+    const fullscreen = isFullscreenActive();
 
     if (icon) {
-        icon.src = isFullscreen ? './assets/icons/close_fullscreen.png' : './assets/icons/fullscreen.png';
+        icon.src = fullscreen ? './assets/icons/close_fullscreen.png' : './assets/icons/fullscreen.png';
     }
 
-    if (isFullscreen) {
+    if (fullscreen) {
         hasEnteredFullscreen = true;
     } else if (hasEnteredFullscreen) {
         autoFullscreenEnabled = false;
     }
 }
 
-function requestGameFullscreen() {
-    const element = document.getElementById('game_fullscreen');
-    if (!element || document.fullscreenElement) return;
+function requestGameFullscreen({ allowPseudoFallback = false } = {}) {
+    const element = getGameSection();
+    if (!element || isFullscreenActive()) {
+        return;
+    }
+
+    const fallback = () => {
+        if (allowPseudoFallback && shouldAutoFullscreen()) {
+            setPseudoFullscreen(true);
+            updateFullscreenButton();
+        }
+    };
 
     if (element.requestFullscreen) {
-        element.requestFullscreen().catch(() => {});
-    } else {
+        element.requestFullscreen().catch(fallback);
+        return;
+    }
+
+    try {
         element.webkitRequestFullscreen?.();
+        setTimeout(() => {
+            if (!document.fullscreenElement) {
+                fallback();
+            }
+        }, 150);
+    } catch (e) {
+        fallback();
     }
 }
 
 function setupAutoFullscreenForSmallDevices() {
-    const tryAutoFullscreen = () => {
-        if (isMobileDevice() && !window.matchMedia('(orientation: landscape)').matches && document.fullscreenElement) {
-            if (document.exitFullscreen) {
-                document.exitFullscreen().catch(() => {});
-            } else {
-                document.webkitExitFullscreen?.();
-            }
+    const syncAutoFullscreen = () => {
+        if (isMobileDevice() && !isLandscape()) {
+            setPseudoFullscreen(false);
+            exitNativeFullscreen();
+            updateFullscreenButton();
             return;
         }
 
-        if (!autoFullscreenEnabled || !matchesAutoFullscreenDevice()) return;
-        requestGameFullscreen();
+        if (!shouldAutoFullscreen()) {
+            return;
+        }
+
+        requestGameFullscreen({ allowPseudoFallback: true });
     };
 
-    tryAutoFullscreen();
-    window.addEventListener('pointerdown', tryAutoFullscreen, { once: true });
-    window.addEventListener('touchstart', tryAutoFullscreen, { once: true });
-    window.addEventListener('orientationchange', tryAutoFullscreen);
-    window.addEventListener('resize', tryAutoFullscreen);
+    syncAutoFullscreen();
+    window.addEventListener('pointerdown', syncAutoFullscreen, { once: true });
+    window.addEventListener('touchstart', syncAutoFullscreen, { once: true });
+    window.addEventListener('orientationchange', syncAutoFullscreen);
+    window.addEventListener('resize', syncAutoFullscreen);
 }
 
-function matchesAutoFullscreenDevice() {
-    const isSmallWidth = window.innerWidth < 750 || window.screen.width < 750;
-    const isSmallMobileScreen = Math.min(window.screen.width, window.screen.height) <= 900;
-    const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+function shouldAutoFullscreen() {
+    return autoFullscreenEnabled && isSmallScreen() && (!isMobileDevice() || isLandscape());
+}
 
-    if (isMobileDevice()) {
-        return isLandscape && (isSmallWidth || isSmallMobileScreen);
-    }
+function isSmallScreen() {
+    return window.innerWidth < 750 || window.screen.width < 750 || Math.min(window.screen.width, window.screen.height) <= 900;
+}
 
-    return isSmallWidth;
+function isLandscape() {
+    return window.matchMedia('(orientation: landscape)').matches;
 }
 
 function isMobileDevice() {
     return window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+}
+
+function getGameSection() {
+    return document.getElementById('game_fullscreen');
+}
+
+function setPseudoFullscreen(enabled) {
+    const element = getGameSection();
+    if (!element) {
+        return;
+    }
+    element.classList.toggle(MOBILE_FULLSCREEN_CLASS, enabled);
+}
+
+function exitNativeFullscreen() {
+    if (!document.fullscreenElement) {
+        return;
+    }
+
+    if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+    } else {
+        document.webkitExitFullscreen?.();
+    }
+}
+
+function isFullscreenActive() {
+    return !!document.fullscreenElement || !!getGameSection()?.classList.contains(MOBILE_FULLSCREEN_CLASS);
 }
 
 function setupMobileControls() {
