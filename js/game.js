@@ -26,6 +26,7 @@ function init(){
     background_music.volume = 0.4;
     document.getElementById('button_fullscreen').addEventListener('click', toggleFullscreen);
     document.addEventListener('fullscreenchange', updateFullscreenButton);
+    setupMobileControls();
     updateMuteButton();
     updateMusicButton();
     if (!isMuted && !isMusicMuted) {
@@ -135,6 +136,26 @@ function toggleFullscreen() {
 function updateFullscreenButton() {
     const icon = document.querySelector('#button_fullscreen img');
     icon.src = document.fullscreenElement ? './assets/icons/close_fullscreen.png' : './assets/icons/fullscreen.png';
+}
+
+function setupMobileControls() {
+    [
+        ['button_right', 'RIGHT'],
+        ['button_left', 'LEFT'],
+        ['button_jump', 'UP'],
+        ['button_throw', 'D']
+    ].forEach(([buttonId, key]) => {
+        const button = document.getElementById(buttonId);
+        button.addEventListener('pointerdown', (e) => setMobileKey(e, key, true));
+        button.addEventListener('pointerup', (e) => setMobileKey(e, key, false));
+        button.addEventListener('pointerleave', (e) => setMobileKey(e, key, false));
+        button.addEventListener('pointercancel', (e) => setMobileKey(e, key, false));
+    });
+}
+
+function setMobileKey(e, key, isPressed) {
+    e.preventDefault();
+    keyboard[key] = isPressed;
 }
 
 

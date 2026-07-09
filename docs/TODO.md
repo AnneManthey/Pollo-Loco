@@ -1,8 +1,8 @@
 
 # Desk
 
-
-- Fullscreen
+- Responsive
+- Mobile Version
 
 - Score Bar / Score
     - Zahl bzw Bar hübscher machen
@@ -12,10 +12,9 @@
 - Soundhub/eigene Class?
 - Lautstärkeregler?
 
-- Responsive
-- Mobile Version
 
-- scrollbalken index beheben
+
+
 
 
 
