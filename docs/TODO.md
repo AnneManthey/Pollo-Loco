@@ -1,8 +1,8 @@
 
 # Desk
 
-- Turn Deveice Screen
-- Positionierung BG-Elemente über den Touch-buttons? Oder Rand basteln für buttons?
+
+
 
 - Fullscreen wenn width oder height = canvas ist
 

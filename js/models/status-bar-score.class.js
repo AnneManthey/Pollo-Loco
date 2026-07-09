@@ -26,9 +26,9 @@ class ScoreBar extends StatusBar {
         super.draw(ctx);
 
         ctx.font = '20px zabars';
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'orange';
         ctx.textAlign = 'center';
-        ctx.fillText(`Your Score: ${this.scoreValue}`, this.x + 100, this.y + 46);
+        ctx.fillText(`${this.scoreValue}`, this.x + 100, this.y + 40);
         ctx.textAlign = 'left';
     }
 }

@@ -434,20 +434,19 @@ dialog {
     box-sizing: border-box;
     background-repeat: no-repeat;
     background-position: center;
-    /* background-origin: content-box; */
-    /* background-clip: content-box; */
     background-size: 50%;
-    /* background-size: calc(100% - 150px) auto; */
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: #e7caab;
-
-    /* color: brown; */
     text-align: center;
+}
 
+.dialog-lost a,
+.dialog-won a{
+    text-decoration: none;
+    color: black;
 }
 
 .dialog-lost {
