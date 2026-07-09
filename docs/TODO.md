@@ -2,6 +2,7 @@
 # Desk
 
 
+- Back-Button klebt an canvas
 
 - Score Bar / Score
     - Bar durch Coin + Zahl ersetzen
