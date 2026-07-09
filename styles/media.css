@@ -1,0 +1,49 @@
+/* Mobile Devices */
+
+/* Hochformat */
+@media (hover: none) and (orientation: portrait) and (max-width: 750px) {
+
+    h1 {
+        display: none;
+    }
+
+    .game-section {
+        display: none;
+    }
+    .button-nav{
+        display: none;
+    }
+
+    .device-message {
+        display: block;
+    }
+
+    footer{
+        display: none;
+    }
+
+}
+
+
+/* Querformat */
+@media (hover: none) and (orientation: landscape) {
+
+    .button-left,
+    .button-right,
+    .button-jump,
+    .button-throw {
+        display: flex;
+    }
+}
+
+@media (hover: none) and (orientation: landscape) and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+@media (hover: none) and (orientation: landscape) and (max-height: 550px) {
+    h1 {
+        display: none;
+    }
+}

@@ -202,6 +202,13 @@ table {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
 }
 
+.device-message {
+    display: none;
+    padding: 16px;
+    text-align: center;
+    font-size: 3rem;
+    letter-spacing: 1px;
+}
 
 
 /* Buttons game.html */
@@ -509,31 +516,3 @@ footer a:hover{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
 }
 
-
-
-/* Smartphones */
-@media only screen and (max-width: 720px) {
-    .game-section {
-        width: 100%;
-    }
-
-    h1 {
-        display: none;
-    }
-    .button-left,
-    .button-right,
-    .button-jump,
-    .button-throw {
-        display: flex;
-    }
-}
-
-@media only screen and (max-height: 480px) {
-    .game-section {
-        width: min(100vw, 150vh);
-    }
-
-    h1 {
-        display: none;
-    }
-}
