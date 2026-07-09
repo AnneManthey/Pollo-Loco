@@ -97,6 +97,11 @@ class Character extends MovableObject {
         this.lastAction = Date.now();
         this.walking_sound.loop = true;
         this.snoring_sound.loop = true;
+        this.snoring_sound.volume = 0.18;
+        this.walking_sound.volume = 0.22;
+        this.jump_sound.volume = 0.25;
+        this.hurt_sound.volume = 0.28;
+        this.dead_sound.volume = 0.28;
         this.animate();
     }
 
