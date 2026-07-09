@@ -37,13 +37,16 @@
 }
 
 @media (hover: none) and (orientation: landscape) and (max-width: 750px) {
-    canvas {
+    .game-section {
         width: 100%;
     }
 }
 
-@media (hover: none) and (orientation: landscape) and (max-height: 550px) {
+@media (hover: none) and (orientation: landscape) and (max-height: 500px) {
     h1 {
         display: none;
+    }
+    .game-section {
+        height: 100dvh;
     }
 }
