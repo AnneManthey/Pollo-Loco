@@ -2,12 +2,16 @@
 # Desk
 
 - Turn Deveice Screen
-- Positionierung Elemente über den Touch-buttons
+- Positionierung BG-Elemente über den Touch-buttons? Oder Rand basteln für buttons?
+
+- Fullscreen wenn width oder height = canvas ist
 
 - Score Bar / Score
-    - Zahl bzw Bar hübscher machen
+    - Bar durch Coin + Zahl ersetzen
+- Scale der Bars verkleinern
+- HP vom Boss auf 3 setzen
 
-- Musik nicht während ladebildschirm abspielen
+
 
 - Volume anpassen (sounds)
 - Soundhub/eigene Class?
