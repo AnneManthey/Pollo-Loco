@@ -435,16 +435,17 @@ dialog {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-.dialog-lost,
+
 .dialog-won {
-    width: 500px;
+    width: 300px;
     max-width: 90vw;
     min-height: 320px;
     padding: 16px;
     box-sizing: border-box;
+    background-image: url('img/You won, you lost/You won A.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 50%;
+    background-size: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -453,19 +454,29 @@ dialog {
     text-align: center;
 }
 
+
+.dialog-lost{
+    width: 300px;
+    max-width: 90vw;
+    min-height: 320px;
+    padding: 16px;
+    box-sizing: border-box;
+    background-image: url('img/You won, you lost/Game over A.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #e7caab;
+
+}
+
 .dialog-lost a,
 .dialog-won a {
     text-decoration: none;
     color: black;
 }
 
-.dialog-lost {
-    background-image: url('img/You won, you lost/Game over A.png');
-}
-
-.dialog-won {
-    background-image: url('img/You won, you lost/You Won B.png');
-}
 
 .dialog-won h3 {
     font-size: 2rem;
@@ -493,8 +504,16 @@ dialog {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
 }
 
-.dialog-button-wrapper {
+.dialog-won-wrapper {
     display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.dialog-lost-wrapper{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
     align-items: center;
     gap: 50px;
 }

@@ -5,7 +5,7 @@ function getDialogWonTemplate(score) {
             <div>
                 <p>Your Score: <span style="color: red; font-size: 2.2rem;"> ${score}</span></p>
             </div>
-            <div class="dialog-button-wrapper">
+            <div class="dialog-won-wrapper">
                 <button onclick="location.reload();">Play Again</button>
                 <button><a href="index.html">Back</a></button>
             </div>
@@ -16,7 +16,7 @@ function getDialogWonTemplate(score) {
 function getDialogLostTemplate() {
     return /*html*/ `
         <section class="dialog-lost">
-            <div class="dialog-button-wrapper">
+            <div class="dialog-lost-wrapper">
                 <button onclick="location.reload();">Play Again</button>
                 <button><a href="index.html">Back</a></button>
             </div>
