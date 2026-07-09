@@ -3,7 +3,7 @@ class Endboss extends MovableObject {
     height = 350;
     width = 200;
     y = 100;
-    hp = 5;
+    hp = 3;
     attackSpeed = 15;
     retreatSpeed = 5;
     attackProgress = 0;

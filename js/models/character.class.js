@@ -6,7 +6,7 @@ class Character extends MovableObject {
     width = 130;
     speed = 8;
     coins = 0;
-    ammo = 2;
+    ammo = 0;
     world;
 
     snoring_sound = new Audio('assets/sounds/character/characterSnoring.ogg');
