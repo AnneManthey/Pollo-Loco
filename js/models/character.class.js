@@ -232,7 +232,7 @@ class Character extends MovableObject {
 
     collectCoin() {
         this.lastAction = Date.now();
-        this.coins += 20;
+        this.coins += 10;
         if (!isMuted) {
             this.coin_collect_sound.currentTime = 0;
             this.coin_collect_sound.play();
@@ -241,9 +241,9 @@ class Character extends MovableObject {
 
     collectBottle() {
         this.lastAction = Date.now();
-        this.ammo += 10;
-        if (this.ammo > 100) {
-            this.ammo = 100;
+        this.ammo += 1;
+        if (this.ammo > 10) {
+            this.ammo = 10;
         }
         if (!isMuted) {
             this.bottle_collect_sound.currentTime = 0;

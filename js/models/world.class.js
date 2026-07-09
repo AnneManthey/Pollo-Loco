@@ -96,7 +96,7 @@ class World {
     checkTrowObjects() {
         const now = Date.now();
 
-        if (this.keyboard.D && this.character.ammo > 0) {
+        if (this.keyboard.D && this.character.ammo >= 1) {
             if (now - this.lastThrowTime < this.throwCooldown) {
                 return;
             }
@@ -104,9 +104,8 @@ class World {
             this.lastThrowTime = now;
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
-            this.character.ammo -= 1;
-            let percentage = this.character.ammo * 10;
-            this.ammoBar.setPercentage(percentage);
+            this.character.ammo = Math.max(0, this.character.ammo - 1);
+            this.ammoBar.setPercentage(this.character.ammo * 10);
         } else if (this.keyboard.D && this.character.ammo <= 0 && !isMuted) {
             this.wrong_bottle_sound.currentTime = 0;
             this.wrong_bottle_sound.play();
@@ -223,11 +222,7 @@ class World {
 
                 else if (item instanceof Bottle) {
                     this.character.collectBottle(); // Erhöht z.B. die Munition im Charakter
-                    this.ammoBar.setPercentage(this.character.ammo); // Aktualisiert die Ammo-Bar in 10er Schritten (2/20% etc)
-                    if (this.character.ammo < 10) {
-                        this.character.ammo += 1;
-                        this.ammoBar.setPercentage(this.character.ammo * 10);
-                    }
+                    this.ammoBar.setPercentage(this.character.ammo * 10); // Aktualisiert die Ammo-Bar in 10er Schritten (2/20% etc)
                     this.level.collectables.splice(index, 1);
                 }
             }

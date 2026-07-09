@@ -2,19 +2,11 @@
 # Desk
 
 
-
 - HP vom Boss auf 3 setzen
 
 
-
-- Volume anpassen (sounds)
 - Soundhub/eigene Class?
 - Lautstärkeregler?
-
-
-
-
-
 
 
 
@@ -25,9 +17,6 @@
     - Erhöhen den Score (+1)
     - Leiste füllt sich (Schritte anpassen?)
 
-
-- [raussuchen]
-    - Sound 'OUTCH'
 
 
 
