@@ -42,12 +42,10 @@ h1 {
     width: 100%;
     height: 100%;
     background-color: rgba(20, 20, 20, 0.95);
-    /* Dunkler Hintergrund */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    /* Immer ganz oben */
     transition: opacity 0.5s ease-out;
 }
 
@@ -413,14 +411,14 @@ table {
 #game_fullscreen:-webkit-full-screen .button-jump,
 #game_fullscreen.mobile-fullscreen .button-jump {
     top: calc((100vh - var(--game-height)) / 2 + var(--game-height) - 40px);
-    left: calc((100vw - var(--game-width)) / 2 + var(--game-width) * 0.60);
+    left: calc((100vw - var(--game-width)) / 2 + var(--game-width) * 0.40);
 }
 
 #game_fullscreen:fullscreen .button-throw,
 #game_fullscreen:-webkit-full-screen .button-throw,
 #game_fullscreen.mobile-fullscreen .button-throw {
     top: calc((100vh - var(--game-height)) / 2 + var(--game-height) - 40px);
-    left: calc((100vw - var(--game-width)) / 2 + var(--game-width) * 0.40);
+    left: calc((100vw - var(--game-width)) / 2 + var(--game-width) * 0.60);
 }
 
 canvas {

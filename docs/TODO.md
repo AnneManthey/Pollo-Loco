@@ -2,7 +2,12 @@
 # Desk
 
 
-- HP vom Boss auf 3 setzen
+- Startseite
+    - Nur Hintergrundbild, img entfernen
+    - Bild Button Play
+
+
+
 
 
 - Soundhub/eigene Class?
