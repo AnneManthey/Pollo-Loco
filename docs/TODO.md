@@ -1,12 +1,13 @@
 
 # Desk
 
-- Responsive
-- Mobile Version
+- Turn Deveice Screen
+- Positionierung Elemente über den Touch-buttons
 
 - Score Bar / Score
     - Zahl bzw Bar hübscher machen
 
+- Musik nicht während ladebildschirm abspielen
 
 - Volume anpassen (sounds)
 - Soundhub/eigene Class?
