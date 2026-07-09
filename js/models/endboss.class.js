@@ -51,6 +51,7 @@ class Endboss extends MovableObject {
     isAttacking = false;
     bossActive = false;
     bossState = 'idle';
+    deathStartedAt = null;
     approach_sound = new Audio('assets/sounds/endboss/endbossApproach.ogg');
     approach_sound_is_playing = false;
 
@@ -167,6 +168,9 @@ class Endboss extends MovableObject {
         this.hp -= 1;
         if (this.hp <= 0) {
             this.isDead = true;
+            this.deathStartedAt = Date.now();
+            this.isAttacking = false;
+            this.bossState = 'dead';
         } else {
             this.isHurt = true;
             // Nach 1 Sekunde ist der Boss nicht mehr im "Hurt"-Status

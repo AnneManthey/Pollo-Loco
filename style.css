@@ -275,11 +275,11 @@ table {
 .button-right,
 .button-jump,
 .button-throw {
-    border-radius: 50%;
-    width: clamp(30px, 8vw, 42px);
+    border-radius: 10px;
+    width: clamp(100px, 8vw, 100px);
     height: clamp(30px, 8vw, 42px);
     border: 3px solid rgb(246, 239, 219);
-    background-color: rgb(104, 159, 31);
+    background-color: rgb(192, 178, 33);
     opacity: 60%;
     font-size: clamp(1rem, 4vw, 1.5rem);
     font-weight: bold;
@@ -320,15 +320,15 @@ table {
 }
 
 .button-right {
-    left: 30%;
+    left: 85%;
 }
 
 .button-jump {
-    left: 70%;
+    left: 35%;
 }
 
 .button-throw {
-    left: 85%;
+    left: 65%;
 }
 
 

@@ -2,11 +2,7 @@
 # Desk
 
 
-- Back-Button klebt an canvas
 
-- Score Bar / Score
-    - Bar durch Coin + Zahl ersetzen
-- Scale der Bars verkleinern
 - HP vom Boss auf 3 setzen
 
 
@@ -31,7 +27,6 @@
 
 
 - [raussuchen]
-    - Favicon
     - Sound 'OUTCH'
 
 
@@ -48,9 +43,7 @@
     - Höhe jumping
     - Wurfweite bottles
 
-- responsive / Mobile(Querformat)
-    - mobile buttons für steuerung
-    - Screen 'pls turn your device to play'
+
 
 
 

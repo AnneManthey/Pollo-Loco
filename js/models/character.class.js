@@ -1,9 +1,10 @@
 class Character extends MovableObject {
 
-    y = 150;
-    height = 300;
+    y = 100;
+    GROUND_Y = 100;
+    height = 350;
     width = 130;
-    speed = 10;
+    speed = 8;
     coins = 0;
     ammo = 2;
     world;
@@ -218,6 +219,10 @@ class Character extends MovableObject {
 
     jump() {
         this.speedY = 30;
+    }
+
+    isAboveGround() {
+        return this.y < this.GROUND_Y;
     }
 
     collectCoin() {

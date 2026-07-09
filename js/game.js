@@ -17,11 +17,11 @@ let game_over_sound = new Audio('assets/sounds/game/gameOver.ogg');
 let game_won_sound = new Audio('assets/sounds/game/gameWon.ogg');
 let background_music = new Audio('assets/sounds/game/backgroundMusic.ogg');
 const storyInfos = [
-    "Story: Pepe ist tief in die Wüste gereist, um die gestohlenen Salsa-Flaschen zurückzuholen...",
-    "Tipp: Drücke 'D', um eine Salsa-Flasche auf die Hühner zu werfen!",
-    "Achtung: Kleine Küken sterben nach 1 Treffer, aber der Boss hält ganze 5 Treffer aus!",
-    "Tipp: Lande präzise von oben auf den Hühnern, um automatisch wieder hochzufedern.",
-    "Story: Die Hühner haben sich zusammengeschlossen, um Pepes Münzsammlung zu plündern..."
+    "Story: Pepe has traveled deep into the desert to retrieve the stolen salsa bottles...",
+    "Tip: Press 'D' to throw a salsa bottle at the chickens!",
+    "Warning: Tiny chicks die after 1 hit, but the boss can take a whopping 5 hits!!",
+    "Tip: Land precisely on top of the chickens to automatically bounce back up.",
+    "Story: The chickens have teamed up to plunder Pepe's coin collection..."
 ];
 
 window.addEventListener('load', () => {

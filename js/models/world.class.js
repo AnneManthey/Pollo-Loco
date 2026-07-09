@@ -58,10 +58,16 @@ class World {
         if (this.character.energy <= 0) {
             this.endGame('lose');
         }
-        // Boss ist tot / gewonnen:
+        // Boss ist tot / gewonnen (erst nach kompletter Dead-Animation)
         let boss = this.level.enemies.find(e => e instanceof Endboss);
-        if (boss && boss.hp <= 0) {
-            this.endGame('win');
+        if (boss && boss.isDead) {
+            const deathAnimationDuration = (boss.IMAGES_DEAD?.length || 3) * 200;
+            const extraWinDelay = 1000;
+            const deathStartedAt = boss.deathStartedAt || Date.now();
+
+            if (Date.now() - deathStartedAt >= deathAnimationDuration + extraWinDelay) {
+                this.endGame('win');
+            }
         }
     }
 
