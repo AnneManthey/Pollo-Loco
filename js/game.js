@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let isMuted = localStorage.getItem('isMuted') === 'true';
 let isMusicMuted = localStorage.getItem('isMusicMuted') === 'true';
+let isGameLoaded = false;
 let game_over_sound = new Audio('assets/sounds/game/gameOver.ogg');
 let game_won_sound = new Audio('assets/sounds/game/gameWon.ogg');
 let background_music = new Audio('assets/sounds/game/backgroundMusic.ogg');
@@ -29,9 +30,6 @@ function init(){
     setupMobileControls();
     updateMuteButton();
     updateMusicButton();
-    if (!isMuted && !isMusicMuted) {
-        background_music.play().catch(() => {});
-    }
    //console.log('My character is', world.character);
 }  
 
@@ -120,8 +118,8 @@ function toggleMusic(){
 
     if (isMusicMuted) {
         background_music.pause();
-    } else if (!isMuted) {
-        background_music.play().catch(() => {});
+    } else if (isGameLoaded) {
+        playBackgroundMusic();
     }
 
     updateMusicButton();
@@ -155,6 +153,9 @@ function setupMobileControls() {
 
 function setMobileKey(e, key, isPressed) {
     e.preventDefault();
+    if (!isGameLoaded) {
+        return;
+    }
     keyboard[key] = isPressed;
 }
 
@@ -169,6 +170,9 @@ function updateKeyboardState(e, isPressed) {
 
     if (isGameKey) {
         e.preventDefault();
+    }
+    if (!isGameLoaded) {
+        return;
     }
     if (code === 'ArrowRight' || key === 'ArrowRight' || key === 'Right' || keyCode == 39) {
         keyboard.RIGHT = isPressed;
@@ -214,6 +218,14 @@ function hideLoadingScreen() {
     const loadingScreen = document.getElementById('loading_screen');
     if (loadingScreen) {
         loadingScreen.classList.add('hidden');
+    }
+    isGameLoaded = true;
+    playBackgroundMusic();
+}
+
+function playBackgroundMusic() {
+    if (isGameLoaded && !isMusicMuted) {
+        background_music.play().catch(() => {});
     }
 }
 
