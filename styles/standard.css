@@ -1,3 +1,13 @@
+:root{
+    --main-font:rgb(45, 12, 12);
+    --main-btn-bg: rgb(229, 169, 29, 0.5);
+    --outline: rgb(73, 52, 3);
+}
+
+html{
+    color: var(--main-font);
+}
+
 *{
     box-sizing: border-box;
     scroll-behavior: smooth;
