@@ -29,6 +29,9 @@ window.addEventListener('load', () => {
     setTimeout(hideLoadingScreen, 1500);
 });
 
+/**
+ * Initializes the game world, UI controls, and audio defaults.
+ */
 function init(){
     setRandomLoadingText();
     canvas = document.getElementById('canvas');
@@ -41,9 +44,12 @@ function init(){
     setupMobileControls();
     updateMuteButton();
     updateMusicButton();
-   //console.log('My character is', world.character);
 }  
 
+/**
+ * Opens the game-over dialog and plays the matching end sound.
+ * @param {'win'|'lose'} winOrLose Result state used to render the dialog.
+ */
 function openGameOverDialog(winOrLose) {
     let dialog = document.getElementById('dialog');
     backgroundMusic.pause();
@@ -66,15 +72,18 @@ function openGameOverDialog(winOrLose) {
     dialog.showModal(); 
 }
 
+/**
+ * Clears running interval timers in a broad numeric range.
+ */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) {
         window.clearInterval(i);
     }
 }
 
-
-
-// Zufälligen Text auswählen (Loading Spinner)
+/**
+ * Sets a random story hint in the loading overlay.
+ */
 function setRandomLoadingText() {
     const textElement = document.getElementById('loading_info');
     if (textElement) {
@@ -83,7 +92,9 @@ function setRandomLoadingText() {
     }
 }
 
-// Ladebildschirm weich ausblenden
+/**
+ * Hides the loading screen, unlocks input flow, and starts background music.
+ */
 function hideLoadingScreen() {
     const loadingScreen = document.getElementById('loading_screen');
     if (loadingScreen) {
