@@ -26,6 +26,6 @@ class Bottle extends Collectables {
      * @param {Character} character Player character collecting the bottle.
      */
     collect(character) {
-        character.bottlesAmmo += 1;
+        character.ammo += 1;
     }
 }
