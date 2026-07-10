@@ -3,7 +3,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    energy = 1000;
+    hp = 1000;
     lastHit = 0;
 
     /**
@@ -54,9 +54,9 @@ class MovableObject extends DrawableObject {
      * Applies damage and updates hit timestamp.
      */
     hit() {
-        this.energy -= 5;
-        if (this.energy < 0) {
-            this.energy = 0;
+        this.hp -= 5;
+        if (this.hp < 0) {
+            this.hp = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
@@ -74,10 +74,10 @@ class MovableObject extends DrawableObject {
 
     /**
      * Returns whether object health is depleted.
-     * @returns {boolean} True when energy reached zero.
+     * @returns {boolean} True when hp reached zero.
      */
     isDead() {
-        return this.energy == 0;
+        return this.hp == 0;
     }
 
     /**

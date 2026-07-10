@@ -2,10 +2,9 @@
 # Desk
 
 
-- Startseite für mobile/responsive:
-    - Nur Hintergrundbild, img entfernen
-    - Bild Button Play
-
+- HP des Char anpassen (5 Treffer?)
+- Schaden/HP ballancen
+- Coins/Bottles Anzahl ballancen
 
 
 - Soundhub/eigene Class?
@@ -24,8 +23,7 @@
 
 3. Optimierung / Feinschliff
 
- - Schaden/HP ballancen
- - Coins/Bottles Anzahl ballancen
+ 
  - Story-Infos (LoadingSpinner)
  - Schöne Story ergänzen - Känguru sammelt coins für schnapspralinen...!
  

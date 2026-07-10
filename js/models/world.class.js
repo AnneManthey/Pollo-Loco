@@ -94,11 +94,11 @@ class World {
     }
 
     /**
-     * Checks if character has no remaining energy.
+     * Checks if character has no remaining hp.
      * @returns {boolean} True when character is defeated.
      */
     isCharacterDefeated() {
-        return this.character.energy <= 0;
+        return this.character.hp <= 0;
     }
 
     /**

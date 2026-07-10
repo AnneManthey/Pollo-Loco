@@ -4,6 +4,7 @@ class Character extends MovableObject {
     height = 350;
     width = 130;
     speed = 8;
+    hp = 100;
     coins = 0;
     ammo = 0;
     world;
@@ -445,6 +446,18 @@ class Character extends MovableObject {
         if (!isMuted) {
             this.bottle_collect_sound.currentTime = 0;
             this.bottle_collect_sound.play();
+        }
+    }
+
+    /**
+     * Applies one character hit. Character dies after 5 hits.
+     */
+    hit() {
+        this.hp -= 20;
+        if (this.hp < 0) {
+            this.hp = 0;
+        } else {
+            this.lastHit = Date.now();
         }
     }
 }

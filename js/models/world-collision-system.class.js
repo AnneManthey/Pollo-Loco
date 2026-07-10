@@ -259,7 +259,7 @@ class WorldCollisionSystem {
      */
     damageCharacter() {
         this.world.character.hit();
-        this.world.healthBar.setPercentage(this.world.character.energy);
+        this.world.healthBar.setPercentage(this.world.character.hp);
     }
 
     /**
