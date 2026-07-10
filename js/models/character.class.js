@@ -1,5 +1,4 @@
 class Character extends MovableObject {
-
     y = 100;
     GROUND_Y = 100;
     height = 350;
@@ -8,7 +7,6 @@ class Character extends MovableObject {
     coins = 0;
     ammo = 0;
     world;
-
     snoring_sound = new Audio('assets/sounds/character/characterSnoring.ogg');
     snoring_sound_is_playing = false;
     walking_sound = new Audio('assets/sounds/character/characterRun.ogg');
@@ -85,14 +83,29 @@ class Character extends MovableObject {
      */
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+        this.loadCharacterAnimations();
+        this.configureCharacterAudio();
+        this.lastAction = Date.now();
+        this.applyGravity();
+        this.animate();
+    }
+
+    /**
+     * Preloads all animation image sets for the character.
+     */
+    loadCharacterAnimations() {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_SLEEP);
-        this.applyGravity();
-        this.lastAction = Date.now();
+    }
+
+    /**
+     * Applies loop and volume settings for character sounds.
+     */
+    configureCharacterAudio() {
         this.walking_sound.loop = true;
         this.snoring_sound.loop = true;
         this.snoring_sound.volume = 0.18;
@@ -100,99 +113,273 @@ class Character extends MovableObject {
         this.jump_sound.volume = 0.25;
         this.hurt_sound.volume = 0.28;
         this.dead_sound.volume = 0.28;
-        this.animate();
     }
 
     /**
      * Starts movement, state animation, and idle/sleep behavior loops.
      */
     animate() {
-        setInterval(() => {
-            let isMoving = false;
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.UP || this.world.keyboard.D) {
-                this.lastAction = Date.now();
-                this.stopSnoringSound();
-            }
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-                isMoving = true;
-            }
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true;
-                isMoving = true;
-            }
-            if (!this.isDead() && !this.isAboveGround()) {
-                this.jump_sound_is_playing = false;
-            }
+        this.startMovementLoop();
+        this.startAnimationLoop();
+        this.startIdleLoop();
+    }
 
-            const wantsToJump = this.world.keyboard.SPACE || this.world.keyboard.UP;
-            if (wantsToJump && !this.isAboveGround() && !this.jump_sound_is_playing && !this.isDead()) {
-                this.lastAction = Date.now();
-                this.jump();
-                if (!isMuted) {
-                    this.jump_sound.currentTime = 0;
-                    this.jump_sound.play();
-                }
-                this.jump_sound_is_playing = true;
-            }
-            if (isMoving && !isMuted && !this.isDead() && !this.isHurt() && !this.isAboveGround()) {
-                if (!this.walking_sound_is_playing) {
-                    this.walking_sound.currentTime = 0;
-                    this.walking_sound.play();
-                    this.walking_sound_is_playing = true;
-                }
-            } else {
-                this.walking_sound.pause();
-                this.walking_sound.currentTime = 0;
-                this.walking_sound_is_playing = false;
-            }
-            this.world.camera_x = -this.x + 100;
+    /**
+     * Starts per-frame movement and movement-audio updates.
+     */
+    startMovementLoop() {
+        setInterval(() => {
+            const isMoving = this.handleHorizontalMovement();
+            this.handleMovementActivity();
+            this.handleJumpInput();
+            this.updateWalkingSound(isMoving);
         }, 1000 / 60);
+    }
 
+    /**
+     * Starts the animation state update loop.
+     */
+    startAnimationLoop() {
         setInterval(() => {
-            if (this.isDead()) {
-                if (!this.dead_sound_is_playing && !isMuted) {
-                    this.dead_sound.currentTime = 0;
-                    this.dead_sound.play();
-                    this.dead_sound_is_playing = true;
-                }
-                this.playAnimation(this.IMAGES_DEAD);
+            if (this.handleDeadAnimation()) {
+                return;
             }
-            else if (this.isHurt()) {
-                if (!this.hurt_sound_is_playing && !isMuted) {
-                    this.hurt_sound.currentTime = 0;
-                    this.hurt_sound.play();
-                    this.hurt_sound_is_playing = true;
-                }
-                this.playAnimation(this.IMAGES_HURT);
+            if (this.handleHurtAnimation()) {
+                return;
             }
-            else {
-                this.hurt_sound_is_playing = false;
-                if (this.isAboveGround()) {
-                    this.playAnimation(this.IMAGES_JUMPING);
-                }
-                else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
-            }
+            this.playNormalMovementAnimation();
         }, 80);
+    }
 
+    /**
+     * Starts idle/sleep animation and snoring behavior loop.
+     */
+    startIdleLoop() {
         setInterval(() => {
-            if (!this.isDead() && !this.isHurt() && !this.isAboveGround() && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
-                let timePassed = (Date.now() - this.lastAction) / 1000;     //berechnet sekunden nach letzter aktion
-                if (timePassed > 10) {
-                    this.playAnimation(this.IMAGES_SLEEP);
-                    this.playSnoringSound();
-                } else {
-                    this.stopSnoringSound();
-                    this.playAnimation(this.IMAGES_IDLE);
-                }
-            } else {
+            if (!this.isIdleStateActive()) {
                 this.stopSnoringSound();
+                return;
             }
+            this.playIdleOrSleepAnimation();
         }, 350);
+    }
+
+    /**
+     * Handles input activity timestamp updates and snoring stop.
+     */
+    handleMovementActivity() {
+        if (!this.isAnyMovementKeyPressed()) {
+            return;
+        }
+
+        this.lastAction = Date.now();
+        this.stopSnoringSound();
+    }
+
+    /**
+     * Applies left/right movement and returns whether character moved.
+     * @returns {boolean} True when horizontal movement happened.
+     */
+    handleHorizontalMovement() {
+        let isMoving = false;
+        isMoving = this.moveCharacterRight() || isMoving;
+        isMoving = this.moveCharacterLeft() || isMoving;
+        return isMoving;
+    }
+
+    /**
+     * Moves character right when allowed.
+     * @returns {boolean} True when moved right.
+     */
+    moveCharacterRight() {
+        if (!this.world.keyboard.RIGHT || this.x >= this.world.level.level_end_x) {
+            return false;
+        }
+        this.moveRight();
+        this.otherDirection = false;
+        return true;
+    }
+
+    /**
+     * Moves character left when allowed.
+     * @returns {boolean} True when moved left.
+     */
+    moveCharacterLeft() {
+        if (!this.world.keyboard.LEFT || this.x <= 0) {
+            return false;
+        }
+        this.moveLeft();
+        this.otherDirection = true;
+        return true;
+    }
+
+    /**
+     * Handles jump input, cooldown flag reset, and jump sound.
+     */
+    handleJumpInput() {
+        if (!this.isDead() && !this.isAboveGround()) {
+            this.jump_sound_is_playing = false;
+        }
+        if (!this.canStartJump()) {
+            return;
+        }
+
+        this.lastAction = Date.now();
+        this.jump();
+        this.playJumpSound();
+        this.jump_sound_is_playing = true;
+    }
+
+    /**
+     * Checks whether jump should start for current input/state.
+     * @returns {boolean} True when jump can be triggered.
+     */
+    canStartJump() {
+        const wantsToJump = this.world.keyboard.SPACE || this.world.keyboard.UP;
+        return wantsToJump && !this.isAboveGround() && !this.jump_sound_is_playing && !this.isDead();
+    }
+
+    /**
+     * Plays jump sound if effects are enabled.
+     */
+    playJumpSound() {
+        if (isMuted) {
+            return;
+        }
+        this.jump_sound.currentTime = 0;
+        this.jump_sound.play();
+    }
+
+    /**
+     * Updates walking sound based on movement and character state.
+     * @param {boolean} isMoving Whether character moved this frame.
+     */
+    updateWalkingSound(isMoving) {
+        if (this.shouldPlayWalkingSound(isMoving)) {
+            this.startWalkingSound();
+            return;
+        }
+        this.stopWalkingSound();
+    }
+
+    /**
+     * Evaluates if walking audio should currently play.
+     * @param {boolean} isMoving Whether character moved this frame.
+     * @returns {boolean} True when walking sound should play.
+     */
+    shouldPlayWalkingSound(isMoving) {
+        return isMoving && !isMuted && !this.isDead() && !this.isHurt() && !this.isAboveGround();
+    }
+
+    /**
+     * Starts walking sound if not already playing.
+     */
+    startWalkingSound() {
+        if (this.walking_sound_is_playing) {
+            return;
+        }
+        this.walking_sound.currentTime = 0;
+        this.walking_sound.play();
+        this.walking_sound_is_playing = true;
+    }
+
+    /**
+     * Stops walking sound and resets playback state.
+     */
+    stopWalkingSound() {
+        this.walking_sound.pause();
+        this.walking_sound.currentTime = 0;
+        this.walking_sound_is_playing = false;
+    }
+
+    /**
+     * Handles dead animation and one-shot death sound.
+     * @returns {boolean} True when dead state handled.
+     */
+    handleDeadAnimation() {
+        if (!this.isDead()) {
+            return false;
+        }
+        if (!this.dead_sound_is_playing && !isMuted) {
+            this.dead_sound.currentTime = 0;
+            this.dead_sound.play();
+            this.dead_sound_is_playing = true;
+        }
+        this.playAnimation(this.IMAGES_DEAD);
+        return true;
+    }
+
+    /**
+     * Handles hurt animation and one-shot hurt sound.
+     * @returns {boolean} True when hurt state handled.
+     */
+    handleHurtAnimation() {
+        if (!this.isHurt()) {
+            return false;
+        }
+        if (!this.hurt_sound_is_playing && !isMuted) {
+            this.hurt_sound.currentTime = 0;
+            this.hurt_sound.play();
+            this.hurt_sound_is_playing = true;
+        }
+        this.playAnimation(this.IMAGES_HURT);
+        return true;
+    }
+
+    /**
+     * Plays normal movement animation while not dead/hurt.
+     */
+    playNormalMovementAnimation() {
+        this.hurt_sound_is_playing = false;
+        if (this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_JUMPING);
+            return;
+        }
+        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            this.playAnimation(this.IMAGES_WALKING);
+        }
+    }
+
+    /**
+     * Checks whether idle/sleep state logic should run.
+     * @returns {boolean} True when character is idle on ground.
+     */
+    isIdleStateActive() {
+        return !this.isDead() && !this.isHurt() && !this.isAboveGround() && !this.isMovingHorizontally();
+    }
+
+    /**
+     * Checks whether left/right movement keys are currently active.
+     * @returns {boolean} True when moving horizontally.
+     */
+    isMovingHorizontally() {
+        return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
+    }
+
+    /**
+     * Checks whether any movement-relevant key is currently active.
+     * @returns {boolean} True when movement input is active.
+     */
+    isAnyMovementKeyPressed() {
+        return this.world.keyboard.RIGHT
+            || this.world.keyboard.LEFT
+            || this.world.keyboard.SPACE
+            || this.world.keyboard.UP
+            || this.world.keyboard.D;
+    }
+
+    /**
+     * Plays either sleep animation with snoring or normal idle animation.
+     */
+    playIdleOrSleepAnimation() {
+        const idleSeconds = (Date.now() - this.lastAction) / 1000;
+        if (idleSeconds > 10) {
+            this.playAnimation(this.IMAGES_SLEEP);
+            this.playSnoringSound();
+            return;
+        }
+        this.stopSnoringSound();
+        this.playAnimation(this.IMAGES_IDLE);
     }
 
     /**

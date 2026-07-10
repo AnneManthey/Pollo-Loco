@@ -52,6 +52,7 @@ class World {
      */
     run() {
         setInterval(() => {
+            this.updateCameraPosition();
             this.checkCollisions();
             this.checkGameOver();
             this.checkTrowObjects();
@@ -61,6 +62,13 @@ class World {
             this.clearFloatingTexts();
             this.clearThrowableObjects();
         }, 1000 / 60);
+    }
+
+    /**
+     * Keeps camera aligned with the character x-position.
+     */
+    updateCameraPosition() {
+        this.camera_x = -this.character.x + 100;
     }
 
     /**
