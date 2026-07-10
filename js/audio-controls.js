@@ -1,3 +1,6 @@
+/**
+ * Updates the sound-effects button icon based on mute state.
+ */
 function updateMuteButton() {
     let button = document.getElementById('button_mute');
     let icon = button.querySelector('img');
@@ -11,6 +14,9 @@ function updateMuteButton() {
     }
 }
 
+/**
+ * Updates the background-music button icon based on music mute state.
+ */
 function updateMusicButton() {
     let button = document.getElementById('button_music');
     let icon = button.querySelector('img');
@@ -24,11 +30,17 @@ function updateMusicButton() {
     }
 }
 
+/**
+ * Persists audio settings in local storage.
+ */
 function saveAudioSettings() {
     localStorage.setItem('isMuted', isMuted.toString());
     localStorage.setItem('isMusicMuted', isMusicMuted.toString());
 }
 
+/**
+ * Toggles sound effects and updates UI plus saved preferences.
+ */
 function toggleMute() {
     isMuted = !isMuted;
     if (isMuted) {
@@ -38,6 +50,9 @@ function toggleMute() {
     saveAudioSettings();
 }
 
+/**
+ * Stops active chicken sounds from all current enemies.
+ */
 function stopChickenSounds() {
     if (!world?.level?.enemies) {
         return;
@@ -50,6 +65,9 @@ function stopChickenSounds() {
     });
 }
 
+/**
+ * Toggles background music and updates UI plus saved preferences.
+ */
 function toggleMusic() {
     isMusicMuted = !isMusicMuted;
 
@@ -63,6 +81,9 @@ function toggleMusic() {
     saveAudioSettings();
 }
 
+/**
+ * Starts background music when game and music settings allow it.
+ */
 function playBackgroundMusic() {
     if (isGameLoaded && !isMusicMuted) {
         backgroundMusic.play().catch(() => {});
