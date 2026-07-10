@@ -20,6 +20,11 @@ class ThrowableObject extends MovableObject {
     ];
     
 
+    /**
+     * Creates a throwable bottle and starts throw plus animation behavior.
+     * @param {number} x Initial x-position.
+     * @param {number} y Initial y-position.
+     */
     constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.IMAGES_THROWING);
@@ -32,11 +37,11 @@ class ThrowableObject extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Animates bottle rotation or splash frames depending on hit state.
+     */
     animate() {
         setInterval(() => {
-            // Verwende das Flag `isHit` statt der Methode `throw`.
-            // Solange `isHit` false ist, rotiert die Flasche.
-            // Nach einem Treffer (`isHit === true`) wird die Splash-Animation gespielt.
             if (!this.isHit) {
                 this.playAnimation(this.IMAGES_THROWING);
             } else {
@@ -48,9 +53,11 @@ class ThrowableObject extends MovableObject {
                 this.playAnimation(this.IMAGES_SPLASH);
             }
         }, 1000 / 60);
-
     }
 
+    /**
+     * Applies throw impulse and forward movement until impact.
+     */
     throw() {
         this.speedY = 30;
         this.applyGravity();

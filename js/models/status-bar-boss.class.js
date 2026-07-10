@@ -8,10 +8,13 @@ class BossBar extends StatusBar {
         'img/7_statusbars/2_statusbar_endboss/blue/blue100.png',
     ];
 
+    /**
+     * Creates and initializes the endboss health bar.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);
-        this.x = 500; // Rechts auf dem Bildschirm positioniert
+        this.x = 500;
         this.y = 50;
         this.setPercentage(100);
     }

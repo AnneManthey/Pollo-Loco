@@ -19,6 +19,12 @@ class World {
     throwCooldown = 180;
 
 
+    /**
+     * Creates world context, wires dependencies, and starts loops.
+     * @param {HTMLCanvasElement} canvas Canvas element for rendering.
+     * @param {Object} keyboard Shared keyboard state object.
+     * @param {(result: 'win'|'lose') => void} gameOverCallback Callback for end-state dialog.
+     */
     constructor(canvas, keyboard, gameOverCallback) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -29,6 +35,9 @@ class World {
         this.run();
     }
 
+    /**
+     * Injects world reference into character and enemies.
+     */
     setWorld() {
         this.character.world = this;
         if (this.level && this.level.enemies) {
@@ -38,6 +47,9 @@ class World {
         }
     }
 
+    /**
+     * Starts the central gameplay update interval.
+     */
     run() {
         setInterval(() => {
             this.checkCollisions();
@@ -51,14 +63,15 @@ class World {
         }, 1000 / 60);
     }
 
+    /**
+     * Evaluates win/lose conditions and ends game when reached.
+     */
     checkGameOver() {
-        if (this.gameEnded) return; // Wenn das Spiel schon vorbei ist, nichts tun
+        if (this.gameEnded) return;
 
-        // Character ist tot/verloren:
         if (this.character.energy <= 0) {
             this.endGame('lose');
         }
-        // Boss ist tot / gewonnen (erst nach kompletter Dead-Animation)
         let boss = this.level.enemies.find(e => e instanceof Endboss);
         if (boss && boss.isDead) {
             const deathAnimationDuration = (boss.IMAGES_DEAD?.length || 3) * 200;
@@ -71,28 +84,38 @@ class World {
         }
     }
 
+    /**
+     * Finalizes game state and triggers game-over callback.
+     * @param {'win'|'lose'} result End result state.
+     */
     endGame(result) {
         this.gameEnded = true;
-        
-        // Alle Intervalle unterbrechen, damit nichts im Hintergrund weiter läuft
         clearAllIntervals(); 
 
-        // Functionsaufruf aus game.js:
         if (this.gameOverCallback) {
             this.gameOverCallback(result);
         }
     }
 
+    /**
+     * Removes enemies marked as removable.
+     */
     clearDeadEnemies() {
         if (this.level && this.level.enemies) {
             this.level.enemies = this.level.enemies.filter(enemy => !enemy.isRemoved);
         }
     }
 
+    /**
+     * Removes floating texts that finished their animation.
+     */
     clearFloatingTexts() {
         this.floatingTexts = this.floatingTexts.filter(text => !text.isRemoved);
     }
 
+    /**
+     * Handles throw input, cooldown, ammo usage, and error sound.
+     */
     checkTrowObjects() {
         const now = Date.now();
 
@@ -100,7 +123,6 @@ class World {
             if (now - this.lastThrowTime < this.throwCooldown) {
                 return;
             }
-
             this.lastThrowTime = now;
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
@@ -112,6 +134,9 @@ class World {
         }
     }
 
+    /**
+     * Resolves collisions between bottles and enemies.
+     */
     checkBottleCollisions() {
         this.throwableObjects.forEach((bottle) => {
             if (bottle.isHit) return;
@@ -152,10 +177,10 @@ class World {
         });
     }
 
+    /**
+     * Removes finished splash bottles and out-of-bounds projectiles.
+     */
     clearThrowableObjects() {
-        // Bereinigt Flaschen:
-        // - Ungetroffene Flaschen werden entfernt, wenn sie unter die Karte fallen (y >= 360)
-        // - Getroffene Flaschen (isHit) bleiben kurz für die Splash-Animation sichtbar
         const now = new Date().getTime();
         this.throwableObjects = this.throwableObjects.filter(bottle => {
             if (bottle.isHit) {
@@ -166,17 +191,18 @@ class World {
         });
     }
 
+    /**
+     * Resolves collisions between character and enemies.
+     */
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy, 6)) {
                 if (enemy instanceof Endboss) {
                     if (enemy.isAttacking && !enemy.isDead) {
-                        this.character.hit(); // Charakter verliert Energie
+                        this.character.hit(); 
                         this.healthBar.setPercentage(this.character.energy);
                     }
                 }
-
-                // Sprungangriff / collidiert von oben
                 else if (enemy.isJumpable && this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height) {
                     if (enemy.isHit || enemy.chickenDead) return; // kein weiteres hochfedern, wenn Gegner bereits getroffen wurde
                     enemy.isHit = true;
@@ -185,8 +211,7 @@ class World {
                     let textX = enemy.x + (enemy.width / 2);
                     let textY = enemy.y - 10;
                     this.floatingTexts.push(new FloatingText('-1', textX, textY));
-
-                    this.character.jump(); // Hochfedern nach Sprungangriff
+                    this.character.jump();
                     this.character.speedY = 15;
 
                     if (enemy.hp <= 0) {
@@ -196,10 +221,8 @@ class World {
                             enemy.isHit = false;
                         }, 200);
                     }
-
                     return;
-                }
-                // Kein Schaden, wenn das Chicken bereits tot ist oder der Character gerade nach oben springt 
+                } 
                 if (enemy.chickenDead || this.character.speedY > 0) {
                     return;
                 }
@@ -209,6 +232,9 @@ class World {
         });
     }
 
+    /**
+     * Resolves collisions between character and collectables.
+     */
     checkCollectableCollisions() {
         this.level.collectables.forEach((item, index) => {
             if (this.character.isColliding(item, 4)) {
@@ -229,12 +255,9 @@ class World {
         });
     }
 
-
-
-
-
-
-    // Draw wird immer wieder aufgerufen (soviele FPS, wie die Grafikkarte hergibt)
+    /**
+     * Renders world layers and schedules the next animation frame.
+     */
     draw() {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -254,7 +277,6 @@ class World {
         this.addToMap(this.scoreBar);
         this.addToMap(this.ammoBar);
 
-        // Boss Healthbar
         let boss = this.level.enemies.find(e => e instanceof Endboss);
         if (boss && boss.bossActive && boss.hp > 0) {
             this.addToMap(this.bossBar);
@@ -271,22 +293,28 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
 
-
-
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
     }
 
+    /**
+     * Draws all objects from an array to the world map.
+     * @param {DrawableObject[]} objects Objects to render.
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         })
     }
 
-    addToMap(mo) {          // mo Abk./ unsere Variable für movable Object, ctx same für context
-        if (mo.otherDirection) {     // turn image, wenn otherDirection true ist
+    /**
+     * Draws one object, including horizontal flip handling.
+     * @param {DrawableObject} mo Drawable world object.
+     */
+    addToMap(mo) {          
+        if (mo.otherDirection) {     
             this.flipImage(mo);
         }
 
@@ -298,6 +326,10 @@ class World {
         }
     }
 
+    /**
+     * Temporarily flips drawing context for mirrored sprites.
+     * @param {DrawableObject} mo Drawable world object.
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -305,6 +337,10 @@ class World {
         mo.x = mo.x * -1;
     }
 
+    /**
+     * Restores drawing context after mirrored rendering.
+     * @param {DrawableObject} mo Drawable world object.
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();

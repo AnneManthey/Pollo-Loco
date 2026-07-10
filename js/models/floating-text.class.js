@@ -1,5 +1,11 @@
 class FloatingText extends MovableObject {
 
+    /**
+     * Creates an animated floating combat text element.
+     * @param {string} text Displayed text value.
+     * @param {number} x Horizontal draw position.
+     * @param {number} y Vertical draw position.
+     */
     constructor(text, x, y) {
         super();
         this.text = text;
@@ -12,27 +18,32 @@ class FloatingText extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Moves text upwards and fades it out over time.
+     */
     animate() {
         let textInterval = setInterval(() => {
             this.y -= 1;        // Text schwebt langsam nach oben
-            this.opacity -= 0.05; // Text verblasst
+            this.opacity -= 0.05;
 
             if (this.opacity <= 0) {
-                this.isRemoved = true; // Markierung für die World-Klasse
-                clearInterval(textInterval); // Stoppt die Bewegung dieses Textes
+                this.isRemoved = true;
+                clearInterval(textInterval);
             }
         }, 50);
-    
     }
 
+    /**
+     * Draws the floating text with current opacity.
+     * @param {CanvasRenderingContext2D} ctx Canvas rendering context.
+     */
     draw(ctx) {
         ctx.save(); 
-        ctx.globalAlpha = this.opacity; // Transparenz
-        ctx.font = "bold 24px Arial"; // Schriftgröße und -art
-        ctx.fillStyle = "red";        // Farbe des Schadens
+        ctx.globalAlpha = this.opacity;
+        ctx.font = "bold 24px Arial"; 
+        ctx.fillStyle = "red";        
         ctx.textAlign = "center";
         
-        // Text auf Canvas zeichnen
         ctx.fillText(this.text, this.x, this.y);
         ctx.restore(); 
     }

@@ -11,7 +11,6 @@ class Character extends MovableObject {
 
     snoring_sound = new Audio('assets/sounds/character/characterSnoring.ogg');
     snoring_sound_is_playing = false;
-
     walking_sound = new Audio('assets/sounds/character/characterRun.ogg');
     walking_sound_is_playing = false;
     jump_sound = new Audio('assets/sounds/character/characterJump.ogg');
@@ -81,10 +80,9 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/long_idle/I-20.png'
     ]
 
-
-
-
-
+    /**
+     * Creates the playable character and initializes movement/audio loops.
+     */
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -105,12 +103,12 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Starts movement, state animation, and idle/sleep behavior loops.
+     */
     animate() {
-
         setInterval(() => {
             let isMoving = false;
-
-            // prüft ob eine Bewegung stattfindet und setzt ggf den timer zurück
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.UP || this.world.keyboard.D) {
                 this.lastAction = Date.now();
                 this.stopSnoringSound();
@@ -120,19 +118,16 @@ class Character extends MovableObject {
                 this.otherDirection = false;
                 isMoving = true;
             }
-
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
                 isMoving = true;
             }
-
             if (!this.isDead() && !this.isAboveGround()) {
                 this.jump_sound_is_playing = false;
             }
 
             const wantsToJump = this.world.keyboard.SPACE || this.world.keyboard.UP;
-
             if (wantsToJump && !this.isAboveGround() && !this.jump_sound_is_playing && !this.isDead()) {
                 this.lastAction = Date.now();
                 this.jump();
@@ -142,7 +137,6 @@ class Character extends MovableObject {
                 }
                 this.jump_sound_is_playing = true;
             }
-
             if (isMoving && !isMuted && !this.isDead() && !this.isHurt() && !this.isAboveGround()) {
                 if (!this.walking_sound_is_playing) {
                     this.walking_sound.currentTime = 0;
@@ -154,12 +148,10 @@ class Character extends MovableObject {
                 this.walking_sound.currentTime = 0;
                 this.walking_sound_is_playing = false;
             }
-
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
 
         setInterval(() => {
-
             if (this.isDead()) {
                 if (!this.dead_sound_is_playing && !isMuted) {
                     this.dead_sound.currentTime = 0;
@@ -185,7 +177,6 @@ class Character extends MovableObject {
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
-
         }, 80);
 
         setInterval(() => {
@@ -204,6 +195,9 @@ class Character extends MovableObject {
         }, 350);
     }
 
+    /**
+     * Plays snoring sound when idle sleep state is active.
+     */
     playSnoringSound() {
         if (!isMuted && !this.snoring_sound_is_playing) {
             this.snoring_sound.currentTime = 0;
@@ -214,6 +208,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Stops and resets snoring sound playback.
+     */
     stopSnoringSound() {
         if (this.snoring_sound_is_playing) {
             this.snoring_sound.pause();
@@ -222,14 +219,24 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Applies jump impulse to the character.
+     */
     jump() {
         this.speedY = 30;
     }
 
+    /**
+     * Checks whether character is currently above ground level.
+     * @returns {boolean} True when character is airborne.
+     */
     isAboveGround() {
         return this.y < this.GROUND_Y;
     }
 
+    /**
+     * Adds coin value to the score and plays collect sound.
+     */
     collectCoin() {
         this.lastAction = Date.now();
         this.coins += 10;
@@ -239,6 +246,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Adds one bottle ammo, clamps max ammo, and plays collect sound.
+     */
     collectBottle() {
         this.lastAction = Date.now();
         this.ammo += 1;

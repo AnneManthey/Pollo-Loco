@@ -4,6 +4,13 @@ class ChickenSmall extends MovableObject {
     height = 80;
     width = 50;
     hp = 1;
+    minX = 300;
+    maxX = 2000;
+    movingLeft = true;
+    isJumpable = true;
+    chickenDead = false;
+    isHit = false;
+    isRemoved = false;
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
@@ -13,17 +20,12 @@ class ChickenSmall extends MovableObject {
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
-    minX = 300;
-    maxX = 2000;
-    movingLeft = true;
-    isJumpable = true;
-    chickenDead = false;
-    isHit = false;
-    isRemoved = false;
-
     chicken_dead = new Audio('assets/sounds/chicken/chickenDead2.ogg');
     chicken_dead_sound_is_playing = false;
 
+    /**
+     * Creates a small chicken enemy with random start position and speed.
+     */
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -33,51 +35,56 @@ class ChickenSmall extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Starts movement and animation intervals for this enemy.
+     */
     animate() {
         setInterval(() => {
-            if (this.chickenDead){
+            if (this.chickenDead) {
                 return;
             }
-            if (this.movingLeft){
-            this.moveLeft();
-            if (this.x <= this.minX){
-                this.movingLeft = false;
-                this.otherDirection = true;
-            }
+            if (this.movingLeft) {
+                this.moveLeft();
+                if (this.x <= this.minX) {
+                    this.movingLeft = false;
+                    this.otherDirection = true;
+                }
             } else {
                 this.moveRight();
-                if (this.x >= this.maxX){
+                if (this.x >= this.maxX) {
                     this.movingLeft = true;
                     this.otherDirection = false;
                 }
             }
-            
         }, 1000 / 60);
 
         let deathAnimationTriggered = false;
-    setInterval(() => {
-        if (this.chickenDead) {
-            if (!this.chicken_dead_sound_is_playing) {
-                if (!isMuted) {
-                    this.chicken_dead.currentTime = 0;
-                    this.chicken_dead.play();
+        setInterval(() => {
+            if (this.chickenDead) {
+                if (!this.chicken_dead_sound_is_playing) {
+                    if (!isMuted) {
+                        this.chicken_dead.currentTime = 0;
+                        this.chicken_dead.play();
+                    }
+                    this.chicken_dead_sound_is_playing = true;
                 }
-                this.chicken_dead_sound_is_playing = true;
+                this.playAnimation(this.IMAGES_DEAD);
+
+                if (!deathAnimationTriggered) {
+                    deathAnimationTriggered = true;
+                    setTimeout(() => {
+                        this.isRemoved = true; // Totes chicken wird markiert zum Löschen
+                    }, 2000);
+                }
+            } else {
+                this.playAnimation(this.IMAGES_WALKING);
             }
-            this.playAnimation(this.IMAGES_DEAD); 
-            
-            if (!deathAnimationTriggered) {
-                deathAnimationTriggered = true;
-                setTimeout(() => {
-                    this.isRemoved = true; // Totes chicken wird markiert zum Löschen
-                }, 2000);
-            }
-        } else {
-            this.playAnimation(this.IMAGES_WALKING);
-        }
-    }, 200);
+        }, 200);
     }
 
+    /**
+     * Stops the chicken death sound immediately.
+     */
     stopChickenSound() {
         this.chicken_dead.pause();
         this.chicken_dead.currentTime = 0;

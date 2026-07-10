@@ -8,6 +8,9 @@ class ScoreBar extends StatusBar {
         'img/7_statusbars/1_statusbar/1_statusbar_coin/green/100.png',
      ]
 
+    /**
+     * Creates and initializes the player score bar.
+     */
     constructor(){
         super();
         this.loadImages(this.IMAGES);
@@ -16,15 +19,22 @@ class ScoreBar extends StatusBar {
         this.setPercentage(0);
     }
 
+    /**
+     * Updates score value and clamps visual percentage to max 100.
+     * @param {number} percentage Current score value.
+     */
     setPercentage(percentage) {
         this.scoreValue = percentage;
         const clampedPercentage = Math.min(percentage, 100);
         super.setPercentage(clampedPercentage);
     }
 
+    /**
+     * Draws the score bar and overlays numeric score text.
+     * @param {CanvasRenderingContext2D} ctx Canvas rendering context.
+     */
     draw(ctx) {
         super.draw(ctx);
-
         ctx.font = '20px zabars';
         ctx.fillStyle = 'orange';
         ctx.textAlign = 'center';

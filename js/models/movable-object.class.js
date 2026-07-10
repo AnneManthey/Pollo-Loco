@@ -6,10 +6,11 @@ class MovableObject extends DrawableObject {
     energy = 1000;
     lastHit = 0;
 
+    /**
+     * Applies gravity by updating vertical position and speed over time.
+     */
     applyGravity() {
         setInterval(() => {
-            // Wenn das Objekt eine getroffene Flasche ist und Gravitation gestoppt wurde,
-            // dann nicht weiter die Gravitation anwenden.
             if (this instanceof ThrowableObject && this.stoppedGravity) {
                 return;
             }
@@ -21,6 +22,10 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
+    /**
+     * Checks whether object is currently above its ground reference.
+     * @returns {boolean} True when object is above ground.
+     */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -29,6 +34,12 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Checks axis-aligned collision with another movable object.
+     * @param {MovableObject} mo Other object to test.
+     * @param {number} [padding=0] Collision padding to shrink hitboxes.
+     * @returns {boolean} True when objects overlap.
+     */
     isColliding(mo, padding = 0) {
         const left = this.x + padding;
         const right = this.x + this.width - padding;
@@ -41,6 +52,9 @@ class MovableObject extends DrawableObject {
             top < mo.y + mo.height - padding;
     }
 
+    /**
+     * Applies damage and updates hit timestamp.
+     */
     hit() {
         this.energy -= 5;
         if (this.energy < 0) {
@@ -50,19 +64,30 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Returns whether object is still in temporary hurt state.
+     * @returns {boolean} True while hurt cooldown is active.
+     */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         timepassed = timepassed / 1000; // difference in sek
         return timepassed < 1;
     }
 
+    /**
+     * Returns whether object health is depleted.
+     * @returns {boolean} True when energy reached zero.
+     */
     isDead() {
         return this.energy == 0;
     }
 
-
+    /**
+     * Advances animation frame using the supplied image list.
+     * @param {string[]} images Animation frame paths.
+     */
     playAnimation(images) {
-        let i = this.currentImage % images.length; // modulo (%): i = 0, 1, 2, 3, 4, 5, 6, 0, 1, ...
+        let i = this.currentImage % images.length; // modulo (%)
         let path = images[i];
         const nextImage = this.imageCache[path];
         if (nextImage && nextImage.complete && nextImage.naturalWidth > 0) {
@@ -71,15 +96,24 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
 
+    /**
+     * Moves object to the right by its speed value.
+     */
     moveRight() {
         this.x += this.speed;
     }
 
+    /**
+     * Moves object to the left by its speed value.
+     */
     moveLeft() {
         this.x -= this.speed;
     };
 
 
+    /**
+     * Applies an upward jump impulse.
+     */
     jump() {
         this.speedY = 30;
     }

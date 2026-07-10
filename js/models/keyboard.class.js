@@ -1,3 +1,6 @@
+/**
+ * Holds current keyboard input state used by the game loop.
+ */
 class Keyboard {
     LEFT = false;
     RIGHT = false;

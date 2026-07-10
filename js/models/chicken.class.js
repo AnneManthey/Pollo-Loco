@@ -4,6 +4,13 @@ class Chicken extends MovableObject {
     height = 110;
     width = 80;
     hp = 2;
+    minX = 800;
+    maxX = 1800;
+    movingLeft = true;
+    isJumpable = true;
+    chickenDead = false;
+    isHit = false;
+    isRemoved = false;
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
@@ -13,17 +20,12 @@ class Chicken extends MovableObject {
         'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
 
-    minX = 800;
-    maxX = 1800;
-    movingLeft = true;
-    isJumpable = true;
-    chickenDead = false;
-    isHit = false;
-    isRemoved = false;
-
     chicken_dead = new Audio('assets/sounds/chicken/chickenDead.ogg');
     chicken_dead_sound_is_playing = false;
 
+    /**
+     * Creates a normal chicken enemy with random start position and speed.
+     */
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -33,6 +35,9 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Starts movement and animation intervals for this enemy.
+     */
     animate() {
         setInterval(() => {
             if (this.chickenDead){
@@ -51,7 +56,6 @@ class Chicken extends MovableObject {
                     this.otherDirection = false;
                 }
             }
-            
         }, 1000 / 60);
 
         setInterval(() => {
@@ -73,9 +77,11 @@ class Chicken extends MovableObject {
         }, 200)
     }
 
+    /**
+     * Stops the chicken death sound immediately.
+     */
     stopChickenSound() {
         this.chicken_dead.pause();
         this.chicken_dead.currentTime = 0;
     }
-
 }

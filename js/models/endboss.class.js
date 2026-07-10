@@ -9,7 +9,6 @@ class Endboss extends MovableObject {
     attackProgress = 0;
     attackDirection = 'forward';
 
-    
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -56,6 +55,9 @@ class Endboss extends MovableObject {
     approach_sound_is_playing = false;
 
 
+    /**
+     * Creates the endboss with preloaded animations and default state.
+     */
     constructor(){
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_ALERT);
@@ -68,6 +70,9 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Starts movement, animation, and AI state intervals.
+     */
     animate(){
 
         setInterval(() => {
@@ -133,6 +138,9 @@ class Endboss extends MovableObject {
         }, 100);
     }
 
+    /**
+     * Moves the boss toward the character in walk state.
+     */
     walkTowardsCharacter() {
         if (this.world && this.world.character) {
             const distance = this.world.character.x - this.x;
@@ -144,6 +152,9 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * Executes forward/backward attack movement cycle.
+     */
     attackMovement() {
         if (this.attackDirection === 'forward') {
             this.x -= this.attackSpeed;
@@ -162,9 +173,11 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * Applies one hit to the boss and updates state transitions.
+     */
     hit() {
         if (this.isDead || this.isHurt) return; // Verhindert Mehrfachtreffer im selben Moment
-
         this.hp -= 1;
         if (this.hp <= 0) {
             this.isDead = true;
@@ -173,7 +186,6 @@ class Endboss extends MovableObject {
             this.bossState = 'dead';
         } else {
             this.isHurt = true;
-            // Nach 1 Sekunde ist der Boss nicht mehr im "Hurt"-Status
             setTimeout(() => {
                 this.isHurt = false;
             }, 1000);
