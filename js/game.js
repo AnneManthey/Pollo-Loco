@@ -11,8 +11,6 @@ let keyboard = {
 let isMuted = localStorage.getItem('isMuted') === 'true';
 let isMusicMuted = localStorage.getItem('isMusicMuted') === 'true';
 let isGameLoaded = false;
-let autoFullscreenEnabled = true;
-let hasEnteredFullscreen = false;
 const mobileFullscreenClass = 'mobile-fullscreen';
 let gameOverSound = new Audio('assets/sounds/game/gameOver.ogg');
 let gameWonSound = new Audio('assets/sounds/game/gameWon.ogg');
@@ -40,7 +38,6 @@ function init(){
     backgroundMusic.volume = 0.4;
     document.getElementById('button_fullscreen').addEventListener('click', toggleFullscreen);
     document.addEventListener('fullscreenchange', updateFullscreenButton);
-    setupAutoFullscreenForSmallDevices();
     setupMobileControls();
     updateMuteButton();
     updateMusicButton();

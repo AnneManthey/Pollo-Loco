@@ -12,7 +12,7 @@
 - Lautstärkeregler?
 
 
-- boss besiegen wenn flaschen alle?
+
 
 2. Anpassen & Gestalten
  

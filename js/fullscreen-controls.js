@@ -2,8 +2,6 @@
  * Toggles between active and inactive fullscreen states for the game area.
  */
 function toggleFullscreen() {
-    autoFullscreenEnabled = false;
-
     if (isFullscreenActive()) {
         setPseudoFullscreen(false);
         exitNativeFullscreen();
@@ -22,11 +20,6 @@ function updateFullscreenButton() {
 
     if (icon) {
         icon.src = fullscreen ? './assets/icons/close_fullscreen.png' : './assets/icons/fullscreen.png';
-    }
-    if (fullscreen) {
-        hasEnteredFullscreen = true;
-    } else if (hasEnteredFullscreen) {
-        autoFullscreenEnabled = false;
     }
 }
 
@@ -52,7 +45,7 @@ function requestGameFullscreen({ allowPseudoFallback = false } = {}) {
  * @param {boolean} allowPseudoFallback Whether pseudo mode is allowed.
  */
 function applyPseudoFullscreenFallback(allowPseudoFallback) {
-    if (!allowPseudoFallback || !shouldAutoFullscreen()) {
+    if (!allowPseudoFallback) {
         return;
     }
 
@@ -91,84 +84,6 @@ function tryWebkitFullscreen(element, fallback) {
     } catch (e) {
         fallback();
     }
-}
-
-/**
- * Enables responsive auto-fullscreen behavior for small devices and orientation changes.
- */
-function setupAutoFullscreenForSmallDevices() {
-    const syncAutoFullscreen = createAutoFullscreenSyncHandler();
-    syncAutoFullscreen();
-    registerAutoFullscreenListeners(syncAutoFullscreen);
-}
-
-/**
- * Builds the sync handler that keeps fullscreen state aligned with device conditions.
- * @returns {() => void} Auto-fullscreen sync callback.
- */
-function createAutoFullscreenSyncHandler() {
-    return () => {
-        if (isMobileDevice() && !isLandscape()) {
-            disableFullscreenForPortraitMobile();
-            return;
-        }
-
-        if (shouldAutoFullscreen()) {
-            requestGameFullscreen({ allowPseudoFallback: true });
-        }
-    };
-}
-
-/**
- * Exits fullscreen modes when mobile device is in portrait orientation.
- */
-function disableFullscreenForPortraitMobile() {
-    setPseudoFullscreen(false);
-    exitNativeFullscreen();
-    updateFullscreenButton();
-}
-
-/**
- * Registers events that can trigger auto-fullscreen synchronization.
- * @param {() => void} syncAutoFullscreen Callback used to sync fullscreen state.
- */
-function registerAutoFullscreenListeners(syncAutoFullscreen) {
-    window.addEventListener('pointerdown', syncAutoFullscreen, { once: true });
-    window.addEventListener('touchstart', syncAutoFullscreen, { once: true });
-    window.addEventListener('orientationchange', syncAutoFullscreen);
-    window.addEventListener('resize', syncAutoFullscreen);
-}
-
-/**
- * Checks whether automatic fullscreen should currently be applied.
- * @returns {boolean} True when auto-fullscreen conditions are met.
- */
-function shouldAutoFullscreen() {
-    return autoFullscreenEnabled && isSmallScreen() && (!isMobileDevice() || isLandscape());
-}
-
-/**
- * Detects small-screen environments by viewport and screen size.
- * @returns {boolean} True when the screen is considered small.
- */
-function isSmallScreen() {
-    return window.innerWidth < 750 || window.screen.width < 750 || Math.min(window.screen.width, window.screen.height) <= 900;
-}
-
-/**
- * Checks whether the current orientation is landscape.
- * @returns {boolean} True when orientation is landscape.
- */
-function isLandscape() {
-    return window.matchMedia('(orientation: landscape)').matches;
-}
-
-/**
- * Detects touch-first mobile-like devices.
- * @returns {boolean} True for coarse pointer devices without hover.
- */
-function isMobileDevice() {
-    return window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 }
 
 /**
