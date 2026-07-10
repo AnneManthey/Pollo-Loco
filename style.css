@@ -108,7 +108,7 @@ h1 {
     cursor: pointer;
     font-family: 'zabars';
     font-size: 2rem;
-    background-color: rgb(3, 86, 3, 0.5);
+    background-color: rgba(203, 165, 15, 0.5);
     border-radius: 5px;
 }
 

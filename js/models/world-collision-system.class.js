@@ -258,6 +258,9 @@ class WorldCollisionSystem {
      * Applies character damage and syncs health bar.
      */
     damageCharacter() {
+        if (this.world.character.isHurt() || this.world.character.isDead()) {
+            return;
+        }
         this.world.character.hit();
         this.world.healthBar.setPercentage(this.world.character.hp);
     }
