@@ -1,18 +1,8 @@
 @media screen and (max-width: 780px) {
-    .game-start-section>img {
-        width: 500px;
-        height: auto;
-    }
-
-    .button-start {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 120%);
-        opacity: 90%;
-    }
+    
 
     .button-start img {
-        width: 80px;
+        width: 150px;
     }
 
     .control-section, .story-section {
@@ -28,7 +18,7 @@
     }
 
     .button-start img {
-        width: 50px;
+        width: 150px;
     }
 
     .nav-section {

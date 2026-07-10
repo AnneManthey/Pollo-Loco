@@ -168,31 +168,26 @@ table {
     text-align: center;
 }
 
-.game-start-section {
-    display: flex;
-    position: relative;
-}
-
-.game-start-section>img {
-    width: 720px;
-    height: 480px;
-    border-radius: 4px;
+.landing-img{
+    width: 300px;
+    height: auto;
+    border-radius: 5px;
     box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.78);
 }
 
-.button-start {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 200%);
-    opacity: 90%;
+.game-start-section {
+    display: flex;
+    justify-content: center;
 }
 
+
 .button-start img {
-    width: 100px;
+    width: 200px;
 }
 
 .button-start:hover {
     border-radius: 35px;
+    transform: scale(1.1);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6)
 }
 
