@@ -19,7 +19,6 @@
         width: 500px;
         height: auto;
     }
-
 }
 
 @media screen and (max-width: 550px) {
@@ -51,15 +50,8 @@
 
 }
 
-
-
-
 /* Mobile Devices */
-
-/* Hochformat */
 @media (hover: none) and (orientation: portrait) and (max-width: 750px) {
-
-
     .game-section {
         display: none;
     }
@@ -71,13 +63,9 @@
     footer {
         display: none;
     }
-
 }
 
-
-/* Querformat */
 @media (hover: none) and (orientation: landscape) {
-
     .button-left,
     .button-right,
     .button-jump,

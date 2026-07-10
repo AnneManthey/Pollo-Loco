@@ -1,0 +1,87 @@
+#game_fullscreen:fullscreen,
+#game_fullscreen:-webkit-full-screen,
+#game_fullscreen.mobile-fullscreen {
+    --game-width: min(100vw, calc(100vh * 1.5));
+    --game-height: min(100vh, calc(100vw / 1.5));
+    --control-size: clamp(100px, 8vw, 100px);
+    --edge-gap: 2px;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game_fullscreen:fullscreen canvas,
+#game_fullscreen:-webkit-full-screen canvas,
+#game_fullscreen.mobile-fullscreen canvas {
+    width: var(--game-width);
+    height: auto;
+    max-height: 100vh;
+}
+
+#game_fullscreen:fullscreen .button-mute,
+#game_fullscreen:-webkit-full-screen .button-mute,
+#game_fullscreen.mobile-fullscreen .button-mute {
+    top: calc((100vh - var(--game-height)) / 2);
+    left: calc((100vw - var(--game-width)) / 2 + var(--game-width) * 0.75);
+}
+
+#game_fullscreen:fullscreen .button-music,
+#game_fullscreen:-webkit-full-screen .button-music,
+#game_fullscreen.mobile-fullscreen .button-music {
+    top: calc((100vh - var(--game-height)) / 2);
+    left: calc((100vw - var(--game-width)) / 2 + var(--game-width) * 0.85);
+}
+
+#game_fullscreen:fullscreen .button-fullscreen,
+#game_fullscreen:-webkit-full-screen .button-fullscreen,
+#game_fullscreen.mobile-fullscreen .button-fullscreen {
+    top: calc((100vh - var(--game-height)) / 2);
+    left: calc((100vw - var(--game-width)) / 2 + var(--game-width) * 0.95);
+}
+
+#game_fullscreen:fullscreen .button-left,
+#game_fullscreen:fullscreen .button-right,
+#game_fullscreen:fullscreen .button-jump,
+#game_fullscreen:fullscreen .button-throw,
+#game_fullscreen:-webkit-full-screen .button-left,
+#game_fullscreen:-webkit-full-screen .button-right,
+#game_fullscreen:-webkit-full-screen .button-jump,
+#game_fullscreen:-webkit-full-screen .button-throw,
+#game_fullscreen.mobile-fullscreen .button-left,
+#game_fullscreen.mobile-fullscreen .button-right,
+#game_fullscreen.mobile-fullscreen .button-jump,
+#game_fullscreen.mobile-fullscreen .button-throw {
+    bottom: auto;
+    transform: translateX(-50%);
+}
+
+#game_fullscreen:fullscreen .button-left,
+#game_fullscreen:-webkit-full-screen .button-left,
+#game_fullscreen.mobile-fullscreen .button-left {
+    top: calc((100vh - var(--game-height)) / 2 + var(--game-height) - 40px);
+    left: calc((100vw - var(--game-width)) / 2 + var(--edge-gap) + (var(--control-size) / 2));
+}
+
+#game_fullscreen:fullscreen .button-right,
+#game_fullscreen:-webkit-full-screen .button-right,
+#game_fullscreen.mobile-fullscreen .button-right {
+    top: calc((100vh - var(--game-height)) / 2 + var(--game-height) - 40px);
+    left: calc((100vw - var(--game-width)) / 2 + var(--game-width) - var(--edge-gap) - (var(--control-size) / 2));
+}
+
+#game_fullscreen:fullscreen .button-jump,
+#game_fullscreen:-webkit-full-screen .button-jump,
+#game_fullscreen.mobile-fullscreen .button-jump {
+    top: calc((100vh - var(--game-height)) / 2 + var(--game-height) - 40px);
+    left: calc((100vw - var(--game-width)) / 2 + var(--game-width) * 0.40);
+}
+
+#game_fullscreen:fullscreen .button-throw,
+#game_fullscreen:-webkit-full-screen .button-throw,
+#game_fullscreen.mobile-fullscreen .button-throw {
+    top: calc((100vh - var(--game-height)) / 2 + var(--game-height) - 40px);
+    left: calc((100vw - var(--game-width)) / 2 + var(--game-width) * 0.60);
+}

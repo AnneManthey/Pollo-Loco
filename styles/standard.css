@@ -1,13 +1,19 @@
+*{
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
 .button-img {
     padding: 0;
     border: none;
     background: none;
     line-height: 0;
     cursor: pointer;
-    overflow: hidden;
-}
-
-body{
-    font-family: 'zabars', Arial, Helvetica, sans-serif;
     overflow: hidden;
 }

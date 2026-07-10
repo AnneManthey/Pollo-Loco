@@ -2,11 +2,9 @@
 # Desk
 
 
-- Startseite
+- Startseite für mobile/responsive:
     - Nur Hintergrundbild, img entfernen
     - Bild Button Play
-
-
 
 
 
@@ -18,11 +16,6 @@
 
 1. Funktionalität
 
-- Coins 
-    - Erhöhen den Score (+1)
-    - Leiste füllt sich (Schritte anpassen?)
-
-
 
 
 
@@ -32,10 +25,7 @@
 - Map vergrößern?
 - Clouds in Schleife?
 
-- Bewegungen anpassen
-    - Schnelligkeit walking
-    - Höhe jumping
-    - Wurfweite bottles
+
 
 
 
