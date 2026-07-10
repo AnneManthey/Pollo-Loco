@@ -15,15 +15,12 @@ class Coin extends Collectables {
     constructor(x,y) {
         super().loadImage('img/8_coin/coin_1.png');
         this.loadImages(this.IMAGES_COIN);
-
         let minX = 300;
         let maxX = 2200;
         this.x = minX + Math.random() * (maxX - minX);
-
         let minY = 150; 
         let maxY = 350; 
         this.y = minY + Math.random() * (maxY - minY);
-
         this.animate();
     }
 

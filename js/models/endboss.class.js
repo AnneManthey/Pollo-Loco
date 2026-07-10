@@ -55,7 +55,6 @@ class Endboss extends MovableObject {
     approach_sound = new Audio('assets/sounds/endboss/endbossApproach.ogg');
     approach_sound_is_playing = false;
 
-
     /**
      * Creates the endboss with preloaded animations and default state.
      */
@@ -75,7 +74,15 @@ class Endboss extends MovableObject {
      * Starts movement, animation, and AI state intervals.
      */
     animate(){
+        this.startMovementLoop();
+        this.startSpriteLoop();
+        this.startAiStateLoop();
+    }
 
+    /**
+     * Starts movement behavior loop for attack/walk states.
+     */
+    startMovementLoop() {
         setInterval(() => {
             if (this.isAttacking) {
                 this.attackMovement();
@@ -86,57 +93,119 @@ class Endboss extends MovableObject {
                 this.attackDirection = 'forward';
             }
         }, 1000 / 60);
+    }
 
+    /**
+     * Starts sprite animation loop based on current boss state.
+     */
+    startSpriteLoop() {
         setInterval(() => {
-            if (this.isDead) {
-                this.playAnimation(this.IMAGES_DEAD);
-            } else if (this.isHurt) {
-                this.playAnimation(this.IMAGES_HURT);
-            } else if (this.bossState === 'attack') {
-                this.playAnimation(this.IMAGES_ATTACK);
-            } else if (this.bossState === 'alert') {
-                this.playAnimation(this.IMAGES_ALERT);
-            } else if (this.bossState === 'walk') {
-                this.playAnimation(this.IMAGES_WALKING);
-            } else {
-                this.playAnimation(this.IMAGES_ALERT);
-            }
+            this.playAnimation(this.getCurrentAnimationFrames());
         }, 200);
+    }
 
+    /**
+     * Resolves the active animation frame set for current boss state.
+     * @returns {string[]} Animation frame paths.
+     */
+    getCurrentAnimationFrames() {
+        if (this.isDead) return this.IMAGES_DEAD;
+        if (this.isHurt) return this.IMAGES_HURT;
+        if (this.bossState === 'attack') return this.IMAGES_ATTACK;
+        if (this.bossState === 'walk') return this.IMAGES_WALKING;
+        return this.IMAGES_ALERT;
+    }
+
+    /**
+     * Starts AI state evaluation loop based on player distance.
+     */
+    startAiStateLoop() {
         setInterval(() => {
-            if (!this.isDead && this.world && this.world.character) {
-                let distance = Math.abs(this.x - this.world.character.x);
-
-                // Ab 200px: Boss geht in den Angriffsstatus über.
-                if (distance <= 200) {
-                    this.bossState = 'attack';
-                    this.bossActive = true;
-                    this.isAttacking = true;
-                // Ab 300px: Boss wechselt in den Alert-Status.
-                } else if (distance <= 300) {
-                    this.bossState = 'alert';
-                    this.bossActive = true;
-                    this.isAttacking = false;
-
-                    if (!this.approach_sound_is_playing && !isMuted) {
-                        this.approach_sound.currentTime = 0;
-                        this.approach_sound.play();
-                        this.approach_sound_is_playing = true;
-                    }
-                // Ab 500px: Boss beginnt langsam auf den Character zuzugehen.
-                } else if (distance <= 500) {
-                    this.bossState = 'walk';
-                    this.bossActive = true;
-                    this.isAttacking = false;
-                    this.approach_sound_is_playing = false;
-                } else {
-                    this.bossState = 'idle';
-                    this.bossActive = false;
-                    this.isAttacking = false;
-                    this.approach_sound_is_playing = false;
-                }
+            if (this.isDead || !this.hasWorldCharacter()) {
+                return;
             }
+            const distance = Math.abs(this.x - this.world.character.x);
+            this.updateBossStateByDistance(distance);
         }, 100);
+    }
+
+    /**
+     * Checks if world and character references are available.
+     * @returns {boolean} True when world character is available.
+     */
+    hasWorldCharacter() {
+        return !!(this.world && this.world.character);
+    }
+
+    /**
+     * Updates boss state transitions based on character distance.
+     * @param {number} distance Absolute distance to character.
+     */
+    updateBossStateByDistance(distance) {
+        if (distance <= 200) {
+            this.setAttackState();
+            return;
+        }
+        if (distance <= 300) {
+            this.setAlertState();
+            return;
+        }
+        if (distance <= 500) {
+            this.setWalkState();
+            return;
+        }
+        this.setIdleState();
+    }
+
+    /**
+     * Switches boss to attack state.
+     */
+    setAttackState() {
+        this.bossState = 'attack';
+        this.bossActive = true;
+        this.isAttacking = true;
+    }
+
+    /**
+     * Switches boss to alert state and plays approach sound once.
+     */
+    setAlertState() {
+        this.bossState = 'alert';
+        this.bossActive = true;
+        this.isAttacking = false;
+        this.playApproachSoundOnce();
+    }
+
+    /**
+     * Switches boss to walk state.
+     */
+    setWalkState() {
+        this.bossState = 'walk';
+        this.bossActive = true;
+        this.isAttacking = false;
+        this.approach_sound_is_playing = false;
+    }
+
+    /**
+     * Switches boss to idle state.
+     */
+    setIdleState() {
+        this.bossState = 'idle';
+        this.bossActive = false;
+        this.isAttacking = false;
+        this.approach_sound_is_playing = false;
+    }
+
+    /**
+     * Plays approach sound once while in alert state.
+     */
+    playApproachSoundOnce() {
+        if (this.approach_sound_is_playing || isMuted) {
+            return;
+        }
+        this.approach_sound.currentTime = 0;
+        this.approach_sound.play();
+        this.approach_sound_is_playing = true;
     }
 
     /**

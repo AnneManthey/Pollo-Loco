@@ -19,7 +19,6 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
     ];
     
-
     /**
      * Creates a throwable bottle and starts throw plus animation behavior.
      * @param {number} x Initial x-position.
@@ -67,5 +66,4 @@ class ThrowableObject extends MovableObject {
             }
         }, 25);
     }
-
 }

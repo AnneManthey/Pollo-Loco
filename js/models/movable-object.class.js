@@ -14,7 +14,6 @@ class MovableObject extends DrawableObject {
             if (this instanceof ThrowableObject && this.stoppedGravity) {
                 return;
             }
-
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
@@ -45,7 +44,6 @@ class MovableObject extends DrawableObject {
         const right = this.x + this.width - padding;
         const top = this.y + padding;
         const bottom = this.y + this.height - padding;
-
         return right > mo.x + padding &&
             left < mo.x + mo.width - padding &&
             bottom > mo.y + padding &&
@@ -109,7 +107,6 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         this.x -= this.speed;
     };
-
 
     /**
      * Applies an upward jump impulse.

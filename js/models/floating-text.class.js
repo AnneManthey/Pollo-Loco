@@ -43,7 +43,6 @@ class FloatingText extends MovableObject {
         ctx.font = "bold 24px Arial"; 
         ctx.fillStyle = "red";        
         ctx.textAlign = "center";
-        
         ctx.fillText(this.text, this.x, this.y);
         ctx.restore(); 
     }
