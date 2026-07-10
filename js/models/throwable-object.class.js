@@ -1,6 +1,9 @@
 class ThrowableObject extends MovableObject {
 
     isHit = false;
+    groundImpactY = 450;
+    throwDirection = 1;
+    throwSpeedX = 8;
     bottle_break_sound = new Audio('assets/sounds/bottles/bottleBreak.ogg');
     bottle_break_sound_is_playing = false;
 
@@ -23,13 +26,18 @@ class ThrowableObject extends MovableObject {
      * Creates a throwable bottle and starts throw plus animation behavior.
      * @param {number} x Initial x-position.
      * @param {number} y Initial y-position.
+     * @param {number} [throwDirection=1] Horizontal throw direction (`1` right, `-1` left).
+     * @param {number} [groundImpactY=450] Ground line (bottom y) where splash should trigger.
      */
-    constructor(x, y) {
+    constructor(x, y, throwDirection = 1, groundImpactY = 450) {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.IMAGES_THROWING);
         this.loadImages(this.IMAGES_SPLASH);
         this.x = x;
         this.y = y;
+        this.throwDirection = throwDirection < 0 ? -1 : 1;
+        this.groundImpactY = groundImpactY;
+        this.otherDirection = this.throwDirection < 0;
         this.height = 80;
         this.width = 60;
         this.throw();
@@ -62,8 +70,31 @@ class ThrowableObject extends MovableObject {
         this.applyGravity();
         setInterval(() => {
             if (!this.isHit) {
-                this.x += 8;
+                this.x += this.throwSpeedX * this.throwDirection;
+                this.handleGroundImpact();
             }
         }, 25);
+    }
+
+    /**
+     * Triggers splash state when bottle touches the ground.
+     */
+    handleGroundImpact() {
+        if (this.y + this.height < this.groundImpactY) {
+            return;
+        }
+        this.triggerSplashState();
+    }
+
+    /**
+     * Switches bottle from flight to splash animation state.
+     */
+    triggerSplashState() {
+        this.isHit = true;
+        this.splashStart = Date.now();
+        this.splashDuration = 200;
+        this.speedY = 0;
+        this.stoppedGravity = true;
+        this.acceleration = 0;
     }
 }

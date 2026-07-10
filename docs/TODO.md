@@ -6,35 +6,27 @@
     - Nur Hintergrundbild, img entfernen
     - Bild Button Play
 
-- Methods kürzen/aufteilen
-
 
 
 - Soundhub/eigene Class?
 - Lautstärkeregler?
 
 
+- boss besiegen wenn flaschen alle?
 
 2. Anpassen & Gestalten
-
-(script.js wieder entfernen?) 
+ 
 - Map vergrößern?
 - Clouds in Schleife?
 
 
 
 
-
-
-
 3. Optimierung / Feinschliff
 
- - Gegner treffen (Sprungangriff)
- - Endgegner verfolgt Char?
  - Schaden/HP ballancen
- - Score ballancen
-
- - Story-Infos (LoadingSpinner) Übersetzen/anpassen
+ - Coins/Bottles Anzahl ballancen
+ - Story-Infos (LoadingSpinner)
  - Schöne Story ergänzen - Känguru sammelt coins für schnapspralinen...!
  
  

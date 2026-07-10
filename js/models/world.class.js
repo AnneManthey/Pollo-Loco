@@ -187,7 +187,15 @@ class World {
      */
     throwBottle(now) {
         this.lastThrowTime = now;
-        const bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+        const throwDirection = this.character.otherDirection ? -1 : 1;
+        const spawnOffsetX = throwDirection > 0 ? 100 : 10;
+        const groundImpactY = this.character.GROUND_Y + this.character.height;
+        const bottle = new ThrowableObject(
+            this.character.x + spawnOffsetX,
+            this.character.y + 100,
+            throwDirection,
+            groundImpactY
+        );
         this.throwableObjects.push(bottle);
         this.character.ammo = Math.max(0, this.character.ammo - 1);
         this.ammoBar.setPercentage(this.character.ammo * 10);
