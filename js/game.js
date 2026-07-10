@@ -51,25 +51,52 @@ function init(){
  * @param {'win'|'lose'} winOrLose Result state used to render the dialog.
  */
 function openGameOverDialog(winOrLose) {
-    let dialog = document.getElementById('dialog');
+    const dialog = document.getElementById('dialog');
+    const isWin = winOrLose === 'win';
+
+    resetBackgroundMusic();
+    dialog.innerHTML = isWin ? getWonDialogContent() : getLostDialogContent();
+    playResultSound(isWin);
+    dialog.showModal();
+}
+
+/**
+ * Stops and rewinds background music before result dialogs are shown.
+ */
+function resetBackgroundMusic() {
     backgroundMusic.pause();
     backgroundMusic.currentTime = 0;
-    
-    if (winOrLose === 'win') {
-        if (!isMuted) {
-            gameWonSound.currentTime = 0;
-            gameWonSound.play();
-        }
-        const score = world?.character?.coins ?? 0;
-        dialog.innerHTML = getDialogWonTemplate(score);
-    } else {
-        if (!isMuted) {
-            gameOverSound.currentTime = 0;
-            gameOverSound.play();
-        }
-        dialog.innerHTML = getDialogLostTemplate();
+}
+
+/**
+ * Builds win dialog HTML including final coin score.
+ * @returns {string} Win dialog markup.
+ */
+function getWonDialogContent() {
+    const score = world?.character?.coins ?? 0;
+    return getDialogWonTemplate(score);
+}
+
+/**
+ * Builds lose dialog HTML.
+ * @returns {string} Lose dialog markup.
+ */
+function getLostDialogContent() {
+    return getDialogLostTemplate();
+}
+
+/**
+ * Plays the corresponding result sound when effects are enabled.
+ * @param {boolean} isWin True if the player won.
+ */
+function playResultSound(isWin) {
+    if (isMuted) {
+        return;
     }
-    dialog.showModal(); 
+
+    const sound = isWin ? gameWonSound : gameOverSound;
+    sound.currentTime = 0;
+    sound.play();
 }
 
 /**
