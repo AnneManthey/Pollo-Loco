@@ -145,7 +145,8 @@ class World {
                 if (bottle.isColliding(enemy, 6)) {
                     if (enemy instanceof Endboss) {
                         enemy.hit();
-                        let percentage = (enemy.hp / 5) * 100;
+                        const maxHp = enemy.maxHp || 5;
+                        const percentage = Math.max(0, (enemy.hp / maxHp) * 100);
                         this.bossBar.setPercentage(percentage);
 
                         bottle.isHit = true;

@@ -20,7 +20,7 @@ let backgroundMusic = new Audio('assets/sounds/game/backgroundMusic.ogg');
 const storyInfos = [
     "Pepe has traveled deep into the desert to retrieve the stolen salsa bottles...",
     "Press 'D' to throw a salsa bottle at the chickens!",
-    "Tiny chicks die after 1 hit, but the boss can take a whopping 3 hits!!",
+    "Tiny chicks die after 1 hit, but the boss can take a lot more hits!!",
     "Land precisely on top of the chickens to automatically bounce back up.",
     "The chickens have teamed up to plunder Pepe's coin collection..."
 ];

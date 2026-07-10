@@ -6,16 +6,12 @@
     - Nur Hintergrundbild, img entfernen
     - Bild Button Play
 
+- Methods kürzen/aufteilen
+
 
 
 - Soundhub/eigene Class?
 - Lautstärkeregler?
-
-
-
-
-1. Funktionalität
-
 
 
 
