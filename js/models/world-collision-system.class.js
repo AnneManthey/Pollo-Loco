@@ -88,10 +88,18 @@ class WorldCollisionSystem {
      */
     handleBossBottleHit(bottle, boss) {
         boss.hit();
+        this.syncBossBar(boss);
+        this.markBottleAsSplashed(bottle);
+    }
+
+    /**
+     * Updates boss bar to match current boss hp.
+     * @param {Endboss} boss Endboss instance.
+     */
+    syncBossBar(boss) {
         const maxHp = boss.maxHp || 5;
         const percentage = Math.max(0, (boss.hp / maxHp) * 100);
         this.world.bossBar.setPercentage(percentage);
-        this.markBottleAsSplashed(bottle);
     }
 
     /**
@@ -156,9 +164,40 @@ class WorldCollisionSystem {
      * @param {Endboss} boss Endboss instance.
      */
     handleCharacterBossCollision(boss) {
+        if (this.handleBossJumpAttackCollision(boss)) {
+            return;
+        }
         if (boss.isAttacking && !boss.isDead) {
             this.damageCharacter();
         }
+    }
+
+    /**
+     * Handles jump attack collision on the endboss.
+     * @param {Endboss} boss Endboss collided with character.
+     * @returns {boolean} True when jump attack was processed.
+     */
+    handleBossJumpAttackCollision(boss) {
+        if (!this.canApplyBossJumpAttack(boss)) {
+            return false;
+        }
+        boss.hit();
+        this.syncBossBar(boss);
+        this.addDamageText(boss);
+        this.bounceCharacterAfterJumpAttack();
+        return true;
+    }
+
+    /**
+     * Checks whether character can damage endboss via jump attack.
+     * @param {Endboss} boss Endboss collided with character.
+     * @returns {boolean} True when boss jump attack is valid.
+     */
+    canApplyBossJumpAttack(boss) {
+        if (boss.isDead || this.world.character.speedY >= 0) {
+            return false;
+        }
+        return this.world.character.y + this.world.character.height < boss.y + boss.height;
     }
 
     /**
