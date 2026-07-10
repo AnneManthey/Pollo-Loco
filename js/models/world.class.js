@@ -17,6 +17,8 @@ class World {
     wrong_bottle_sound = new Audio('assets/sounds/bottles/wrong.ogg');
     lastThrowTime = 0;
     throwCooldown = 180;
+    lastNoAmmoFeedbackTime = 0;
+    noAmmoFeedbackCooldown = 500;
     collisionSystem;
     renderer;
 
@@ -160,7 +162,7 @@ class World {
             this.throwBottle(now);
             return;
         }
-        this.playWrongBottleSound();
+        this.handleNoAmmoFeedback(now);
     }
 
     /**
@@ -210,6 +212,40 @@ class World {
         }
         this.wrong_bottle_sound.currentTime = 0;
         this.wrong_bottle_sound.play();
+    }
+
+    /**
+     * Handles sound and floating-text feedback when no bottle ammo is available.
+     * @param {number} now Current timestamp in ms.
+     */
+    handleNoAmmoFeedback(now) {
+        if (!this.shouldShowNoAmmoFeedback(now)) {
+            return;
+        }
+        this.lastNoAmmoFeedbackTime = now;
+        this.playWrongBottleSound();
+        this.showNoAmmoFloatingText();
+    }
+
+    /**
+     * Checks whether no-ammo feedback should be shown in this frame.
+     * @param {number} now Current timestamp in ms.
+     * @returns {boolean} True when no-ammo feedback should be displayed.
+     */
+    shouldShowNoAmmoFeedback(now) {
+        if (!this.keyboard.D || this.character.ammo > 0) {
+            return false;
+        }
+        return now - this.lastNoAmmoFeedbackTime >= this.noAmmoFeedbackCooldown;
+    }
+
+    /**
+     * Displays a short floating text in the center of the visible canvas.
+     */
+    showNoAmmoFloatingText() {
+        const textX = (this.canvas.width / 2) - this.camera_x;
+        const textY = this.canvas.height / 2;
+        this.floatingTexts.push(new FloatingText('No bottles!', textX, textY));
     }
 
     /**
