@@ -13,13 +13,15 @@
 
 # Optionale Functions:
 
-- Soundhub & Lautstärkeregler?
-- Nahkampf-Option?
-- Werfen-Animation?
+- Soundhub & Lautstärkeregler
+- Map vergrößern
+- Nahkampf-Option
+- Werfen-Animation
 - Hindernisse einfügen (Gräben, Steine, etwas draufspringen?)
 - Gegner drehen sich um, wenn Char in Reichweite
 - Stachelschwein-Gegner
 - Timer einbauen?
+- Weitere Level einbauen
 
 
 # Individualisieren

@@ -2,35 +2,20 @@
 # Desk
 
 
-- HP des Char anpassen (5 Treffer?)
+
 - Schaden/HP ballancen
 - Coins/Bottles Anzahl ballancen
-
-
-- Soundhub/eigene Class?
-- Lautstärkeregler?
-
-
-
-
-2. Anpassen & Gestalten
- 
-- Map vergrößern?
 - Clouds in Schleife?
 
+- diagram aktualisieren
 
 
 
-3. Optimierung / Feinschliff
+
+
+
 
  
- - Story-Infos (LoadingSpinner)
- - Schöne Story ergänzen - Känguru sammelt coins für schnapspralinen...!
- 
- 
-
-
-
 
 
 # Anforderungen Projekt:
