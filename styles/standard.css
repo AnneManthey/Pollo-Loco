@@ -19,6 +19,11 @@ body{
     overflow: hidden;
 }
 
+body.imprint-page {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .button-img {
     padding: 0;
     border: none;
