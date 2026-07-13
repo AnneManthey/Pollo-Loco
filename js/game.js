@@ -32,9 +32,23 @@ function init(){
     document.getElementById('button_fullscreen').addEventListener('click', toggleFullscreen);
     document.addEventListener('fullscreenchange', updateFullscreenButton);
     keyboard.initializeControls();
+    disableContextMenuOnUiButtons();
     updateMuteButton();
     updateMusicButton();
 }  
+
+/**
+ * Prevents long-press context menu on top UI icon buttons in touch browsers.
+ */
+function disableContextMenuOnUiButtons() {
+    ['button_mute', 'button_music', 'button_fullscreen'].forEach((id) => {
+        const button = document.getElementById(id);
+        if (!button) {
+            return;
+        }
+        button.addEventListener('contextmenu', (e) => e.preventDefault());
+    });
+}
 
 /**
  * Opens the game-over dialog and plays the matching end sound.

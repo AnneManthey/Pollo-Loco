@@ -48,7 +48,6 @@ h1 {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Loading-Spinner */
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -232,6 +231,8 @@ table {
 .button-fullscreen img {
     width: clamp(32px, 7vw, 50px);
     height: clamp(32px, 7vw, 50px);
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 .button-mute:hover {

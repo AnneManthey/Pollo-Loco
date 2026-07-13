@@ -57,6 +57,7 @@ class Keyboard {
         if (!button) {
             return;
         }
+        button.addEventListener('contextmenu', (e) => e.preventDefault());
         button.addEventListener('pointerdown', (e) => this.setMobileKey(e, key, true));
         button.addEventListener('pointerup', (e) => this.setMobileKey(e, key, false));
         button.addEventListener('pointerleave', (e) => this.setMobileKey(e, key, false));
