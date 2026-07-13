@@ -1,6 +1,4 @@
 @media screen and (max-width: 780px) {
-
-
     .button-start img {
         width: 150px;
     }
@@ -39,10 +37,8 @@
         height: auto;
         font-size: 1.3rem;
     }
-
 }
 
-/* Mobile Devices */
 @media (hover: none) and (orientation: portrait) and (max-width: 750px) {
     .game-section {
         display: none;
@@ -58,7 +54,6 @@
 }
 
 @media (hover: none) and (pointer: coarse) and (orientation: landscape) and (max-width: 750px) {
-
     .button-left,
     .button-right,
     .button-jump,
@@ -72,7 +67,6 @@
         user-select: none;
         touch-action: manipulation;
     }
-
 }
 
 @media (hover: none) and (orientation: landscape) and (max-width: 750px) {
