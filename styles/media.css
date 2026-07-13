@@ -55,13 +55,13 @@
     }
 }
 
-@media (hover: none) and (orientation: landscape) {
-    .button-left,
-    .button-right,
-    .button-jump,
-    .button-throw {
-        display: flex;
-    }
+@media (hover: none) and (pointer: coarse) and (orientation: landscape) and (max-width: 750px) {
+  .button-left,
+  .button-right,
+  .button-jump,
+  .button-throw {
+    display: flex;
+  }
 }
 
 @media (hover: none) and (orientation: landscape) and (max-width: 750px) {
