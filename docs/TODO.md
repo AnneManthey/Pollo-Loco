@@ -8,7 +8,7 @@
 - Coins einsammeln
 - Flaschen einsammeln
 - Endgegner besiegen
-- Game-Over Screen / Endscreen mit Play again & verlassen option
+- Game-Over Screen / Endscreen mit Play again & verlassen Option
 - Fullscreen
 - Erklärung der Steuerung
 - Sound/Musik
