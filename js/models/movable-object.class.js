@@ -67,8 +67,8 @@ class MovableObject extends DrawableObject {
      * @returns {boolean} True while hurt cooldown is active.
      */
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit; // difference in ms
-        timepassed = timepassed / 1000; // difference in sek
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
         return timepassed < 1;
     }
 
@@ -85,7 +85,7 @@ class MovableObject extends DrawableObject {
      * @param {string[]} images Animation frame paths.
      */
     playAnimation(images) {
-        let i = this.currentImage % images.length; // modulo (%)
+        let i = this.currentImage % images.length;
         let path = images[i];
         const nextImage = this.imageCache[path];
         if (nextImage && nextImage.complete && nextImage.naturalWidth > 0) {

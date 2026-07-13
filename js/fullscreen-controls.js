@@ -17,7 +17,6 @@ function toggleFullscreen() {
 function updateFullscreenButton() {
     const icon = document.querySelector('#button_fullscreen img');
     const fullscreen = isFullscreenActive();
-
     if (icon) {
         icon.src = fullscreen ? './assets/icons/close_fullscreen.png' : './assets/icons/fullscreen.png';
     }
@@ -32,7 +31,6 @@ function requestGameFullscreen({ allowPseudoFallback = false } = {}) {
     if (!element || isFullscreenActive()) {
         return;
     }
-
     const fallback = () => applyPseudoFullscreenFallback(allowPseudoFallback);
     if (tryNativeFullscreen(element, fallback)) {
         return;
@@ -48,7 +46,6 @@ function applyPseudoFullscreenFallback(allowPseudoFallback) {
     if (!allowPseudoFallback) {
         return;
     }
-
     setPseudoFullscreen(true);
     updateFullscreenButton();
 }
@@ -63,7 +60,6 @@ function tryNativeFullscreen(element, fallback) {
     if (!element.requestFullscreen) {
         return false;
     }
-
     element.requestFullscreen().catch(fallback);
     return true;
 }
@@ -113,7 +109,6 @@ function exitNativeFullscreen() {
     if (!document.fullscreenElement) {
         return;
     }
-
     if (document.exitFullscreen) {
         document.exitFullscreen().catch(() => {});
     } else {

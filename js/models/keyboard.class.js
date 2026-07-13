@@ -57,7 +57,6 @@ class Keyboard {
         if (!button) {
             return;
         }
-
         button.addEventListener('pointerdown', (e) => this.setMobileKey(e, key, true));
         button.addEventListener('pointerup', (e) => this.setMobileKey(e, key, false));
         button.addEventListener('pointerleave', (e) => this.setMobileKey(e, key, false));
@@ -99,7 +98,6 @@ class Keyboard {
         if (!this.isInputEnabled()) {
             return;
         }
-
         this.applyKeyboardState(keyData, isPressed);
     }
 
@@ -145,5 +143,4 @@ class Keyboard {
             || config.keys.includes(keyData.key)
             || config.keyCodes.includes(keyData.keyCode);
     }
-
 }

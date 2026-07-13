@@ -247,7 +247,7 @@ class Endboss extends MovableObject {
      * Applies one hit to the boss and updates state transitions.
      */
     hit() {
-        if (this.isDead || this.isHurt) return; // Verhindert Mehrfachtreffer im selben Moment
+        if (this.isDead || this.isHurt) return;
         this.hp -= 1;
         if (this.hp <= 0) {
             this.isDead = true;

@@ -22,7 +22,6 @@ class World {
     collisionSystem;
     renderer;
 
-
     /**
      * Creates world context, wires dependencies, and starts loops.
      * @param {HTMLCanvasElement} canvas Canvas element for rendering.

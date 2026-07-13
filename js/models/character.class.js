@@ -224,7 +224,6 @@ class Character extends MovableObject {
         if (!this.canStartJump()) {
             return;
         }
-
         this.lastAction = Date.now();
         this.jump();
         this.playJumpSound();

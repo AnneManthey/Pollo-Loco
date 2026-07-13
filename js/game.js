@@ -43,7 +43,6 @@ function init(){
 function openGameOverDialog(winOrLose) {
     const dialog = document.getElementById('dialog');
     const isWin = winOrLose === 'win';
-
     resetBackgroundMusic();
     dialog.innerHTML = isWin ? getWonDialogContent() : getLostDialogContent();
     playResultSound(isWin);
@@ -83,7 +82,6 @@ function playResultSound(isWin) {
     if (isMuted) {
         return;
     }
-
     const sound = isWin ? gameWonSound : gameOverSound;
     sound.currentTime = 0;
     sound.play();
