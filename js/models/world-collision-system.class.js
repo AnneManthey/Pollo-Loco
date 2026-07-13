@@ -29,7 +29,7 @@ class WorldCollisionSystem {
                 const elapsed = now - (bottle.splashStart || 0);
                 return elapsed < (bottle.splashDuration || 200);
             }
-            return bottle.y < 300;
+            return bottle.y < this.world.canvas.height;
         });
     }
 

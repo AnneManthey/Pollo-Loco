@@ -2,16 +2,6 @@
 # Desk
 
 
-- diagram aktualisieren
-
-
-
-
-
-
-
- 
-
 
 # Anforderungen Projekt:
 - Start Screen
@@ -31,3 +21,29 @@
 
 
 
+
+
+# OPTIONALES
+
+
+# Optionale Functions
+
+- Soundhub & Lautstärkeregler
+- Map vergrößern
+- Nahkampf-Option
+- Werfen-Animation
+- Hindernisse einfügen (Gräben/Wasser, Steine, höhere Ebenen)
+- Gegner drehen sich um, wenn Char in Reichweite (Aggro)
+- Timer einbauen?
+
+
+
+# Individualisieren
+
+- Character austauschen, zb: Känguru / Sprites mit KI generieren?
+- Gegner austauschen bzw. ergänzen, zb.: Stachelschwein/Igel -> kein Sprungangriff möglich
+- Sounds anpassen / austauschen
+- Mehrere Level 
+    - kleine Story - cutszenes mit Antwortmöglichkeiten?
+    - mehrere Level, schalten neue Moves/Fähigkeiten frei
+    - 
