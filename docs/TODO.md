@@ -2,11 +2,6 @@
 # Desk
 
 
-
-- Schaden/HP ballancen
-- Coins/Bottles Anzahl ballancen
-- Clouds in Schleife?
-
 - diagram aktualisieren
 
 

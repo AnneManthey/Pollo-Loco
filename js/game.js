@@ -1,13 +1,6 @@
 let canvas;
 let world;
-let keyboard = {
-    LEFT: false,
-    RIGHT: false,
-    UP: false,
-    DOWN: false,
-    SPACE: false,
-    D: false
-};
+let keyboard = new Keyboard(() => isGameLoaded);
 let isMuted = localStorage.getItem('isMuted') === 'true';
 let isMusicMuted = localStorage.getItem('isMusicMuted') === 'true';
 let isGameLoaded = false;
@@ -38,7 +31,7 @@ function init(){
     backgroundMusic.volume = 0.4;
     document.getElementById('button_fullscreen').addEventListener('click', toggleFullscreen);
     document.addEventListener('fullscreenchange', updateFullscreenButton);
-    setupMobileControls();
+    keyboard.initializeControls();
     updateMuteButton();
     updateMusicButton();
 }  
