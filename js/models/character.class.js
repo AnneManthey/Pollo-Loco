@@ -145,7 +145,7 @@ class Character extends MovableObject {
     startIdleLoop() {
         setInterval(() => {
             if (!this.isIdleStateActive()) {
-                this.stopSnoringSound();
+                stopCharacterSnoring(this);
                 return;
             }
             this.playIdleOrSleepAnimation();
@@ -159,9 +159,8 @@ class Character extends MovableObject {
         if (!this.isAnyMovementKeyPressed()) {
             return;
         }
-
         this.lastAction = Date.now();
-        this.stopSnoringSound();
+        stopCharacterSnoring(this);
     }
 
     /**
@@ -213,7 +212,7 @@ class Character extends MovableObject {
         }
         this.lastAction = Date.now();
         this.jump();
-        this.playJumpSound();
+        playCharacterJumpSound();
         this.jump_sound_is_playing = true;
     }
 
@@ -227,22 +226,15 @@ class Character extends MovableObject {
     }
 
     /**
-     * Plays jump sound if effects are enabled.
-     */
-    playJumpSound() {
-        playCharacterAudio('jump');
-    }
-
-    /**
      * Updates walking sound based on movement and character state.
      * @param {boolean} isMoving Whether character moved this frame.
      */
     updateWalkingSound(isMoving) {
         if (this.shouldPlayWalkingSound(isMoving)) {
-            this.startWalkingSound();
+            startCharacterWalkingSound(this);
             return;
         }
-        this.stopWalkingSound();
+        stopCharacterWalkingSound(this);
     }
 
     /**
@@ -252,25 +244,6 @@ class Character extends MovableObject {
      */
     shouldPlayWalkingSound(isMoving) {
         return isMoving && !isMuted && !this.isDead() && !this.isHurt() && !this.isAboveGround();
-    }
-
-    /**
-     * Starts walking sound if not already playing.
-     */
-    startWalkingSound() {
-        if (this.walking_sound_is_playing) {
-            return;
-        }
-        playCharacterAudio('walk', { restart: false });
-        this.walking_sound_is_playing = true;
-    }
-
-    /**
-     * Stops walking sound and resets playback state.
-     */
-    stopWalkingSound() {
-        stopCharacterAudio('walk');
-        this.walking_sound_is_playing = false;
     }
 
     /**
@@ -354,33 +327,11 @@ class Character extends MovableObject {
         const idleSeconds = (Date.now() - this.lastAction) / 1000;
         if (idleSeconds > 10) {
             this.playAnimation(this.IMAGES_SLEEP);
-            this.playSnoringSound();
+            playCharacterSnoringIfAllowed(this);
             return;
         }
-        this.stopSnoringSound();
+        stopCharacterSnoring(this);
         this.playAnimation(this.IMAGES_IDLE);
-    }
-
-    /**
-     * Plays snoring sound when idle sleep state is active.
-     */
-    playSnoringSound() {
-        if (!isMuted && !this.snoring_sound_is_playing) {
-            playCharacterAudio('snore');
-            this.snoring_sound_is_playing = true;
-        } else if (isMuted) {
-            this.stopSnoringSound();
-        }
-    }
-
-    /**
-     * Stops and resets snoring sound playback.
-     */
-    stopSnoringSound() {
-        if (this.snoring_sound_is_playing) {
-            stopCharacterAudio('snore');
-            this.snoring_sound_is_playing = false;
-        }
     }
 
     /**

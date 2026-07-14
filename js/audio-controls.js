@@ -219,6 +219,61 @@ function stopAllCharacterAudio() {
 }
 
 /**
+ * Plays character snoring sound when allowed and marks state flag.
+ * @param {Character} character Character instance.
+ */
+function playCharacterSnoringIfAllowed(character) {
+    if (!isMuted && !character.snoring_sound_is_playing) {
+        playCharacterAudio('snore');
+        character.snoring_sound_is_playing = true;
+        return;
+    }
+    if (isMuted) {
+        stopCharacterSnoring(character);
+    }
+}
+
+/**
+ * Stops character snoring sound and resets state flag.
+ * @param {Character} character Character instance.
+ */
+function stopCharacterSnoring(character) {
+    if (!character.snoring_sound_is_playing) {
+        return;
+    }
+    stopCharacterAudio('snore');
+    character.snoring_sound_is_playing = false;
+}
+
+/**
+ * Plays character jump sound.
+ */
+function playCharacterJumpSound() {
+    playCharacterAudio('jump');
+}
+
+/**
+ * Starts looping character walking sound if not active yet.
+ * @param {Character} character Character instance.
+ */
+function startCharacterWalkingSound(character) {
+    if (character.walking_sound_is_playing) {
+        return;
+    }
+    playCharacterAudio('walk', { restart: false });
+    character.walking_sound_is_playing = true;
+}
+
+/**
+ * Stops character walking sound and resets state flag.
+ * @param {Character} character Character instance.
+ */
+function stopCharacterWalkingSound(character) {
+    stopCharacterAudio('walk');
+    character.walking_sound_is_playing = false;
+}
+
+/**
  * Applies default settings to game-level audio tracks.
  */
 function setupGameAudio() {
