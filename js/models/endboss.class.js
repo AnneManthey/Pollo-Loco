@@ -62,7 +62,6 @@ class Endboss extends MovableObject {
     bossActive = false;
     bossState = 'idle';
     deathStartedAt = null;
-    approach_sound = new Audio('assets/sounds/endboss/endbossApproach.ogg');
     approach_sound_is_playing = false;
 
     /**
@@ -282,8 +281,7 @@ class Endboss extends MovableObject {
         if (this.approach_sound_is_playing || isMuted) {
             return;
         }
-        this.approach_sound.currentTime = 0;
-        this.approach_sound.play();
+        playEnemyAudio('endbossApproach');
         this.approach_sound_is_playing = true;
     }
 

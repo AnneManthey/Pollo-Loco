@@ -20,7 +20,6 @@ class ChickenSmall extends MovableObject {
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
-    chicken_dead = new Audio('assets/sounds/chicken/chickenDead2.ogg');
     chicken_dead_sound_is_playing = false;
     deathRemovalScheduled = false;
 
@@ -98,10 +97,7 @@ class ChickenSmall extends MovableObject {
         if (this.chicken_dead_sound_is_playing) {
             return;
         }
-        if (!isMuted) {
-            this.chicken_dead.currentTime = 0;
-            this.chicken_dead.play();
-        }
+        playEnemyAudio('chickenDeadSmall', { allowOverlap: true });
         this.chicken_dead_sound_is_playing = true;
     }
 
@@ -144,8 +140,7 @@ class ChickenSmall extends MovableObject {
      * Stops the chicken death sound immediately.
      */
     stopChickenSound() {
-        this.chicken_dead.pause();
-        this.chicken_dead.currentTime = 0;
+        stopEnemyAudio('chickenDeadSmall');
     }
 
 }

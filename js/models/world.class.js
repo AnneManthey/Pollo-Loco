@@ -14,7 +14,6 @@ class World {
     bossBar = new BossBar();
     throwableObjects = [];
     floatingTexts = [];
-    wrong_bottle_sound = new Audio('assets/sounds/bottles/wrong.ogg');
     lastThrowTime = 0;
     throwCooldown = 180;
     throwKeyLocked = false;
@@ -216,8 +215,7 @@ class World {
         if (!this.keyboard.D || this.character.ammo > 0 || isMuted) {
             return;
         }
-        this.wrong_bottle_sound.currentTime = 0;
-        this.wrong_bottle_sound.play();
+        playEnemyAudio('wrongBottle');
     }
 
     /**

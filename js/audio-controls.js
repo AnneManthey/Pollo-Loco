@@ -14,13 +14,39 @@ const characterAudio = {
     bottleCollect: new Audio('assets/sounds/coins/bottleCollectSound.ogg')
 };
 
+const enemyAudio = {
+    chickenDead: new Audio('assets/sounds/chicken/chickenDead.ogg'),
+    chickenDeadSmall: new Audio('assets/sounds/chicken/chickenDead2.ogg'),
+    endbossApproach: new Audio('assets/sounds/endboss/endbossApproach.ogg'),
+    bottleBreak: new Audio('assets/sounds/bottles/bottleBreak.ogg'),
+    wrongBottle: new Audio('assets/sounds/bottles/wrong.ogg')
+};
+
+const activeEnemyAudioInstances = new Set();
+
+const audioRegistries = {
+    game: gameAudio,
+    character: characterAudio,
+    enemy: enemyAudio
+};
+
+/**
+ * Returns one named audio element from a registry.
+ * @param {'game'|'character'|'enemy'} registryName Registry id.
+ * @param {string} key Audio id.
+ * @returns {HTMLAudioElement | undefined} Matching audio element.
+ */
+function getAudio(registryName, key) {
+    return audioRegistries[registryName]?.[key];
+}
+
 /**
  * Returns one named audio element from the central game audio registry.
  * @param {'gameOver'|'gameWon'|'backgroundMusic'} key Audio id.
  * @returns {HTMLAudioElement | undefined} Matching audio element.
  */
 function getGameAudio(key) {
-    return gameAudio[key];
+    return getAudio('game', key);
 }
 
 /**
@@ -29,7 +55,113 @@ function getGameAudio(key) {
  * @returns {HTMLAudioElement | undefined} Matching audio element.
  */
 function getCharacterAudio(key) {
-    return characterAudio[key];
+    return getAudio('character', key);
+}
+
+/**
+ * Returns one named enemy/world SFX audio element from the central registry.
+ * @param {'chickenDead'|'chickenDeadSmall'|'endbossApproach'|'bottleBreak'|'wrongBottle'} key Audio id.
+ * @returns {HTMLAudioElement | undefined} Matching audio element.
+ */
+function getEnemyAudio(key) {
+    return getAudio('enemy', key);
+}
+
+/**
+ * Plays one sound effect from a registry when effects are enabled.
+ * @param {'game'|'character'|'enemy'} registryName Registry id.
+ * @param {string} key Audio id.
+ * @param {{restart?: boolean, allowOverlap?: boolean}} [options] Playback options.
+ */
+function playSfx(registryName, key, options = {}) {
+    if (isMuted) {
+        return;
+    }
+    const baseAudio = getAudio(registryName, key);
+    if (!baseAudio) {
+        return;
+    }
+
+    const { restart = true, allowOverlap = false } = options;
+    const audio = allowOverlap ? baseAudio.cloneNode() : baseAudio;
+
+    if (restart) {
+        audio.currentTime = 0;
+    }
+
+    if (registryName === 'enemy') {
+        activeEnemyAudioInstances.add(audio);
+        audio.addEventListener('ended', () => {
+            activeEnemyAudioInstances.delete(audio);
+        }, { once: true });
+    }
+
+    audio.play().catch(() => {
+        activeEnemyAudioInstances.delete(audio);
+    });
+}
+
+/**
+ * Stops one sound effect from a registry.
+ * @param {'game'|'character'|'enemy'} registryName Registry id.
+ * @param {string} key Audio id.
+ * @param {{reset?: boolean}} [options] Stop options.
+ */
+function stopSfx(registryName, key, options = {}) {
+    const audio = getAudio(registryName, key);
+    if (!audio) {
+        return;
+    }
+    const { reset = true } = options;
+    audio.pause();
+    if (reset) {
+        audio.currentTime = 0;
+    }
+    if (registryName === 'enemy') {
+        activeEnemyAudioInstances.delete(audio);
+    }
+}
+
+/**
+ * Stops all sounds in one registry.
+ * @param {'game'|'character'|'enemy'} registryName Registry id.
+ */
+function stopAllSfx(registryName) {
+    if (registryName === 'enemy') {
+        activeEnemyAudioInstances.forEach((audio) => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+        activeEnemyAudioInstances.clear();
+    }
+
+    Object.keys(audioRegistries[registryName] || {}).forEach((key) => {
+        stopSfx(registryName, key);
+    });
+}
+
+/**
+ * Plays one enemy/world sound effect when effects are enabled.
+ * @param {'chickenDead'|'chickenDeadSmall'|'endbossApproach'|'bottleBreak'|'wrongBottle'} key Audio id.
+ * @param {{restart?: boolean, allowOverlap?: boolean}} [options] Playback options.
+ */
+function playEnemyAudio(key, options = {}) {
+    playSfx('enemy', key, options);
+}
+
+/**
+ * Stops one tracked enemy/world sound effect.
+ * @param {'chickenDead'|'chickenDeadSmall'|'endbossApproach'|'bottleBreak'|'wrongBottle'} key Audio id.
+ */
+function stopEnemyAudio(key) {
+    stopSfx('enemy', key);
+}
+
+/**
+ * Stops all active enemy/world sound effects.
+ */
+function stopAllEnemyAudio() {
+    stopAllSfx('enemy');
 }
 
 /**
@@ -67,18 +199,7 @@ function setupCharacterAudio() {
  * @param {{restart?: boolean}} [options] Playback options.
  */
 function playCharacterAudio(key, options = {}) {
-    if (isMuted) {
-        return;
-    }
-    const audio = getCharacterAudio(key);
-    if (!audio) {
-        return;
-    }
-    const { restart = true } = options;
-    if (restart) {
-        audio.currentTime = 0;
-    }
-    audio.play().catch(() => { });
+    playSfx('character', key, options);
 }
 
 /**
@@ -87,24 +208,14 @@ function playCharacterAudio(key, options = {}) {
  * @param {{reset?: boolean}} [options] Stop options.
  */
 function stopCharacterAudio(key, options = {}) {
-    const audio = getCharacterAudio(key);
-    if (!audio) {
-        return;
-    }
-    const { reset = true } = options;
-    audio.pause();
-    if (reset) {
-        audio.currentTime = 0;
-    }
+    stopSfx('character', key, options);
 }
 
 /**
  * Stops all currently managed character sounds.
  */
 function stopAllCharacterAudio() {
-    Object.keys(characterAudio).forEach((key) => {
-        stopCharacterAudio(key);
-    });
+    stopAllSfx('character');
 }
 
 /**
@@ -124,15 +235,7 @@ function setupGameAudio() {
  * @param {'gameOver'|'gameWon'} key Effect audio id.
  */
 function playGameSfx(key) {
-    if (isMuted) {
-        return;
-    }
-    const sound = getGameAudio(key);
-    if (!sound) {
-        return;
-    }
-    sound.currentTime = 0;
-    sound.play().catch(() => { });
+    playSfx('game', key);
 }
 
 /**
@@ -204,15 +307,7 @@ function toggleMute() {
  * Stops active chicken sounds from all current enemies.
  */
 function stopChickenSounds() {
-    if (!world?.level?.enemies) {
-        return;
-    }
-
-    world.level.enemies.forEach((enemy) => {
-        if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
-            enemy.stopChickenSound();
-        }
-    });
+    stopAllEnemyAudio();
 }
 
 /**

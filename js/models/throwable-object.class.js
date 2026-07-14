@@ -4,7 +4,6 @@ class ThrowableObject extends MovableObject {
     groundImpactY = 450;
     throwDirection = 1;
     throwSpeedX = 8;
-    bottle_break_sound = new Audio('assets/sounds/bottles/bottleBreak.ogg');
     bottle_break_sound_is_playing = false;
 
     IMAGES_THROWING = [
@@ -53,8 +52,7 @@ class ThrowableObject extends MovableObject {
                 this.playAnimation(this.IMAGES_THROWING);
             } else {
                 if (!this.bottle_break_sound_is_playing && !isMuted) {
-                    this.bottle_break_sound.currentTime = 0;
-                    this.bottle_break_sound.play();
+                    playEnemyAudio('bottleBreak', { allowOverlap: true });
                     this.bottle_break_sound_is_playing = true;
                 }
                 this.playAnimation(this.IMAGES_SPLASH);
@@ -91,6 +89,7 @@ class ThrowableObject extends MovableObject {
      */
     triggerSplashState() {
         this.isHit = true;
+        this.bottle_break_sound_is_playing = false;
         this.splashStart = Date.now();
         this.splashDuration = 200;
         this.speedY = 0;
