@@ -1,6 +1,13 @@
 
 # Desk
 
+- coded by nicht gut lesbar
+- coins sammeln nicht präzise
+- Endboss aggressiver
+- Bottles throw cd
+- Mobile buttons auf ipad air etc. (alle mobile devices)
+- character class zu lang / Sounds auslagern
+
 
 
 # Anforderungen Projekt:
