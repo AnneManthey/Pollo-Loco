@@ -1,8 +1,8 @@
 
 # Desk
 
-- coins sammeln nicht präzise
-- Endboss aggressiver
+
+- Endboss aggressiver/verfolgt den char in beide richtungen?
 - Bottles throw cd
 - Mobile buttons auf ipad air etc. (alle mobile devices)
 - character class zu lang / Sounds auslagern

@@ -17,6 +17,7 @@ class World {
     wrong_bottle_sound = new Audio('assets/sounds/bottles/wrong.ogg');
     lastThrowTime = 0;
     throwCooldown = 180;
+    throwKeyLocked = false;
     lastNoAmmoFeedbackTime = 0;
     noAmmoFeedbackCooldown = 500;
     collisionSystem;
@@ -157,6 +158,11 @@ class World {
      */
     checkTrowObjects() {
         const now = Date.now();
+        if (!this.keyboard.D) {
+            this.throwKeyLocked = false;
+            this.handleNoAmmoFeedback(now);
+            return;
+        }
         if (this.shouldThrowBottle(now)) {
             this.throwBottle(now);
             return;
@@ -170,7 +176,7 @@ class World {
      * @returns {boolean} True when bottle throw should execute.
      */
     shouldThrowBottle(now) {
-        return this.keyboard.D && this.character.ammo >= 1 && !this.isThrowOnCooldown(now);
+        return this.keyboard.D && !this.throwKeyLocked && this.character.ammo >= 1 && !this.isThrowOnCooldown(now);
     }
 
     /**
@@ -188,6 +194,7 @@ class World {
      */
     throwBottle(now) {
         this.lastThrowTime = now;
+        this.throwKeyLocked = true;
         const throwDirection = this.character.otherDirection ? -1 : 1;
         const spawnOffsetX = throwDirection > 0 ? 100 : 10;
         const groundImpactY = this.character.GROUND_Y + this.character.height;
