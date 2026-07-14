@@ -1,7 +1,6 @@
 
 # Desk
 
-- coded by nicht gut lesbar
 - coins sammeln nicht präzise
 - Endboss aggressiver
 - Bottles throw cd

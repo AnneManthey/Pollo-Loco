@@ -49,7 +49,8 @@ class WorldCollisionSystem {
      */
     checkCollectableCollisions() {
         this.world.level.collectables.forEach((item, index) => {
-            if (this.world.character.isColliding(item, 4)) {
+            const collectPadding = item instanceof Coin ? 20 : 4;
+            if (this.world.character.isColliding(item, collectPadding)) {
                 this.collectItem(item, index);
             }
         });
