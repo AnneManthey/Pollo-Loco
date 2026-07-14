@@ -8,18 +8,11 @@ class Character extends MovableObject {
     coins = 0;
     ammo = 0;
     world;
-    snoring_sound = new Audio('assets/sounds/character/characterSnoring.ogg');
     snoring_sound_is_playing = false;
-    walking_sound = new Audio('assets/sounds/character/characterRun.ogg');
     walking_sound_is_playing = false;
-    jump_sound = new Audio('assets/sounds/character/characterJump.ogg');
     jump_sound_is_playing = false;
-    hurt_sound = new Audio('assets/sounds/character/characterDamage.ogg');
     hurt_sound_is_playing = false;
-    dead_sound = new Audio('assets/sounds/character/characterDead.ogg');
     dead_sound_is_playing = false;
-    coin_collect_sound = new Audio('assets/sounds/coins/collectSound.ogg');
-    bottle_collect_sound = new Audio('assets/sounds/coins/bottleCollectSound.ogg');
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -107,13 +100,7 @@ class Character extends MovableObject {
      * Applies loop and volume settings for character sounds.
      */
     configureCharacterAudio() {
-        this.walking_sound.loop = true;
-        this.snoring_sound.loop = true;
-        this.snoring_sound.volume = 0.18;
-        this.walking_sound.volume = 0.22;
-        this.jump_sound.volume = 0.25;
-        this.hurt_sound.volume = 0.28;
-        this.dead_sound.volume = 0.28;
+        setupCharacterAudio();
     }
 
     /**
@@ -243,11 +230,7 @@ class Character extends MovableObject {
      * Plays jump sound if effects are enabled.
      */
     playJumpSound() {
-        if (isMuted) {
-            return;
-        }
-        this.jump_sound.currentTime = 0;
-        this.jump_sound.play();
+        playCharacterAudio('jump');
     }
 
     /**
@@ -278,8 +261,7 @@ class Character extends MovableObject {
         if (this.walking_sound_is_playing) {
             return;
         }
-        this.walking_sound.currentTime = 0;
-        this.walking_sound.play();
+        playCharacterAudio('walk', { restart: false });
         this.walking_sound_is_playing = true;
     }
 
@@ -287,8 +269,7 @@ class Character extends MovableObject {
      * Stops walking sound and resets playback state.
      */
     stopWalkingSound() {
-        this.walking_sound.pause();
-        this.walking_sound.currentTime = 0;
+        stopCharacterAudio('walk');
         this.walking_sound_is_playing = false;
     }
 
@@ -301,8 +282,7 @@ class Character extends MovableObject {
             return false;
         }
         if (!this.dead_sound_is_playing && !isMuted) {
-            this.dead_sound.currentTime = 0;
-            this.dead_sound.play();
+            playCharacterAudio('dead');
             this.dead_sound_is_playing = true;
         }
         this.playAnimation(this.IMAGES_DEAD);
@@ -318,8 +298,7 @@ class Character extends MovableObject {
             return false;
         }
         if (!this.hurt_sound_is_playing && !isMuted) {
-            this.hurt_sound.currentTime = 0;
-            this.hurt_sound.play();
+            playCharacterAudio('hurt');
             this.hurt_sound_is_playing = true;
         }
         this.playAnimation(this.IMAGES_HURT);
@@ -387,8 +366,7 @@ class Character extends MovableObject {
      */
     playSnoringSound() {
         if (!isMuted && !this.snoring_sound_is_playing) {
-            this.snoring_sound.currentTime = 0;
-            this.snoring_sound.play();
+            playCharacterAudio('snore');
             this.snoring_sound_is_playing = true;
         } else if (isMuted) {
             this.stopSnoringSound();
@@ -400,8 +378,7 @@ class Character extends MovableObject {
      */
     stopSnoringSound() {
         if (this.snoring_sound_is_playing) {
-            this.snoring_sound.pause();
-            this.snoring_sound.currentTime = 0;
+            stopCharacterAudio('snore');
             this.snoring_sound_is_playing = false;
         }
     }
@@ -427,10 +404,7 @@ class Character extends MovableObject {
     collectCoin() {
         this.lastAction = Date.now();
         this.coins += 10;
-        if (!isMuted) {
-            this.coin_collect_sound.currentTime = 0;
-            this.coin_collect_sound.play();
-        }
+        playCharacterAudio('coinCollect');
     }
 
     /**
@@ -442,10 +416,7 @@ class Character extends MovableObject {
         if (this.ammo > 10) {
             this.ammo = 10;
         }
-        if (!isMuted) {
-            this.bottle_collect_sound.currentTime = 0;
-            this.bottle_collect_sound.play();
-        }
+        playCharacterAudio('bottleCollect');
     }
 
     /**

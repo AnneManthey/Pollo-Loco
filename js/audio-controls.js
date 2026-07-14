@@ -4,6 +4,16 @@ const gameAudio = {
     backgroundMusic: new Audio('assets/sounds/game/backgroundMusic.ogg')
 };
 
+const characterAudio = {
+    snore: new Audio('assets/sounds/character/characterSnoring.ogg'),
+    walk: new Audio('assets/sounds/character/characterRun.ogg'),
+    jump: new Audio('assets/sounds/character/characterJump.ogg'),
+    hurt: new Audio('assets/sounds/character/characterDamage.ogg'),
+    dead: new Audio('assets/sounds/character/characterDead.ogg'),
+    coinCollect: new Audio('assets/sounds/coins/collectSound.ogg'),
+    bottleCollect: new Audio('assets/sounds/coins/bottleCollectSound.ogg')
+};
+
 /**
  * Returns one named audio element from the central game audio registry.
  * @param {'gameOver'|'gameWon'|'backgroundMusic'} key Audio id.
@@ -11,6 +21,90 @@ const gameAudio = {
  */
 function getGameAudio(key) {
     return gameAudio[key];
+}
+
+/**
+ * Returns one named character audio element from the central registry.
+ * @param {'snore'|'walk'|'jump'|'hurt'|'dead'|'coinCollect'|'bottleCollect'} key Audio id.
+ * @returns {HTMLAudioElement | undefined} Matching audio element.
+ */
+function getCharacterAudio(key) {
+    return characterAudio[key];
+}
+
+/**
+ * Applies default settings to character-related audio tracks.
+ */
+function setupCharacterAudio() {
+    const snore = getCharacterAudio('snore');
+    const walk = getCharacterAudio('walk');
+    const jump = getCharacterAudio('jump');
+    const hurt = getCharacterAudio('hurt');
+    const dead = getCharacterAudio('dead');
+
+    if (snore) {
+        snore.loop = true;
+        snore.volume = 0.18;
+    }
+    if (walk) {
+        walk.loop = true;
+        walk.volume = 0.22;
+    }
+    if (jump) {
+        jump.volume = 0.25;
+    }
+    if (hurt) {
+        hurt.volume = 0.28;
+    }
+    if (dead) {
+        dead.volume = 0.28;
+    }
+}
+
+/**
+ * Plays one character sound effect when effects are enabled.
+ * @param {'snore'|'walk'|'jump'|'hurt'|'dead'|'coinCollect'|'bottleCollect'} key Audio id.
+ * @param {{restart?: boolean}} [options] Playback options.
+ */
+function playCharacterAudio(key, options = {}) {
+    if (isMuted) {
+        return;
+    }
+    const audio = getCharacterAudio(key);
+    if (!audio) {
+        return;
+    }
+    const { restart = true } = options;
+    if (restart) {
+        audio.currentTime = 0;
+    }
+    audio.play().catch(() => { });
+}
+
+/**
+ * Stops one character sound and optionally rewinds it.
+ * @param {'snore'|'walk'|'jump'|'hurt'|'dead'|'coinCollect'|'bottleCollect'} key Audio id.
+ * @param {{reset?: boolean}} [options] Stop options.
+ */
+function stopCharacterAudio(key, options = {}) {
+    const audio = getCharacterAudio(key);
+    if (!audio) {
+        return;
+    }
+    const { reset = true } = options;
+    audio.pause();
+    if (reset) {
+        audio.currentTime = 0;
+    }
+}
+
+/**
+ * Stops all currently managed character sounds.
+ */
+function stopAllCharacterAudio() {
+    Object.keys(characterAudio).forEach((key) => {
+        stopCharacterAudio(key);
+    });
 }
 
 /**
@@ -99,6 +193,7 @@ function saveAudioSettings() {
 function toggleMute() {
     isMuted = !isMuted;
     if (isMuted) {
+        stopAllCharacterAudio();
         stopChickenSounds();
     }
     updateMuteButton();
