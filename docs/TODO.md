@@ -2,7 +2,6 @@
 # Desk
 
 
-- Endboss aggressiver/verfolgt den char in beide richtungen?
 - character class zu lang / Sounds auslagern
 
 

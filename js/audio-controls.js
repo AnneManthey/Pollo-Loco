@@ -1,3 +1,58 @@
+const gameAudio = {
+    gameOver: new Audio('assets/sounds/game/gameOver.ogg'),
+    gameWon: new Audio('assets/sounds/game/gameWon.ogg'),
+    backgroundMusic: new Audio('assets/sounds/game/backgroundMusic.ogg')
+};
+
+/**
+ * Returns one named audio element from the central game audio registry.
+ * @param {'gameOver'|'gameWon'|'backgroundMusic'} key Audio id.
+ * @returns {HTMLAudioElement | undefined} Matching audio element.
+ */
+function getGameAudio(key) {
+    return gameAudio[key];
+}
+
+/**
+ * Applies default settings to game-level audio tracks.
+ */
+function setupGameAudio() {
+    const bgMusic = getGameAudio('backgroundMusic');
+    if (!bgMusic) {
+        return;
+    }
+    bgMusic.loop = true;
+    bgMusic.volume = 0.4;
+}
+
+/**
+ * Plays one short game sound effect when effects are enabled.
+ * @param {'gameOver'|'gameWon'} key Effect audio id.
+ */
+function playGameSfx(key) {
+    if (isMuted) {
+        return;
+    }
+    const sound = getGameAudio(key);
+    if (!sound) {
+        return;
+    }
+    sound.currentTime = 0;
+    sound.play().catch(() => { });
+}
+
+/**
+ * Stops and rewinds background music.
+ */
+function resetBackgroundMusic() {
+    const bgMusic = getGameAudio('backgroundMusic');
+    if (!bgMusic) {
+        return;
+    }
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+}
+
 /**
  * Updates the sound-effects button icon based on mute state.
  */
@@ -70,9 +125,10 @@ function stopChickenSounds() {
  */
 function toggleMusic() {
     isMusicMuted = !isMusicMuted;
+    const bgMusic = getGameAudio('backgroundMusic');
 
-    if (isMusicMuted) {
-        backgroundMusic.pause();
+    if (isMusicMuted && bgMusic) {
+        bgMusic.pause();
     } else if (isGameLoaded) {
         playBackgroundMusic();
     }
@@ -85,7 +141,8 @@ function toggleMusic() {
  * Starts background music when game and music settings allow it.
  */
 function playBackgroundMusic() {
-    if (isGameLoaded && !isMusicMuted) {
-        backgroundMusic.play().catch(() => {});
+    const bgMusic = getGameAudio('backgroundMusic');
+    if (isGameLoaded && !isMusicMuted && bgMusic) {
+        bgMusic.play().catch(() => { });
     }
 }

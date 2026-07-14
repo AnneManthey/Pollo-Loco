@@ -5,9 +5,6 @@ let isMuted = localStorage.getItem('isMuted') === 'true';
 let isMusicMuted = localStorage.getItem('isMusicMuted') === 'true';
 let isGameLoaded = false;
 const mobileFullscreenClass = 'mobile-fullscreen';
-let gameOverSound = new Audio('assets/sounds/game/gameOver.ogg');
-let gameWonSound = new Audio('assets/sounds/game/gameWon.ogg');
-let backgroundMusic = new Audio('assets/sounds/game/backgroundMusic.ogg');
 const storyInfos = [
     "Pepe has traveled deep into the desert to retrieve the stolen salsa bottles...",
     "Press 'D' to throw a salsa bottle at the chickens!",
@@ -27,8 +24,7 @@ function init(){
     setRandomLoadingText();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard, openGameOverDialog);
-    backgroundMusic.loop = true;
-    backgroundMusic.volume = 0.4;
+    setupGameAudio();
     document.getElementById('button_fullscreen').addEventListener('click', toggleFullscreen);
     document.addEventListener('fullscreenchange', updateFullscreenButton);
     keyboard.initializeControls();
@@ -64,14 +60,6 @@ function openGameOverDialog(winOrLose) {
 }
 
 /**
- * Stops and rewinds background music before result dialogs are shown.
- */
-function resetBackgroundMusic() {
-    backgroundMusic.pause();
-    backgroundMusic.currentTime = 0;
-}
-
-/**
  * Builds win dialog HTML including final coin score.
  * @returns {string} Win dialog markup.
  */
@@ -93,12 +81,7 @@ function getLostDialogContent() {
  * @param {boolean} isWin True if the player won.
  */
 function playResultSound(isWin) {
-    if (isMuted) {
-        return;
-    }
-    const sound = isWin ? gameWonSound : gameOverSound;
-    sound.currentTime = 0;
-    sound.play();
+    playGameSfx(isWin ? 'gameWon' : 'gameOver');
 }
 
 /**
