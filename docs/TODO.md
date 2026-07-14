@@ -3,7 +3,6 @@
 
 
 - Endboss aggressiver/verfolgt den char in beide richtungen?
-- Mobile buttons auf ipad air etc. (alle mobile devices)
 - character class zu lang / Sounds auslagern
 
 
