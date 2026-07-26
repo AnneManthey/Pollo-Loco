@@ -1,4 +1,9 @@
 @media screen and (max-width: 780px) {
+
+    .landing-img {
+        width: 300px;
+    }
+
     .button-start img {
         width: 150px;
     }
@@ -11,6 +16,8 @@
 }
 
 @media screen and (max-width: 550px) {
+
+
     .game-start-section>img {
         width: 280px;
         height: auto;
@@ -54,6 +61,7 @@
 }
 
 @media (hover: none) and (pointer: coarse) and (orientation: landscape) and (max-width: 1366px) {
+
     .button-left,
     .button-right,
     .button-jump,
@@ -70,9 +78,10 @@
 }
 
 @media (hover: none) and (orientation: landscape) and (max-width: 1366px) {
-     h1 {
+    h1 {
         display: none;
     }
+
     .game-section {
         width: 100%;
         height: 100dvh;
