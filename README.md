@@ -1,21 +1,31 @@
 # El Pollo Loco
 
-**El Pollo Loco** is a browser-based 2D platform game built with vanilla HTML, CSS, and JavaScript. Guide Pepe through the desert, collect coins and salsa bottles, defeat chickens, and face the Chicken King.
+El Pollo Loco is a browser-based 2D platform game built with vanilla HTML, CSS, and JavaScript. Guide Pepe through a desert level, collect coins and salsa bottles, defeat chicken enemies, and face the end boss. The game uses an HTML5 canvas with responsive styling and includes keyboard and mobile touch controls. It also provides sound effects, background music, fullscreen mode, and start, victory, and game-over screens.
 
-## Features
+## Quickstart
 
-- Animated canvas-based gameplay
-- Collectable coins and salsa bottles
-- Normal and small chicken enemies, plus an end boss
-- Jump attacks and throwable salsa bottles
-- Health, score, bottle, and boss status bars
-- Sound effects and background music controls
-- Fullscreen mode
-- Keyboard controls and mobile touch buttons
-- Responsive layout with landscape guidance for mobile devices
-- Start, game-over, and victory screens
+### Prerequisites
 
-## Controls
+- A modern web browser
+- A local static web server
+
+There are no package manifests, dependencies, or build steps in this project.
+
+### Setup
+
+Clone the repository and serve its root directory:
+
+```bash
+git clone git@github.com:AnneManthey/Pollo-Loco.git
+cd Pollo-Loco
+python -m http.server 8000
+```
+
+Open [http://localhost:8000](http://localhost:8000) and select **Play**. The project can also be opened through `index.html` directly, although a local server is recommended.
+
+## Usage
+
+From the landing page, open **Play**, **Controls**, or **Story**. During the game, use these controls:
 
 | Action | Key |
 | --- | --- |
@@ -24,21 +34,7 @@
 | Jump / attack enemies | Spacebar or Up Arrow |
 | Throw a salsa bottle | D |
 
-> Throwing requires collected salsa bottles.
-
-## Getting Started
-
-No installation or build step is required. Clone the repository and serve its root directory with any local static web server:
-
-```bash
-git clone git@github.com:AnneManthey/Pollo-Loco.git
-cd Pollo-Loco
-python -m http.server 8000
-```
-
-Then open [http://localhost:8000](http://localhost:8000) in your browser and select **Play**.
-
-You can also open `index.html` directly, but a local web server is recommended for consistent browser behaviour.
+Throwing requires collected salsa bottles. On supported mobile layouts, use the displayed touch buttons. The game page also includes controls for sound effects, music, and fullscreen mode.
 
 ## Project Structure
 
@@ -48,22 +44,16 @@ You can also open `index.html` directly, but a local web server is recommended f
 ├── game.html               # Game page and script loading order
 ├── controls.html           # Controls page
 ├── story.html              # Game story
+├── legal-notice.html       # Legal notice and credits
 ├── js/
-│   ├── game.js             # Game initialisation and main game logic
+│   ├── game.js             # Game initialization and main game logic
 │   ├── levels/             # Level definitions
 │   └── models/             # Entities, world, rendering, and collision classes
-├── styles/                 # Shared fonts, responsive, and fullscreen styles
-├── assets/                 # Icons, font, and audio files
-└── img/                    # Sprite sheets, backgrounds, and UI images
+├── styles/                 # Font, responsive, and fullscreen styles
+├── assets/                 # Icons, fonts, and audio files
+└── img/                    # Sprites, backgrounds, and UI images
 ```
-
-## Technologies
-
-- HTML5 Canvas
-- CSS3, including responsive and fullscreen styling
-- Vanilla JavaScript (ES6 classes)
-- Web Audio via HTML audio elements
 
 ## Author
 
-Created by Anne Manthey (2026).
+Anne Manthey
